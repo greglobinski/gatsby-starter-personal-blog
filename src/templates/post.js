@@ -4,7 +4,6 @@ import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
 var find = require("lodash/find");
-import asyncComponent from "../components/common/AsyncComponent/";
 
 //import Seo from "../components/Other/Seo";
 import Article from "../components/Article/";
@@ -23,14 +22,6 @@ const styles = theme => ({
     }
   }
 });
-
-const Share = asyncComponent(() =>
-  import("../components/Share/")
-    .then(module => {
-      return module;
-    })
-    .catch(error => {})
-);
 
 // const Disqus = asyncComponent(() =>
 //   import("../components/Disqus/")
@@ -103,6 +94,7 @@ class PostTemplate extends React.Component {
   // }
 
   render() {
+    const { slug } = this.props.pathContext;
     const { post } = this.props.data;
     const { classes, parts } = this.props;
 
@@ -114,8 +106,8 @@ class PostTemplate extends React.Component {
     return (
       <div className={classes.wrapper}>
         <Scrollbars autoHide>
-          <Article post={post} />
-          <Share post={post} />
+          <Article post={post} slug={slug} />
+
           {/* <div
             id="fb-comments"
             className="fb-comments"
@@ -127,7 +119,6 @@ class PostTemplate extends React.Component {
             className="fb-comments-count"
             data-href="https://silly-mcclintock-36e6bf.netlify.com/two-things-are-infinite/"
           />
-          <div>Loading...</div>
           <div
             id="fb-comments"
             className="fb-comments"
@@ -135,8 +126,6 @@ class PostTemplate extends React.Component {
             data-width="100%"
             data-numposts="5"
           />
-          {/* <Disqus post={post} /> */}
-          {/* {!Share ? <div>Loading Share ...</div> : <Share post={post} />} */}
           <Footer footnoteContent={footnoteContent} />
         </Scrollbars>
       </div>
@@ -147,7 +136,8 @@ class PostTemplate extends React.Component {
 PostTemplate.propTypes = {
   data: PropTypes.object.isRequired,
   parts: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  pathContext: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -169,6 +159,9 @@ export const pageQuery = graphql`
     post: markdownRemark(frontmatter: { path: { eq: $path } }) {
       id
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         subTitle

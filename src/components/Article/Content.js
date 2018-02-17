@@ -58,10 +58,10 @@ const styles = theme => ({
       }
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      fontSize: `${theme.post.fonts.content.size * theme.post.fonts.content.xSizeM}em`
+      fontSize: `${theme.post.fonts.content.sizeM}em`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      fontSize: `${theme.post.fonts.content.size * theme.post.fonts.content.xSizeL}em`
+      fontSize: `${theme.post.fonts.content.sizeL}em`
     }
   }
 });

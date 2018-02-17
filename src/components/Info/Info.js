@@ -4,7 +4,6 @@ import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import Link from "gatsby-link";
 var find = require("lodash/find");
-import Home from "material-ui-icons/Home";
 
 import { setNavigatorIsAside, setNavigatorInTransition } from "../../state/store";
 import avatar from "../../images/avatar.jpg";
@@ -122,7 +121,7 @@ const styles = theme => ({
     "& small": {
       display: "block",
       fontSize: ".6em",
-      marginTop: ".2em"
+      marginTop: ".3em"
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       fontSize: `${theme.info.fonts.boxTitleSizeM}em`

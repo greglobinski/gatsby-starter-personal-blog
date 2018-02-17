@@ -4,16 +4,12 @@ import injectSheet from "react-jss";
 
 import avatar from "../../../images/avatar.jpg";
 
-const style = {};
-
-let restyle = { float: "right" };
-
 const styles = theme => ({
   frame: {
     width: "100%",
     borderRadius: "50%",
     boxShadow: "0px 0px 0px 2px white, 0px 0px 1px 2px #666",
-    display: "inline-block",
+    display: "block",
     overflow: "hidden",
     "& img": {
       maxWidth: "100%"

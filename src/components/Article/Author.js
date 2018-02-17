@@ -5,18 +5,29 @@ import injectSheet from "react-jss";
 import Avatar from "../common/Avatar";
 
 const styles = theme => ({
-  container: {
+  author: {
+    margin: "3em 0 0",
+    padding: "3em 0 0",
+    borderTop: "1px solid #ddd",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
+    alignItems: "center",
     "& a": {
       borderBottom: `1px solid ${theme.main.colors.link}`,
       color: theme.main.colors.link
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      flexDirection: "row",
+      justifyContent: "center"
     }
   },
   avatar: {
-    marginRight: "1em",
+    margin: "0 1em 1em",
     width: "50px",
-    flexShrink: 0
+    flexShrink: 0,
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      margin: "0 1em 0"
+    }
   },
   box: {
     display: "flex",
@@ -28,7 +39,7 @@ const styles = theme => ({
 
 const Author = ({ classes, content }) => {
   return (
-    <div className={classes.container}>
+    <div className={classes.author}>
       <div className={classes.avatar}>
         <Avatar />
       </div>

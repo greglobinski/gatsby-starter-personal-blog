@@ -55,14 +55,14 @@ const styles = theme => ({
 });
 
 const Article = props => {
-  const { classes, post, parts } = props;
+  const { classes, post, parts, slug } = props;
   const { html } = post;
 
   return (
     <article className={classes.article}>
       <Header {...post.frontmatter} />
       <Content html={html} />
-      <Footer parts={parts} />
+      <Footer parts={parts} post={post} slug={slug} />
     </article>
   );
 };
@@ -70,7 +70,8 @@ const Article = props => {
 Article.propTypes = {
   classes: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
-  parts: PropTypes.array.isRequired
+  parts: PropTypes.array.isRequired,
+  slug: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {

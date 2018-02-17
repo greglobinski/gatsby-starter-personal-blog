@@ -83,9 +83,9 @@ const theme = createMuiTheme({
         weight: 600
       },
       content: {
-        size: 1,
+        size: 1.0,
         xSizeM: 1.15,
-        xSizeL: 1.05,
+        xSizeL: 1.1,
         lineHeight: 1.6
       },
       contentHeading: {

@@ -1,7 +1,7 @@
 const colors = require("../styles/colors");
 
 module.exports = {
-  pathPrefix: "/",
+  pathPrefix: "",
   appName: "PersonalBlog",
   siteTitle: "PersonalBlog - a blog GatsbyJs starter",
   homeTitle: "Personal blog",
