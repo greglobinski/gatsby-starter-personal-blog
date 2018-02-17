@@ -86,7 +86,9 @@ class PostTemplate extends React.Component {
       if (typeof FB != "undefined" && FB != null) {
         console.log("%c FB", "background: #222; color: #bada55");
         //eslint-disable-next-line no-undef
-        FB.XFBML.parse();
+        FB.XFBML.parse(null, function() {
+          console.log("I parsed");
+        });
       }
     }, 1500);
   }
@@ -121,8 +123,13 @@ class PostTemplate extends React.Component {
             data-numposts="10"
           /> */}
           {/* <div id="fb-root" /> */}
-          <span className="fb-comments-count" data-href="https://example.com/" />
+          <span
+            className="fb-comments-count"
+            data-href="https://silly-mcclintock-36e6bf.netlify.com/two-things-are-infinite/"
+          />
+          <div>Loading...</div>
           <div
+            id="fb-comments"
             className="fb-comments"
             data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
             data-width="100%"

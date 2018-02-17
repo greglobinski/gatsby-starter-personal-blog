@@ -109,31 +109,7 @@ class PostTemplate extends React.Component {
 
     //let { Share } = this.state;
 
-    return (
-      <div className={classes.wrapper}>
-        <Scrollbars autoHide>
-          <Article post={post} />
-          <Share post={post} />
-          {/* <div
-            id="fb-comments"
-            className="fb-comments"
-            data-href="https://www.facebook.com/cna.net.au/"
-            data-numposts="10"
-          /> */}
-          {/* <div id="fb-root" /> */}
-          <span className="fb-comments-count" data-href="https://example.com/" />
-          <div
-            className="fb-comments"
-            data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-            data-width="100%"
-            data-numposts="5"
-          />
-          {/* <Disqus post={post} /> */}
-          {/* {!Share ? <div>Loading Share ...</div> : <Share post={post} />} */}
-          <Footer footnoteContent={footnoteContent} />
-        </Scrollbars>
-      </div>
-    );
+    return <div className={classes.wrapper}>page</div>;
   }
 }
 
