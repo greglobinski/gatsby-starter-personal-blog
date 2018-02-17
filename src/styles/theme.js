@@ -19,18 +19,30 @@ const theme = createMuiTheme({
       styledFonts: "300,400,600,700"
     }
   },
+  info: {
+    colors: {
+      background: colors.white,
+      avatarIcon: colors.accent
+    },
+    sizes: {
+      width: 320,
+      height: 60
+    },
+    fonts: {
+      boxTitleSize: 1.3,
+      boxTitleSizeM: 1.5,
+      boxTitleSizeL: 1.7
+    }
+  },
   navigator: {
     colors: {
       background: colors.white,
-      infoBackground: colors.white,
       postsListItemLink: colors.gray,
       postsListItemLinkHover: colors.accent
     },
     sizes: {
-      infoWith: 320,
-      infoHeight: 60,
-      postsListItemH1Font: 1.4,
-      postsListItemH2Font: 1.05,
+      postsListItemH1Font: 1.3,
+      postsListItemH2Font: 1.1,
       fontIncraseForM: 1.15,
       fontIncraseForL: 1.3
     }
@@ -49,21 +61,21 @@ const theme = createMuiTheme({
       linkHover: colors.dark
     },
     sizes: {
-      maxWidth: "46em"
+      maxWidth: "50em"
     },
     fonts: {
       title: {
         size: 1.9,
         weight: 600,
         lineHeight: 1.1,
-        xSizeM: 1.15,
-        xSizeL: 1.3
+        xSizeM: 1.3,
+        xSizeL: 1.4
       },
       subTitle: {
         size: 1.5,
         weight: 300,
         lineHeight: 1.1,
-        xSizeM: 1.15,
+        xSizeM: 1.2,
         xSizeL: 1.3
       },
       meta: {
@@ -72,13 +84,15 @@ const theme = createMuiTheme({
       },
       content: {
         size: 1,
-        lineHeight: 1.5
+        xSizeM: 1.15,
+        xSizeL: 1.05,
+        lineHeight: 1.6
       },
       contentHeading: {
         h2Size: 1.4,
         h3Size: 1.2,
         weight: 600,
-        lineHeight: 1.1
+        lineHeight: 1.3
       },
       footer: {
         size: 1,
@@ -89,13 +103,16 @@ const theme = createMuiTheme({
   footer: {
     colors: {
       text: colors.gray,
-      link: Color(colors.gray)
+      link: colors.accent,
+      linkHover: Color(colors.accent)
         .lighten(0.2)
-        .string(),
-      linkHover: colors.gray
+        .string()
     },
-    sizes: {
-      height: "50px"
+    fonts: {
+      footnote: {
+        size: 0.85,
+        lineHeight: 1.4
+      }
     }
   },
   mediaQueryTresholds: {

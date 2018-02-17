@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 
-import Avatar from "../shared/Avatar";
+import Avatar from "../common/Avatar";
 
 const styles = theme => ({
   container: {

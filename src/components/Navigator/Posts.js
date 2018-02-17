@@ -9,29 +9,23 @@ import config from "../../utils/config";
 
 const styles = theme => ({
   posts: {
-    background: "yellow",
-    //padding: `calc(2em + ${theme.navigator.sizes.infoHeight}px) 1.5em 2em 2em`,
     position: "absolute",
     left: 0,
     top: 0,
     bottom: 0,
-    transition: "left .5s",
-    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      left: props =>
-        props.isAside
-          ? `calc(-100vw + ${theme.navigator.sizes.infoWith}px)`
-          : `${theme.navigator.sizes.infoWith}px`,
-      width: `calc(100vw - ${theme.navigator.sizes.infoWith}px)`
-    }
+    width: "100%"
   },
   inner: {
-    padding: `calc(0em + ${theme.navigator.sizes.infoHeight}px) 1.5em 2em 2em`,
+    padding: `calc(2em + ${theme.info.sizes.height}px) 1.5em 2em`,
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      padding: `calc(3em + ${theme.navigator.sizes.infoHeight}px) 4em 3em 4em`
+      padding: `calc(3em + ${theme.info.sizes.height}px) 4em 3em`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      padding: "2.8em 4em 1em 3em",
-      left: `${theme.navigator.sizes.infoWith}px`
+      padding: "2.8em 4em 1em",
+      left: `${theme.info.sizes.width}px`,
+      ".isAside &": {
+        padding: "1.5em"
+      }
     }
   },
   header: {
@@ -50,45 +44,60 @@ const styles = theme => ({
     padding: 0
   },
   listItem: {
-    margin: "0 0 3em 0"
+    margin: "0 0 1.5em 0",
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      margin: "0 0 3em 0"
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      ".isAside &": {
+        margin: "0 0 1.5em 0"
+      }
+    }
   },
   listLink: {
-    display: "block",
+    display: "flex",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    flexDirection: "row",
     color: theme.navigator.colors.postsListItemLink,
-    "&:hover": {
-      color: theme.navigator.colors.postsListItemLinkHover
+    "@media (hover: hover)": {
+      "&:hover": {
+        color: theme.navigator.colors.postsListItemLinkHover
+      }
     },
-    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      display: "flex",
-      alignContent: "center",
-      alignItems: "center",
-      justifyContent: "flex-start",
-      flexDirection: "row"
-    }
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {}
   },
   listItemPointer: {
     background: "#333",
-    borderRadius: "50%",
-    float: "left",
+    borderRadius: "65% 75% 65% 75%",
+    position: "relative",
+    flexShrink: 0,
     overflow: "hidden",
     width: "60px",
     height: "60px",
-    transition: "all .2s",
-    margin: ".3em 1em 0 0",
+    margin: "0",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      float: "none",
-      flexShrink: 0,
-      width: "90px",
-      height: "90px"
+      marginRight: ".5em",
+      width: "80px",
+      height: "80px"
     },
-    "$listLink:hover &": {
-      // borderRadius: "50% 10% 50% 50%",
-      // transform: "rotate(45deg)"
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      marginRight: ".8em",
+      width: "90px",
+      height: "90px",
+      ".isAside &": {
+        width: "30px",
+        height: "30px"
+      }
     }
   },
   listItemText: {
-    margin: "2em 0 0",
-    "& h1, & h2": {},
+    margin: "0 0 0 1.5em",
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
     "& h1": {
       lineHeight: 1.15,
       fontWeight: 600,
@@ -101,37 +110,40 @@ const styles = theme => ({
       },
       [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
         fontSize: `${theme.navigator.sizes.postsListItemH1Font *
-          theme.navigator.sizes.fontIncraseForL}em`
+          theme.navigator.sizes.fontIncraseForL}em`,
+        ".isAside &": {
+          fontSize: "1em",
+          fontWeight: 400
+        }
       }
     },
     "& h2": {
       lineHeight: 1.2,
+      display: "block",
       fontSize: `${theme.navigator.sizes.postsListItemH2Font}em`,
-      margin: ".5em 0 0 0",
+      margin: ".3em 0 0 0",
       [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
         fontSize: `${theme.navigator.sizes.postsListItemH2Font *
           theme.navigator.sizes.fontIncraseForM}em`
       },
       [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
         fontSize: `${theme.navigator.sizes.postsListItemH2Font *
-          theme.navigator.sizes.fontIncraseForL}em`
+          theme.navigator.sizes.fontIncraseForL}em`,
+        ".isAside &": {
+          display: "none"
+        }
       }
     },
-    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      margin: "0 0 0 1em"
-    },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      margin: "0 0 0 1.5em",
-      flexGrow: 1,
-      display: "flex",
-      flexDirection: "column"
+      ".isAside &": {
+        margin: "0 0 0 .5em"
+      }
     }
-  },
-  thumbnail: {}
+  }
 });
 
 const Posts = props => {
-  const { classes, posts, linkOnClick, isAside } = props;
+  const { classes, posts, linkOnClick } = props;
 
   return (
     <div className={classes.posts}>
@@ -147,6 +159,7 @@ const Posts = props => {
                 return (
                   <li className={classes.listItem} key={post.node.frontmatter.path}>
                     <Link
+                      activeClassName="active"
                       className={classes.listLink}
                       to={post.node.frontmatter.path}
                       onClick={linkOnClick}
@@ -156,7 +169,9 @@ const Posts = props => {
                       </div>
                       <div className={classes.listItemText}>
                         <h1>{post.node.frontmatter.title}</h1>
-                        {!isAside && <h2>{post.node.frontmatter.subTitle}</h2>}
+                        {post.node.frontmatter.subTitle && (
+                          <h2>{post.node.frontmatter.subTitle}</h2>
+                        )}
                       </div>
                     </Link>
                   </li>
@@ -172,8 +187,7 @@ const Posts = props => {
 Posts.propTypes = {
   classes: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
-  linkOnClick: PropTypes.func,
-  isAside: PropTypes.any
+  linkOnClick: PropTypes.func
 };
 
 export default injectSheet(styles)(Posts);

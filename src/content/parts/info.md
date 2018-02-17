@@ -2,7 +2,7 @@
 title: info
 type: part
 avatar: "avatar.jpg"
-boxTitle: "Mr. Gatsby"
+boxTitle: "greg lobinski"
 boxTitleNote: "personal blog"
 ---
 

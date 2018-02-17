@@ -12,13 +12,25 @@ const styles = theme => ({
     letterSpacing: "-0.04em",
     fontWeight: theme.post.fonts.title.weight,
     lineHeight: theme.post.fonts.title.lineHeight,
-    margin: "0 0 0.4em"
+    margin: "0 0 0.4em",
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      fontSize: `${theme.post.fonts.title.size * theme.post.fonts.title.xSizeM}em`
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      fontSize: `${theme.post.fonts.title.size * theme.post.fonts.title.xSizeL}em`
+    }
   },
   subTitle: {
     color: theme.post.colors.subTitle,
     fontSize: `${theme.post.fonts.subTitle.size}em`,
     lineHeight: theme.post.fonts.subTitle.lineHeight,
-    fontWeight: theme.post.fonts.subTitle.weight
+    fontWeight: theme.post.fonts.subTitle.weight,
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      fontSize: `${theme.post.fonts.subTitle.size * theme.post.fonts.subTitle.xSizeM}em`
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      fontSize: `${theme.post.fonts.subTitle.size * theme.post.fonts.subTitle.xSizeL}em`
+    }
   },
   meta: {
     fontSize: `${theme.post.fonts.meta.size}em`,
@@ -38,7 +50,7 @@ const Header = ({ classes, title, subTitle, date }) => (
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string.isRequired,
+  subTitle: PropTypes.string,
   date: PropTypes.string.isRequired
 };
 

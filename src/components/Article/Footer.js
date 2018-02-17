@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+//require("core-js/fn/array/find");
+//const _ = require("lodash");
+var find = require("lodash/find");
 
 import Author from "./Author";
-import Footnote from "./Footnote";
 
 const styles = theme => ({
   footer: {
@@ -20,15 +22,12 @@ const styles = theme => ({
 });
 
 const Footer = ({ classes, parts }) => {
-  const author = parts.find(el => el.node.frontmatter.title === "author");
+  const author = find(parts, el => el.node.frontmatter.title === "author");
   const authorContent = author ? author.node.html : null;
-  const footnote = parts.find(el => el.node.frontmatter.title === "footnote");
-  const footnoteContent = footnote ? footnote.node.html : null;
 
   return (
     <footer className={classes.footer}>
       <Author content={authorContent} />
-      <Footnote content={footnoteContent} />
     </footer>
   );
 };

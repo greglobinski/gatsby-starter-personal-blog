@@ -4,17 +4,22 @@ import injectSheet from "react-jss";
 
 const styles = theme => ({
   container: {
-    color: "#999",
+    fontSize: `${theme.footer.fonts.footnote.size}em`,
+    lineHeight: theme.footer.fonts.footnote.lineHeight,
+    color: theme.footer.colors.text,
     "& a": {
-      color: "#999",
+      color: theme.footer.colors.link,
+      fontWeight: "normal",
       textShadow: "none"
+    },
+    "& a:hover": {
+      color: theme.footer.colors.linkHover
     },
     "& ul": {
       listStyle: "none",
-      margin: "4em 0 0 0",
+      margin: 0,
       padding: 0,
-      textAlign: "center",
-      fontSize: ".9em"
+      textAlign: "center"
     },
     "& li": {
       display: "inline-block",

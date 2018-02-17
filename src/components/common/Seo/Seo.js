@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import config from "../../../utils/config";
 
-const SEO = () => {
+const Seo = () => {
   const title = config.siteTitle;
   const description = config.siteDescription;
   const image = config.siteImage;
@@ -25,4 +25,4 @@ const SEO = () => {
   );
 };
 
-export default SEO;
+export default Seo;

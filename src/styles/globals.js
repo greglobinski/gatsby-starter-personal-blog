@@ -1,4 +1,3 @@
-import Color from "color";
 import theme from "./theme";
 
 export default {
@@ -339,7 +338,8 @@ export default {
       boxSizing: "inherit"
     },
     body: {
-      margin: 0
+      margin: 0,
+      "-webkit-tap-highlight-color": "rgba(0,0,0,0)"
     },
     maing: {
       position: "relative"

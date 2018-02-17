@@ -9,9 +9,13 @@ const styles = theme => ({
     lineHeight: theme.post.fonts.content.lineHeight,
     "& a": {
       borderBottom: `1px solid ${theme.main.colors.link}`,
-      color: theme.main.colors.link,
-      "& .gatsby-resp-image-link": {
-        margin: "2.5em -1.5rem"
+      color: theme.main.colors.link
+    },
+    "& .gatsby-resp-image-link": {
+      margin: "2.5em -1.5rem",
+      border: "none",
+      [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+        margin: "2.5em -3.5rem"
       }
     },
     "& h2, & h3": {
@@ -52,6 +56,12 @@ const styles = theme => ({
         top: "auto",
         bottom: "-5px"
       }
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      fontSize: `${theme.post.fonts.content.size * theme.post.fonts.content.xSizeM}em`
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      fontSize: `${theme.post.fonts.content.size * theme.post.fonts.content.xSizeL}em`
     }
   }
 });

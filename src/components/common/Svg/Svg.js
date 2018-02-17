@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SvgEl = props => {
+const Svg = props => {
   return (
     <svg
       version="1.1"
@@ -17,11 +17,11 @@ const SvgEl = props => {
   );
 };
 
-SvgEl.propTypes = {
+Svg.propTypes = {
   svg: PropTypes.shape({
     viewBox: PropTypes.string,
     path: PropTypes.node
   }).isRequired
 };
 
-export default SvgEl;
+export default Svg;

@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import injectSheet from "react-jss";
-import { Scrollbars } from "react-custom-scrollbars";
 
 import Header from "./Header";
 import Content from "./Content";
@@ -12,15 +11,18 @@ const styles = theme => ({
   wrapper: {
     position: "absolute",
     top: 0,
-    left: `${theme.navigator.sizes.infoWith}px`,
+    left: 0,
     bottom: 0,
-    width: `calc(100vw - ${theme.navigator.sizes.infoWith}px)`,
-    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {}
+    width: "100%",
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      width: `calc(100vw - ${theme.info.sizes.width}px)`,
+      left: `${theme.info.sizes.width}px`
+    }
   },
   article: {
     maxWidth: theme.post.sizes.maxWidth,
     margin: "0 auto",
-    padding: "1.5rem",
+    padding: `calc(1.5rem + ${theme.info.sizes.height}px) 1.5rem 1.5rem`,
     "& strong, & b": {
       letterSpacing: "-.02em",
       fontWeight: 600
@@ -41,10 +43,13 @@ const styles = theme => ({
       transition: "0.3s",
       "&:hover": {
         color: theme.main.colors.linkHover
-      },
-      "&.gatsby-resp-image-link": {
-        border: "none"
       }
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      padding: `calc(2.5rem + ${theme.info.sizes.height}px) 3.5rem 2.5rem`
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      padding: "3.5rem"
     }
   }
 });
@@ -54,15 +59,11 @@ const Article = props => {
   const { html } = post;
 
   return (
-    <div className={classes.wrapper}>
-      <Scrollbars autoHide>
-        <article className={classes.article}>
-          <Header {...post.frontmatter} />
-          <Content html={html} />
-          <Footer parts={parts} />
-        </article>
-      </Scrollbars>
-    </div>
+    <article className={classes.article}>
+      <Header {...post.frontmatter} />
+      <Content html={html} />
+      <Footer parts={parts} />
+    </article>
   );
 };
 

@@ -8,7 +8,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve("./src/templates/blog-post.js");
+    const blogPost = path.resolve("./src/templates/post.js");
     //
     resolve(
       graphql(
@@ -76,6 +76,13 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
               `prop-types`,
               `gatsby-link`,
               `jss`,
+              `jss-nested`,
+              `jss-expand`,
+              `jss-global`,
+              `jss-default-units`,
+              `jss-extend`,
+              `redux`,
+              `react-redux`,
               `material-ui`,
               `color`,
               `color-convert`,
@@ -107,4 +114,11 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
   }
 
   return config;
+};
+
+exports.modifyBabelrc = ({ babelrc }) => {
+  return {
+    ...babelrc,
+    plugins: babelrc.plugins.concat([`syntax-dynamic-import`, `dynamic-import-webpack`])
+  };
 };

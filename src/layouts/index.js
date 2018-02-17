@@ -8,38 +8,41 @@ import theme from "../styles/theme";
 import globals from "../styles/globals";
 
 import { saveData, setNavigatorIsAside, setNavigatorInTransition } from "../state/store";
-import SEO from "../components/shared/SEO";
+
+import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
+import Info from "../components/Info/";
 
 class Layout extends React.Component {
   componentWillMount() {
-    let isWideScreen =
-      typeof window !== "undefined" ? document.documentElement.clientWidth > 776 : false;
+    // let isWideScreen =
+    //   typeof window !== "undefined" ? document.documentElement.clientWidth > 776 : false;
 
     const posts = this.props.data.posts.edges;
     const parts = this.props.data.parts.edges;
 
     this.props.saveData({ posts, parts });
 
-    this.props.setNavigatorIsAside(false);
-    if (typeof window !== `undefined`) {
-      this.props.setNavigatorInTransition(true);
+    //this.props.setNavigatorIsAside(true);
+    // if (typeof window !== `undefined`) {
+    //   this.props.setNavigatorInTransition(true);
 
-      setTimeout(() => {
-        this.props.setNavigatorInTransition(false);
-      }, isWideScreen ? 500 : 0);
-    }
+    //   setTimeout(() => {
+    //     this.props.setNavigatorInTransition(false);
+    //   }, isWideScreen ? 500 : 0);
+    // }
   }
 
   render() {
-    const { children, data } = this.props;
+    const { children } = this.props;
 
     return (
       <MuiThemeProvider theme={theme}>
         <main>
-          <SEO />
+          <Seo />
           {children()}
           <Navigator />
+          <Info />
         </main>
       </MuiThemeProvider>
     );

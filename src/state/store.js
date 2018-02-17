@@ -87,7 +87,7 @@ const initialState = {
     inTransition: false
   },
   navigator: {
-    isAside: false,
+    isAside: true,
     inTransition: false
   }
 };
