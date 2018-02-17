@@ -3,20 +3,37 @@ const webpack = require("webpack");
 const _ = require("lodash");
 const Promise = require("bluebird");
 const path = require("path");
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
+exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+  const { createNodeField } = boundActionCreators;
+  if (node.internal.type === `MarkdownRemark`) {
+    const slug = createFilePath({ node, getNode, basePath: `pages` });
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug
+    });
+  }
+};
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const blogPost = path.resolve("./src/templates/post.js");
-    //
+    const postTemplate = path.resolve("./src/templates/post.js");
+    const pageTemplate = path.resolve("./src/templates/page.js");
     resolve(
       graphql(
         `
           {
-            allMarkdownRemark(filter: { frontmatter: { path: { regex: "/.+/" } } }, limit: 1000) {
+            allMarkdownRemark(filter: { id: { regex: "//posts|pages//" } }, limit: 1000) {
               edges {
                 node {
+                  id
+                  fields {
+                    slug
+                  }
                   frontmatter {
                     path
                   }
@@ -33,11 +50,15 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         // Create blog posts pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
+          // removes date subtring from slug
+          const slug = edge.node.fields.slug.replace(/\d{4}-\d{1,2}-\d{1,2}--/i, "");
+          const isPost = /posts/.test(edge.node.id);
+
           createPage({
-            path: edge.node.frontmatter.path,
-            component: blogPost,
+            path: slug,
+            component: isPost ? postTemplate : pageTemplate,
             context: {
-              path: edge.node.frontmatter.path
+              slug: slug
             }
           });
         });
@@ -112,7 +133,6 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
 
       break;
   }
-
   return config;
 };
 

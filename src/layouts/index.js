@@ -19,9 +19,10 @@ class Layout extends React.Component {
     //   typeof window !== "undefined" ? document.documentElement.clientWidth > 776 : false;
 
     const posts = this.props.data.posts.edges;
+    const pages = this.props.data.pages.edges;
     const parts = this.props.data.parts.edges;
 
-    this.props.saveData({ posts, parts });
+    this.props.saveData({ posts, pages, parts });
 
     //this.props.setNavigatorIsAside(true);
     // if (typeof window !== `undefined`) {
@@ -78,7 +79,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(globals)
 export const pageQuery = graphql`
   query LayoutQuery {
     posts: allMarkdownRemark(
-      filter: { frontmatter: { path: { regex: "/.+/" } } }
+      filter: { id: { regex: "//posts//" } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
@@ -102,7 +103,19 @@ export const pageQuery = graphql`
         }
       }
     }
-    parts: allMarkdownRemark(filter: { frontmatter: { type: { regex: "/part/" } } }) {
+    pages: allMarkdownRemark(filter: { id: { regex: "//pages//" } }) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+    parts: allMarkdownRemark(filter: { id: { regex: "//parts//" } }) {
       edges {
         node {
           html

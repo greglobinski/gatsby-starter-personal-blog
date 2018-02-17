@@ -158,7 +158,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(
 
 //eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-  query PostByPath($path: String!) {
+  query PageByPath($path: String!) {
     post: markdownRemark(frontmatter: { path: { eq: $path } }) {
       id
       html

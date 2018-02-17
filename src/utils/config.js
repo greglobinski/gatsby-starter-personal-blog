@@ -2,23 +2,21 @@ const colors = require("../styles/colors");
 
 module.exports = {
   pathPrefix: "/",
-  appName: "SidebarBlog",
-  siteTitle: "SidebarBlog - a blog GatsbyJs starter",
+  appName: "PersonalBlog",
+  siteTitle: "PersonalBlog - a blog GatsbyJs starter",
   homeTitle: "Personal blog",
-  siteUrl: "https://gssb.greglobinski.com",
+  siteUrl: "https://silly-mcclintock-36e6bf.netlify.com",
   siteImage: "preview.jpg",
   siteLanguage: "en",
-  siteDescription: "SidebarBlog is a GatsbyJs starter.",
+  siteDescription: "PersonalBlog is a GatsbyJs starter.",
   contactEmail: "hello@example.com",
   // manifest.json
-  manifestName: "SidebarBlog - Gatsby starter",
-  manifestShortName: "SidebarBlog",
+  manifestName: "PersonalBlog - Gatsby starter",
+  manifestShortName: "PersonalBlog",
   manifestStartUrl: "/",
   manifestBackgroundColor: colors.bg,
   manifestThemeColor: colors.bg,
   manifestDisplay: "standalone",
   // analytics
-  analyticsTrackingId: "UA-110088221-2",
-  // comments
-  disqusShortname: "gatsby-starter-personal-blog"
+  analyticsTrackingId: "UA-110088221-2"
 };
