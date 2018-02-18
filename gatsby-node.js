@@ -4,6 +4,7 @@ const _ = require("lodash");
 const Promise = require("bluebird");
 const path = require("path");
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const { store } = require(`./node_modules/gatsby/dist/redux`);
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
@@ -70,67 +71,52 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 exports.modifyWebpackConfig = ({ config, stage }) => {
   switch (stage) {
     case "build-javascript":
-      config.plugin("CommonsChunkPlugin", webpack.optimize.CommonsChunkPlugin, [
-        {
-          name: `commons`,
-          chunks: [`app`, `component---src-layouts-index-js`, `component---src-pages-index-js`],
-          minChunks: (module, count) => {
-            const vendorModuleList = [
-              `react`,
-              `react-dom`,
-              `fbjs`,
-              `react-router`,
-              `react-router-dom`,
-              `gatsby-react-router-scroll`,
-              `dom-helpers`, // Used in gatsby-react-router-scroll
-              `path-to-regexp`,
-              `isarray`, // Used by path-to-regexp.
-              `scroll-behavior`,
-              `history`,
-              `resolve-pathname`, // Used by history.
-              `value-equal`, // Used by history.
-              `invariant`, // Used by history.
-              `warning`, // Used by history.
-              `babel-runtime`, // Used by history.
-              `core-js`, // Used by history.
-              `loose-envify`, // Used by history.
-              `prop-types`,
-              `gatsby-link`,
-              `jss`,
-              `jss-nested`,
-              `jss-expand`,
-              `jss-global`,
-              `jss-default-units`,
-              `jss-extend`,
-              `redux`,
-              `react-redux`,
-              `material-ui`,
-              `color`,
-              `color-convert`,
-              `react-jss`,
-              `theming`,
-              `color-name`
-            ];
-            const isFramework = _.some(
-              vendorModuleList.map(vendor => {
-                const regex = new RegExp(`[\\\\/]node_modules[\\\\/]${vendor}[\\\\/].*`, `i`);
-                return regex.test(module.resource);
-              })
-            );
-            return isFramework || count > 2;
+      {
+        let components = store.getState().pages.map(page => page.componentChunkName);
+        components = _.uniq(components);
+        config.plugin("CommonsChunkPlugin", webpack.optimize.CommonsChunkPlugin, [
+          {
+            name: `commons`,
+            chunks: [`app`, ...components],
+            minChunks: (module, count) => {
+              const vendorModuleList = [
+                `jss`,
+                `jss-nested`,
+                `jss-expand`,
+                `jss-global`,
+                `jss-default-units`,
+                `jss-extend`,
+                `jss-[-a-z]+`,
+                `react-custom-srcollbars`,
+                `redux`,
+                `react-redux`,
+                `material-ui`,
+                `color`,
+                `color-convert`,
+                `react-jss`,
+                `theming`,
+                `color-name`
+              ];
+              const isFramework = _.some(
+                vendorModuleList.map(vendor => {
+                  const regex = new RegExp(`[\\\\/]node_modules[\\\\/]${vendor}[\\\\/].*`, `i`);
+                  return regex.test(module.resource);
+                })
+              );
+              return isFramework || count > 1;
+            }
           }
-        }
-      ]);
-      config.plugin("BundleAnalyzerPlugin", BundleAnalyzerPlugin, [
-        {
-          analyzerMode: "static",
-          reportFilename: "./report/treemap.html",
-          openAnalyzer: true,
-          logLevel: "error",
-          defaultSizes: "gzip"
-        }
-      ]);
-
+        ]);
+        config.plugin("BundleAnalyzerPlugin", BundleAnalyzerPlugin, [
+          {
+            analyzerMode: "static",
+            reportFilename: "./report/treemap.html",
+            openAnalyzer: true,
+            logLevel: "error",
+            defaultSizes: "gzip"
+          }
+        ]);
+      }
       break;
   }
   return config;

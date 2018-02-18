@@ -82,7 +82,7 @@ class Navigator extends React.Component {
     const { classes, posts, isAside, inTransition, isHidden } = this.props;
 
     return (
-      <div
+      <nav
         className={`${classes.navigator} ${inTransition ? "inTransition" + inTransition : ""} ${
           isAside ? "isAside" : ""
         }`}
@@ -96,7 +96,7 @@ class Navigator extends React.Component {
             isHidden={isHidden}
           />
         )}
-      </div>
+      </nav>
     );
   }
 }

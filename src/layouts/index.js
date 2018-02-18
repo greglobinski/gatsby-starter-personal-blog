@@ -39,12 +39,12 @@ class Layout extends React.Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <main>
+        <div>
           <Seo />
           {children()}
           <Navigator />
           <Info />
-        </main>
+        </div>
       </MuiThemeProvider>
     );
   }

@@ -10,7 +10,7 @@ import Article from "../components/Article/";
 import Footer from "../components/Footer/";
 
 const styles = theme => ({
-  wrapper: {
+  main: {
     position: "absolute",
     top: 0,
     left: 0,
@@ -72,16 +72,16 @@ class PostTemplate extends React.Component {
     //   fjs.parentNode.insertBefore(js, fjs);
     // })(document, "script", "facebook-jssdk");
 
-    setTimeout(() => {
-      //eslint-disable-next-line no-undef
-      if (typeof FB != "undefined" && FB != null) {
-        console.log("%c FB", "background: #222; color: #bada55");
-        //eslint-disable-next-line no-undef
-        FB.XFBML.parse(null, function() {
-          console.log("I parsed");
-        });
-      }
-    }, 1500);
+    // setTimeout(() => {
+    //   //eslint-disable-next-line no-undef
+    //   if (typeof FB != "undefined" && FB != null) {
+    //     console.log("%c FB", "background: #222; color: #bada55");
+    //     //eslint-disable-next-line no-undef
+    //     FB.XFBML.parse(null, function() {
+    //       console.log("I parsed");
+    //     });
+    //   }
+    // }, 1500);
   }
 
   componentDidUpdate() {
@@ -104,7 +104,7 @@ class PostTemplate extends React.Component {
     //let { Share } = this.state;
 
     return (
-      <div className={classes.wrapper}>
+      <main className={classes.main}>
         <Scrollbars autoHide>
           <Article post={post} slug={slug} />
 
@@ -115,7 +115,7 @@ class PostTemplate extends React.Component {
             data-numposts="10"
           /> */}
           {/* <div id="fb-root" /> */}
-          <span
+          {/* <span
             className="fb-comments-count"
             data-href="https://silly-mcclintock-36e6bf.netlify.com/two-things-are-infinite/"
           />
@@ -125,10 +125,10 @@ class PostTemplate extends React.Component {
             data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
             data-width="100%"
             data-numposts="5"
-          />
+          /> */}
           <Footer footnoteContent={footnoteContent} />
         </Scrollbars>
-      </div>
+      </main>
     );
   }
 }

@@ -49,7 +49,7 @@ class Share extends React.Component {
   render() {
     const { post, classes, slug } = this.props;
     const { excerpt, frontmatter } = post;
-    const { title, path } = frontmatter;
+    const { title } = frontmatter;
     const url = config.siteUrl + config.pathPrefix + slug;
     console.log("!!!!!", url);
 
