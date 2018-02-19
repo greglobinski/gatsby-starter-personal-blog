@@ -13,7 +13,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: slug
+      value: slug.replace(/\d{4}-\d{1,2}-\d{1,2}--/i, "")
     });
   }
 };
@@ -52,7 +52,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         // Create blog posts pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
           // removes date subtring from slug
-          const slug = edge.node.fields.slug.replace(/\d{4}-\d{1,2}-\d{1,2}--/i, "");
+          const slug = edge.node.fields.slug; //.replace(/\d{4}-\d{1,2}-\d{1,2}--/i, "");
           const isPost = /posts/.test(edge.node.id);
 
           createPage({
@@ -80,22 +80,22 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
             chunks: [`app`, ...components],
             minChunks: (module, count) => {
               const vendorModuleList = [
-                `jss`,
-                `jss-nested`,
-                `jss-expand`,
-                `jss-global`,
-                `jss-default-units`,
-                `jss-extend`,
-                `jss-[-a-z]+`,
-                `react-custom-srcollbars`,
-                `redux`,
-                `react-redux`,
-                `material-ui`,
-                `color`,
-                `color-convert`,
-                `react-jss`,
-                `theming`,
-                `color-name`
+                // `jss`,
+                // `jss-nested`,
+                // `jss-expand`,
+                // `jss-global`,
+                // `jss-default-units`,
+                // `jss-extend`,
+                // `jss-[-a-z]+`,
+                // `react-custom-srcollbars`,
+                // `redux`,
+                // `react-redux`,
+                // `material-ui`,
+                // `color`,
+                // `color-convert`,
+                // `react-jss`,
+                // `theming`,
+                // `color-name`
               ];
               const isFramework = _.some(
                 vendorModuleList.map(vendor => {

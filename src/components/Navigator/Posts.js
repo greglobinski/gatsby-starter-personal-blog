@@ -16,15 +16,15 @@ const styles = theme => ({
     width: "100%"
   },
   inner: {
-    padding: `calc(2em + ${theme.info.sizes.height}px) 1.5em 2em`,
+    padding: `calc(1.3em + ${theme.info.sizes.height}px) .5em 1.3em`,
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      padding: `calc(3em + ${theme.info.sizes.height}px) 4em 3em`
+      padding: `calc(3em + ${theme.info.sizes.height}px) 2em 2.5em`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      padding: "2.8em 4em 1em",
+      padding: "2em 2em 1em",
       left: `${theme.info.sizes.width}px`,
       ".isAside &": {
-        padding: "1.5em"
+        padding: "1em .8em 1em .5em"
       }
     }
   },
@@ -44,13 +44,14 @@ const styles = theme => ({
     padding: 0
   },
   listItem: {
-    margin: "0 0 1.5em 0",
+    margin: "0 0 .7em 0",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      margin: "0 0 3em 0"
+      margin: "0 0 1.5em 0"
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      //margin: "0 0 0 0",
       ".isAside &": {
-        margin: "0 0 1.5em 0"
+        margin: "0 0 0 0"
       }
     }
   },
@@ -60,6 +61,7 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
+    padding: ".7em 1em",
     color: theme.navigator.colors.postsListItemLink,
     "@media (hover: hover)": {
       "&:hover": {
@@ -157,11 +159,11 @@ const Posts = props => {
             {posts &&
               posts.map(post => {
                 return (
-                  <li className={classes.listItem} key={post.node.frontmatter.path}>
+                  <li className={classes.listItem} key={post.node.fields.slug}>
                     <Link
                       activeClassName="active"
                       className={classes.listLink}
-                      to={post.node.frontmatter.path}
+                      to={post.node.fields.slug}
                       onClick={linkOnClick}
                     >
                       <div className={classes.listItemPointer}>

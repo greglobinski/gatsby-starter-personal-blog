@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import Link from "gatsby-link";
 var find = require("lodash/find");
 
-import { setNavigatorIsAside, setNavigatorInTransition } from "../../state/store";
+import {
+  setNavigatorIsAside,
+  setNavigatorInTransition,
+  setNavigatorIsOpened
+} from "../../state/store";
 import avatar from "../../images/avatar.jpg";
 
 const styles = theme => ({
@@ -172,12 +176,21 @@ const styles = theme => ({
 });
 
 const Info = (props, context) => {
-  const { classes, parts, navigatorIsAside, navigatorInTransition } = props;
+  const {
+    classes,
+    parts,
+    pages,
+    navigatorIsAside,
+    navigatorInTransition,
+    navigatorIsOpened
+  } = props;
 
   const info = find(parts, el => el.node.frontmatter.title === "info");
   const boxTitle = info ? info.node.frontmatter.boxTitle : null;
   const boxTitleNote = info ? info.node.frontmatter.boxTitleNote : null;
   const content = info ? info.node.html : null;
+
+  console.log(pages);
 
   const avatarOnClick = e => {
     e.preventDefault();
@@ -189,18 +202,26 @@ const Info = (props, context) => {
         props.setNavigatorInTransition(false);
         props.setNavigatorIsAside(false);
       }, 100);
-
-      setTimeout(() => {
-        context.router.history.push("/");
-      }, 1100);
     }
+  };
+
+  const linkOnClick = e => {
+    props.setNavigatorInTransition("To");
+
+    setTimeout(() => {
+      props.setNavigatorIsOpened(false);
+      props.setNavigatorInTransition(false);
+      props.setNavigatorIsAside(true);
+    }, 1100);
   };
 
   return (
     <aside
       className={`${classes.info} ${
         navigatorInTransition ? "navigatorInTransition" + navigatorInTransition : ""
-      } ${navigatorIsAside ? "navigatorIsAside" : ""}`}
+      } ${navigatorIsAside ? "navigatorIsAside" : ""} ${
+        navigatorIsOpened ? "navigatorIsOpened" : ""
+      }`}
     >
       <header className={classes.header}>
         <Link
@@ -222,6 +243,15 @@ const Info = (props, context) => {
         </h1>
       </header>
       <div className={classes.boxBody} dangerouslySetInnerHTML={{ __html: content }} />
+      <ul>
+        {pages.map((page, i) => (
+          <li key={i}>
+            <Link to={page.node.fields.slug} onClick={linkOnClick}>
+              {page.node.frontmatter.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </aside>
   );
 };
@@ -229,10 +259,13 @@ const Info = (props, context) => {
 Info.propTypes = {
   classes: PropTypes.object.isRequired,
   parts: PropTypes.array.isRequired,
+  pages: PropTypes.array.isRequired,
   navigatorIsAside: PropTypes.bool.isRequired,
   navigatorInTransition: PropTypes.any.isRequired,
   setNavigatorIsAside: PropTypes.func.isRequired,
-  setNavigatorInTransition: PropTypes.func.isRequired
+  setNavigatorInTransition: PropTypes.func.isRequired,
+  setNavigatorIsOpened: PropTypes.func.isRequired,
+  navigatorIsOpened: PropTypes.bool.isRequired
 };
 
 Info.contextTypes = {
@@ -244,8 +277,10 @@ Info.contextTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     parts: state.parts,
+    pages: state.pages,
     navigatorIsAside: state.navigator.isAside,
     navigatorInTransition: state.navigator.inTransition,
+    navigatorIsOpened: state.navigator.isOpened,
     isActive: state.posts.length
   };
 };
@@ -253,7 +288,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     setNavigatorIsAside: val => dispatch(setNavigatorIsAside(val)),
-    setNavigatorInTransition: val => dispatch(setNavigatorInTransition(val))
+    setNavigatorInTransition: val => dispatch(setNavigatorInTransition(val)),
+    setNavigatorIsOpened: val => dispatch(setNavigatorIsOpened(val))
   };
 };
 

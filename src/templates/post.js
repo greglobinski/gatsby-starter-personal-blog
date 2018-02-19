@@ -32,16 +32,8 @@ const styles = theme => ({
 // );
 
 class PostTemplate extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Share: null
-    };
-  }
-
   componentDidMount() {
-    console.log("%c componentDidMount", "background: #222; color: #bada55");
-
+    //console.log("%c componentDidMount", "background: #222; color: #bada55");
     // (function(d, s, id) {
     //   var js,
     //     fjs = d.getElementsByTagName(s)[0];
@@ -60,7 +52,6 @@ class PostTemplate extends React.Component {
     //     version: "v2.5" // use version 2.1
     //   });
     // }.bind(this);
-
     // // Load the SDK asynchronously
     // (function(d, s, id) {
     //   var js,
@@ -71,7 +62,6 @@ class PostTemplate extends React.Component {
     //   js.src = "//connect.facebook.net/en_US/sdk.js";
     //   fjs.parentNode.insertBefore(js, fjs);
     // })(document, "script", "facebook-jssdk");
-
     // setTimeout(() => {
     //   //eslint-disable-next-line no-undef
     //   if (typeof FB != "undefined" && FB != null) {
@@ -85,7 +75,7 @@ class PostTemplate extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log("%c componentDidUpdate", "background: #222; color: #bada55");
+    //console.log("%c componentDidUpdate", "background: #222; color: #bada55");
   }
   // componentDidMount() {
   //   import("../components/Share/").then(Share => {
@@ -154,9 +144,9 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(PostTemplate));
 
 //eslint-disable-next-line no-undef
-export const pageQuery = graphql`
-  query PostByPath($path: String!) {
-    post: markdownRemark(frontmatter: { path: { eq: $path } }) {
+export const postQuery = graphql`
+  query PostBySlug($slug: String!) {
+    post: markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
       fields {

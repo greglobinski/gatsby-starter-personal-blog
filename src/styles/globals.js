@@ -339,7 +339,7 @@ export default {
     },
     body: {
       margin: 0,
-      "-webkit-tap-highlight-color": "rgba(0,0,0,0)"
+      "-webkit-tap-highlight-color": "rgba(0,0,0,.05)"
     },
     maing: {
       position: "relative"
