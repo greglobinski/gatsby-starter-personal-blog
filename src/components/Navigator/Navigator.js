@@ -121,13 +121,13 @@ class Navigator extends React.Component {
   }
 
   render() {
-    const { classes, posts, isAside, inTransition, isOpened } = this.props;
+    const { classes, posts, isAside, inTransition, isClosed } = this.props;
 
     return (
       <nav
         className={`${this.state.linksDisabled ? "disabled" : ""} ${classes.navigator} ${
           inTransition ? "inTransition" + inTransition : ""
-        } ${isAside ? "isAside" : ""} ${isOpened ? "" : "isClosed"}`}
+        } ${isAside ? "isAside" : ""} ${isClosed ? "isClosed" : "isOpened"}`}
       >
         {this.props.posts.length && (
           <Posts
@@ -151,7 +151,7 @@ Navigator.propTypes = {
   inTransition: PropTypes.any.isRequired,
   setIsAside: PropTypes.func.isRequired,
   setInTransition: PropTypes.func.isRequired,
-  isOpened: PropTypes.bool.isRequired
+  isClosed: PropTypes.bool.isRequired
 };
 
 Navigator.contextTypes = {
@@ -167,7 +167,7 @@ const mapStateToProps = (state, ownProps) => {
     isAside: state.navigator.isAside,
     inTransition: state.navigator.inTransition,
     isActive: state.posts.length,
-    isOpened: state.navigator.isOpened
+    isClosed: state.navigator.isClosed
   };
 };
 

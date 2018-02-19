@@ -4,11 +4,20 @@ import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import Link from "gatsby-link";
 var find = require("lodash/find");
+import Button from "material-ui/Button";
+import { MenuItem, MenuList } from "material-ui/Menu";
+import MoreVertIcon from "material-ui-icons/MoreVert";
+import IconButton from "material-ui/IconButton";
+import { Manager, Target, Popper } from "react-popper";
+import ClickAwayListener from "material-ui/utils/ClickAwayListener";
+import Grow from "material-ui/transitions/Grow";
+import Paper from "material-ui/Paper";
+import classNames from "classnames";
 
 import {
   setNavigatorIsAside,
   setNavigatorInTransition,
-  setNavigatorIsOpened
+  setNavigatorIsClosed
 } from "../../state/store";
 import avatar from "../../images/avatar.jpg";
 
@@ -20,7 +29,6 @@ const styles = theme => ({
     padding: "12px 1em 0",
     left: 0,
     top: 0,
-    overflow: "hidden",
     height: `${theme.info.sizes.height}px`,
     width: "100%",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
@@ -58,10 +66,10 @@ const styles = theme => ({
       marginLeft: "-30px",
       transition: "all .8s",
       transitionTimingFunction: "ease",
-      ".navigatorInTransitionFrom &": {
+      ".navigatorInTransitionFrom.navigatorIsOpened &": {
         left: "50%"
       },
-      ".navigatorInTransitionTo &, .navigatorIsAside &": {
+      ".navigatorInTransitionTo.navigatorIsOpened &, .navigatorIsAside.navigatorIsOpened &": {
         left: "8%",
         top: "0"
       }
@@ -172,89 +180,219 @@ const styles = theme => ({
         opacity: 0
       }
     }
+  },
+  boxMenu: {
+    display: "none",
+    flexDirection: "column",
+    alignItems: "center",
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+    width: "100%",
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      display: "flex"
+    }
+  },
+  topMenu: {
+    position: "absolute",
+    top: "6px",
+    right: 0,
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      top: "14px"
+      //right: "10px"
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      display: "none"
+    }
+  },
+  buttonRoot: {
+    "&:hover": {
+      background: "rgba(0, 0, 0, 0.04)"
+    }
+  },
+  buttonLabel: {
+    textTransform: "none",
+    fontSize: "1.4em",
+    color: "#777"
+  },
+  popperClose: {
+    pointerEvents: "none"
   }
 });
 
-const Info = (props, context) => {
-  const {
-    classes,
-    parts,
-    pages,
-    navigatorIsAside,
-    navigatorInTransition,
-    navigatorIsOpened
-  } = props;
+class Info extends React.Component {
+  state = {
+    anchorEl: null,
+    open: false
+  };
 
-  const info = find(parts, el => el.node.frontmatter.title === "info");
-  const boxTitle = info ? info.node.frontmatter.boxTitle : null;
-  const boxTitleNote = info ? info.node.frontmatter.boxTitleNote : null;
-  const content = info ? info.node.html : null;
+  componentWillUnmount() {
+    clearTimeout(this.timeout);
+  }
 
-  console.log(pages);
-
-  const avatarOnClick = e => {
+  avatarOnClick = e => {
     e.preventDefault();
 
-    if (props.navigatorIsAside) {
-      props.setNavigatorInTransition("From");
+    if (this.props.navigatorIsAside) {
+      this.props.setNavigatorInTransition("From");
 
       setTimeout(() => {
-        props.setNavigatorInTransition(false);
-        props.setNavigatorIsAside(false);
+        this.props.setNavigatorInTransition(false);
+        this.props.setNavigatorIsAside(false);
       }, 100);
     }
   };
 
-  const linkOnClick = e => {
-    props.setNavigatorInTransition("To");
+  linkOnClick = e => {
+    console.log("linkOnClick");
+    console.log(e.target);
 
-    setTimeout(() => {
-      props.setNavigatorIsOpened(false);
-      props.setNavigatorInTransition(false);
-      props.setNavigatorIsAside(true);
-    }, 1100);
+    if (e.target.hasAttribute("data-slug")) {
+      if (e.target.getAttribute("data-slug") === "/") {
+        if (this.props.navigatorIsAside) {
+          this.props.setNavigatorInTransition("From");
+
+          setTimeout(() => {
+            this.props.setNavigatorInTransition(false);
+            this.props.setNavigatorIsAside(false);
+          }, 100);
+        }
+      }
+    } else {
+      this.props.setNavigatorInTransition("To");
+
+      setTimeout(() => {
+        this.props.setNavigatorIsClosed(false);
+        this.props.setNavigatorInTransition(false);
+        this.props.setNavigatorIsAside(true);
+      }, 1100);
+    }
+
+    this.setState({ open: !this.state.open });
   };
 
-  return (
-    <aside
-      className={`${classes.info} ${
-        navigatorInTransition ? "navigatorInTransition" + navigatorInTransition : ""
-      } ${navigatorIsAside ? "navigatorIsAside" : ""} ${
-        navigatorIsOpened ? "navigatorIsOpened" : ""
-      }`}
-    >
-      <header className={classes.header}>
-        <Link
-          className={classes.avatarLink}
-          onClick={avatarOnClick}
-          to="/"
-          title="back to Home page"
-        >
-          <div className={classes.avatar}>
-            <img src={avatar} alt="" />
-          </div>
-          {/* <div className={classes.avatarIcon}>
-            <Home />
-          </div> */}
-        </Link>
-        <h1 className={classes.boxTitle}>
-          {boxTitle.replace(/ /g, "\u00a0")}
-          <small>{boxTitleNote}</small>
-        </h1>
-      </header>
-      <div className={classes.boxBody} dangerouslySetInnerHTML={{ __html: content }} />
-      <ul>
-        {pages.map((page, i) => (
-          <li key={i}>
-            <Link to={page.node.fields.slug} onClick={linkOnClick}>
-              {page.node.frontmatter.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </aside>
-  );
-};
+  handleClick = () => {
+    this.setState({ open: !this.state.open });
+  };
+
+  handleClose = () => {
+    if (!this.state.open) {
+      return;
+    }
+
+    // setTimeout to ensure a close event comes after a target click event
+    this.timeout = setTimeout(() => {
+      this.setState({ open: false });
+    });
+  };
+
+  render() {
+    const {
+      classes,
+      parts,
+      pages,
+      navigatorIsAside,
+      navigatorInTransition,
+      navigatorIsClosed
+    } = this.props;
+
+    const info = find(parts, el => el.node.frontmatter.title === "info");
+    const boxTitle = info ? info.node.frontmatter.boxTitle : null;
+    const boxTitleNote = info ? info.node.frontmatter.boxTitleNote : null;
+    const content = info ? info.node.html : null;
+    const { anchorEl, open } = this.state;
+
+    return (
+      <aside
+        className={`${classes.info} ${
+          navigatorInTransition ? "navigatorInTransition" + navigatorInTransition : ""
+        } ${navigatorIsAside ? "navigatorIsAside" : ""} ${
+          navigatorIsClosed ? "navigatorIsClosed" : "navigatorIsOpened"
+        }`}
+      >
+        <header className={classes.header}>
+          <Link
+            className={classes.avatarLink}
+            onClick={this.avatarOnClick}
+            to="/"
+            title="back to Home page"
+          >
+            <div className={classes.avatar}>
+              <img src={avatar} alt="" />
+            </div>
+          </Link>
+          <h1 className={classes.boxTitle}>
+            {boxTitle.replace(/ /g, "\u00a0")}
+            <small>{boxTitleNote}</small>
+          </h1>
+        </header>
+        <div className={classes.boxBody} dangerouslySetInnerHTML={{ __html: content }} />
+        <ul className={classes.boxMenu}>
+          {pages.map((page, i) => (
+            <li key={i}>
+              <Button
+                onClick={this.linkOnClick}
+                href={page.node.fields.slug}
+                classes={{
+                  root: classes.buttonRoot,
+                  label: classes.buttonLabel
+                }}
+              >
+                {page.node.frontmatter.title}
+              </Button>
+            </li>
+          ))}
+        </ul>
+
+        <nav className={classes.topMenu}>
+          <Manager>
+            <Target>
+              <IconButton
+                aria-label="More"
+                aria-owns={anchorEl ? "long-menu" : null}
+                aria-haspopup="true"
+                onClick={this.handleClick}
+              >
+                <MoreVertIcon />
+              </IconButton>
+            </Target>
+            <Popper
+              placement="bottom-end"
+              eventsEnabled={open}
+              className={classNames({ [classes.popperClose]: !open })}
+            >
+              <ClickAwayListener onClickAway={this.handleClose}>
+                <Grow in={open} id="menu-list" style={{ transformOrigin: "0 0 0" }}>
+                  <Paper>
+                    <MenuList role="menu">
+                      <MenuItem onClick={this.linkOnClick} data-slug="/">
+                        Home
+                      </MenuItem>
+                      {pages.map((page, i) => (
+                        <a
+                          key={page.node.fields.slug}
+                          href={page.node.fields.slug}
+                          style={{ display: "block" }}
+                        >
+                          <MenuItem onClick={this.linkOnClick}>
+                            {page.node.frontmatter.title}
+                          </MenuItem>
+                        </a>
+                      ))}
+                      <a href="/contact/" style={{ display: "block" }}>
+                        <MenuItem onClick={this.linkOnClick}>Contact</MenuItem>
+                      </a>
+                    </MenuList>
+                  </Paper>
+                </Grow>
+              </ClickAwayListener>
+            </Popper>
+          </Manager>
+        </nav>
+      </aside>
+    );
+  }
+}
 
 Info.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -264,8 +402,8 @@ Info.propTypes = {
   navigatorInTransition: PropTypes.any.isRequired,
   setNavigatorIsAside: PropTypes.func.isRequired,
   setNavigatorInTransition: PropTypes.func.isRequired,
-  setNavigatorIsOpened: PropTypes.func.isRequired,
-  navigatorIsOpened: PropTypes.bool.isRequired
+  setNavigatorIsClosed: PropTypes.func.isRequired,
+  navigatorIsClosed: PropTypes.bool.isRequired
 };
 
 Info.contextTypes = {
@@ -280,7 +418,7 @@ const mapStateToProps = (state, ownProps) => {
     pages: state.pages,
     navigatorIsAside: state.navigator.isAside,
     navigatorInTransition: state.navigator.inTransition,
-    navigatorIsOpened: state.navigator.isOpened,
+    navigatorIsClosed: state.navigator.isClosed,
     isActive: state.posts.length
   };
 };
@@ -289,7 +427,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setNavigatorIsAside: val => dispatch(setNavigatorIsAside(val)),
     setNavigatorInTransition: val => dispatch(setNavigatorInTransition(val)),
-    setNavigatorIsOpened: val => dispatch(setNavigatorIsOpened(val))
+    setNavigatorIsClosed: val => dispatch(setNavigatorIsClosed(val))
   };
 };
 

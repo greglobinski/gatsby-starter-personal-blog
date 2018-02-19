@@ -51,7 +51,6 @@ class Share extends React.Component {
     const { excerpt, frontmatter } = post;
     const { title } = frontmatter;
     const url = config.siteUrl + config.pathPrefix + slug;
-    console.log("!!!!!", url);
 
     const iconSize = 36;
     const filter = count => (count > 0 ? count : "");

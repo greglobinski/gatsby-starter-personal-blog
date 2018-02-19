@@ -8,7 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 const SAVE_DATA = "SAVE_DATA";
 const SET_NAVIGATOR_IS_ASIDE = "SET_NAVIGATOR_IS_ASIDE";
 const SET_NAVIGATOR_IN_TRANSITION = "SET_NAVIGATOR_IN_TRANSITION";
-const SET_NAVIGATOR_IS_OPENED = "SET_NAVIGATOR_IS_OPENED";
+const SET_NAVIGATOR_IS_CLOSED = "SET_NAVIGATOR_IS_CLOSED";
 
 /*
  * action creators
@@ -25,8 +25,8 @@ export function setNavigatorInTransition(val) {
   return { type: SET_NAVIGATOR_IN_TRANSITION, val };
 }
 
-export function setNavigatorIsOpened(val) {
-  return { type: SET_NAVIGATOR_IS_OPENED, val };
+export function setNavigatorIsClosed(val) {
+  return { type: SET_NAVIGATOR_IS_CLOSED, val };
 }
 
 /*
@@ -40,7 +40,7 @@ const reducer = (state, action) => {
         navigator: {
           isAside: action.val,
           inTransition: state.navigator.inTransition,
-          isOpened: state.navigator.isOpened
+          isClosed: state.navigator.isClosed
         }
       };
     case SET_NAVIGATOR_IN_TRANSITION:
@@ -49,16 +49,16 @@ const reducer = (state, action) => {
         navigator: {
           isAside: state.navigator.isAside,
           inTransition: action.val,
-          isOpened: state.navigator.isOpened
+          isClosed: state.navigator.isClosed
         }
       };
-    case SET_NAVIGATOR_IS_OPENED:
+    case SET_NAVIGATOR_IS_CLOSED:
       return {
         ...state,
         navigator: {
           isAside: state.navigator.isAside,
           inTransition: state.navigator.inTransition,
-          isOpened: action.val
+          isClosed: action.val
         }
       };
     case SAVE_DATA:
@@ -84,7 +84,7 @@ const initialState = {
   navigator: {
     isAside: true,
     inTransition: false,
-    isOpened: true
+    isClosed: false
   }
 };
 

@@ -73,6 +73,7 @@
     "gatsby-source-filesystem": "^1.5.14",
     "gatsby-transformer-remark": "^1.7.30",
     "gatsby-transformer-sharp": "^1.6.16",
+    "joi-browser": "^13.0.1",
     "material-ui": "^1.0.0-beta.27",
     "material-ui-icons": "^1.0.0-beta.17",
     "mdn-polyfills": "^5.5.0",

@@ -13,7 +13,12 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: slug.replace(/\d{4}-\d{1,2}-\d{1,2}--/i, "")
+      value: slug.replace(/[\d-]+--/i, "")
+    });
+    createNodeField({
+      node,
+      name: `prefix`,
+      value: slug.replace(/--.+$/i, "").replace(/^\//i, "")
     });
   }
 };

@@ -118,6 +118,14 @@ const theme = createMuiTheme({
   mediaQueryTresholds: {
     M: 600,
     L: 1024
+  },
+  typography: {
+    fontFamily: `"Open Sans", sans-serif`
+  },
+  pallete: {
+    action: {
+      hover: "rgba(0, 0, 0, 0.01)"
+    }
   }
 });
 
