@@ -64,9 +64,10 @@ class ContactForm extends React.Component {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact-form", name: name, email: email, message: message })
     })
-      .then(() => {
-        console.log("Form submission success");
-        navigateTo("/success");
+      .then(result => {
+        console.log(result);
+        //console.log("Form submission success");
+        //navigateTo("/success");
       })
       .catch(error => {
         console.error("Form submission error:", error);

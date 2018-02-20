@@ -10,6 +10,8 @@ module.exports = {
   siteLanguage: "en",
   siteDescription: "PersonalBlog is a GatsbyJs starter.",
   contactEmail: "hello@example.com",
+  // author
+  authorName: "greg lobinski",
   // manifest.json
   manifestName: "PersonalBlog - Gatsby starter",
   manifestShortName: "PersonalBlog",
