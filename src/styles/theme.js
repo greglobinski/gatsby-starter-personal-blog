@@ -120,7 +120,8 @@ const theme = createMuiTheme({
     L: 1024
   },
   typography: {
-    fontFamily: `"Open Sans", sans-serif`
+    fontFamily: `"Open Sans", sans-serif`,
+    fontSize: 16
   },
   pallete: {
     action: {

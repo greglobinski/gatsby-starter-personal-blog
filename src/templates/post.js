@@ -14,7 +14,8 @@ const styles = theme => ({
     position: "absolute",
     top: 0,
     left: 0,
-    bottom: 0,
+    //bottom: 0,
+    height: "100vh",
     width: "100%",
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       width: `calc(100vw - ${theme.info.sizes.width}px)`,

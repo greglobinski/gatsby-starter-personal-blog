@@ -80,13 +80,14 @@ export const pageQuery = graphql`
   query LayoutQuery {
     posts: allMarkdownRemark(
       filter: { id: { regex: "//posts//" } }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [fields___prefix], order: DESC }
     ) {
       edges {
         node {
           excerpt
           fields {
             slug
+            prefix
           }
           frontmatter {
             path
@@ -106,11 +107,15 @@ export const pageQuery = graphql`
         }
       }
     }
-    pages: allMarkdownRemark(filter: { id: { regex: "//pages//" } }) {
+    pages: allMarkdownRemark(
+      filter: { id: { regex: "//pages//" }, fields: { prefix: { regex: "/^\\d+$/" } } }
+      sort: { fields: [fields___prefix], order: ASC }
+    ) {
       edges {
         node {
           fields {
             slug
+            prefix
           }
           frontmatter {
             title

@@ -1,128 +1,143 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import TextField from "material-ui/TextField";
 import Button from "material-ui/Button";
-import Joi from "joi-browser";
 import { navigateTo } from "gatsby-link";
+import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 
-import { nameSchema, emailSchema, messageSchema, encode } from "../../utils/helpers";
+import { encode } from "../../utils/helpers";
 
-const styles = theme => ({});
+const styles = theme => ({
+  submit: {
+    margin: "3em 0"
+    //width: "100%"
+  },
+  multilineInput: {
+    lineHeight: 1.4,
+    fontSize: "1.2em"
+  },
+  singleLineInput: {
+    lineHeight: 1.4,
+    fontSize: "1.2em",
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      width: "47%",
+      marginLeft: "3%",
+      "&:first-child": {
+        marginRight: "3%",
+        marginLeft: 0
+      }
+    }
+  },
+  submitError: {
+    background: "red",
+    color: "white"
+  }
+});
 
 class ContactForm extends React.Component {
   state = {
-    submitError: null
+    name: "",
+    email: "",
+    message: "",
+    submitError: ""
   };
 
-  validateName = e => {
-    const result = Joi.validate({ name: e }, nameSchema);
+  handleChange = event => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
 
-    return !result.error;
-  };
-
-  validateEmail = e => {
-    const result = Joi.validate({ email: e }, emailSchema);
-
-    return !result.error;
-  };
-
-  validateMessage = e => {
-    const result = Joi.validate({ message: e }, messageSchema);
-
-    return !result.error;
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const validName = this.inputName.state.error;
-    const validEmail = this.inputEmail.state.error;
-    const validMessage = this.inputEmail.state.error;
-
-    const email = this.inputEmail.input.defaultValue;
-    const name = this.inputName.input.defaultValue;
-    const message = this.inputMessage.input.defaultValue;
-
-    if (!validEmail && !validName && !validMessage) {
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact-form", name: name, email: email, message: message })
-      })
-        .then(() => {
-          console.log("[Paprika] Form submission success");
-          navigateTo("/success");
-        })
-        .catch(error => {
-          console.error("[Paprika] Form submission error:", error);
-          this.handleNetworkError();
-        });
-    } else {
-      this.handleFormError();
-    }
-  };
-
-  handleKeyDown = e => {
-    if (e.keyCode === 13) {
-      this.handleSubmit(e);
-    }
-  };
-
-  handleFormError = e => {
-    this.setState({ submitError: "There was an error with your name/email." });
+    this.setState({ [name]: value });
   };
 
   handleNetworkError = e => {
     this.setState({ submitError: "There was a network error." });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const { email, name, message } = this.state;
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({ "form-name": "contact-form", name: name, email: email, message: message })
+    })
+      .then(() => {
+        console.log("Form submission success");
+        navigateTo("/success");
+      })
+      .catch(error => {
+        console.error("Form submission error:", error);
+        this.handleNetworkError();
+      });
+  };
+
   render() {
-    //const { classes } = this.props;
+    const { classes } = this.props;
+    const { email, name, message, submitError } = this.state;
 
     return (
-      <form
+      <ValidatorForm
+        onSubmit={this.handleSubmit}
+        onError={errors => console.log(errors)}
         name="contact"
         ref={f => (this.form = f)}
         data-netlify="true"
         data-netlify-honeypot="bot-field"
-        onSubmit={this.handleSubmit}
-        onKeyDown={this.handleKeyDown}
       >
-        <label style={{ display: "none" }}>
-          Don’t fill this out: <input name="bot-field" />
-        </label>
-        <TextField
+        {submitError && <p className={classes.submitError}>{submitError}</p>}
+        <TextValidator
           id="name"
           name="name"
           label="Name"
-          inputRef={f => (this.inputName = f)}
-          value={this.state.name}
-          margin="normal"
+          value={name}
+          onChange={this.handleChange}
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           fullWidth
+          margin="normal"
+          className={classes.singleLineInput}
         />
-        <TextField
+        <TextValidator
           id="email"
           name="email"
           label="E-mail"
-          inputRef={f => (this.inputEmail = f)}
-          value={this.state.name}
-          margin="normal"
+          value={email}
+          onChange={this.handleChange}
+          validators={["required", "isEmail"]}
+          errorMessages={["this field is required", "email is not valid"]}
           fullWidth
+          margin="normal"
+          className={classes.singleLineInput}
         />
-        <TextField
+        <TextValidator
           id="message"
           name="message"
-          label="With placeholder multiline"
-          inputRef={f => (this.inputMessage = f)}
+          label="Message"
+          value={message}
+          onChange={this.handleChange}
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           multiline
-          margin="normal"
           fullWidth
+          margin="normal"
+          className={classes.multilineInput}
         />
-        <Button variant="raised" color="primary">
+        <label style={{ display: "none" }}>
+          Don’t fill this out: <input name="bot-field" />
+        </label>
+        <Button
+          variant="raised"
+          color="primary"
+          size="large"
+          type="submit"
+          className={classes.submit}
+        >
           Primary
         </Button>
-      </form>
+      </ValidatorForm>
     );
   }
 }

@@ -24,6 +24,7 @@ import avatar from "../../images/avatar.jpg";
 const styles = theme => ({
   info: {
     background: theme.info.colors.background,
+    //background: "red",
     borderBottom: "1px solid #ddd",
     position: "absolute",
     padding: "12px 1em 0",

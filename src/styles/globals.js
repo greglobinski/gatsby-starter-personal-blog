@@ -362,6 +362,9 @@ export default {
       textDecoration: "none",
       transition: "0.3s"
     },
+    "input:-webkit-autofill": {
+      "-webkit-box-shadow": "0 0 0 50px white inset"
+    },
     [`@media (min-device-width: ${theme.mediaQueryTresholds.L + 1}px)`]: {
       // "*::-webkit-scrollbar": {
       //   width: "8px"

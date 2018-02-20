@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+//import { navigateTo } from "gatsby-link";
 
 import { setNavigatorIsAside, setNavigatorInTransition } from "../../state/store";
 import Posts from "./Posts";
@@ -10,10 +11,12 @@ const styles = theme => ({
   navigator: {
     //willChange: "left",
     background: theme.navigator.colors.background,
+    //background: "blue",
     position: "absolute",
     top: 0,
     left: 0,
-    bottom: 0,
+    //bottom: 0,
+    height: "100vh",
     transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
     transform: "translate3d(0px, 0px, 0px)",
     //transition: "-webkit-transform 225ms  0ms",
@@ -45,6 +48,7 @@ const styles = theme => ({
         transitionTimingFunction: "ease",
         opacity: 1,
         top: "100px",
+        height: `calc(100vh - 100px)`,
         borderTop: "1px solid #ddd",
         borderRight: "none",
         left: 0,

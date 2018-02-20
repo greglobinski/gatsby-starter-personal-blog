@@ -10,15 +10,17 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
+    const separtorIndex = ~slug.indexOf("--") ? slug.indexOf("--") : 0;
+    const shortSlugStart = separtorIndex ? separtorIndex + 2 : 0;
     createNodeField({
       node,
       name: `slug`,
-      value: slug.replace(/[\d-]+--/i, "")
+      value: `${separtorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
     });
     createNodeField({
       node,
       name: `prefix`,
-      value: slug.replace(/--.+$/i, "").replace(/^\//i, "")
+      value: separtorIndex ? slug.substring(1, separtorIndex) : ""
     });
   }
 };
@@ -39,9 +41,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
                   id
                   fields {
                     slug
-                  }
-                  frontmatter {
-                    path
+                    prefix
                   }
                 }
               }
@@ -84,24 +84,7 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
             name: `commons`,
             chunks: [`app`, ...components],
             minChunks: (module, count) => {
-              const vendorModuleList = [
-                // `jss`,
-                // `jss-nested`,
-                // `jss-expand`,
-                // `jss-global`,
-                // `jss-default-units`,
-                // `jss-extend`,
-                // `jss-[-a-z]+`,
-                // `react-custom-srcollbars`,
-                // `redux`,
-                // `react-redux`,
-                // `material-ui`,
-                // `color`,
-                // `color-convert`,
-                // `react-jss`,
-                // `theming`,
-                // `color-name`
-              ];
+              const vendorModuleList = [`material-ui`, `lodash`];
               const isFramework = _.some(
                 vendorModuleList.map(vendor => {
                   const regex = new RegExp(`[\\\\/]node_modules[\\\\/]${vendor}[\\\\/].*`, `i`);
