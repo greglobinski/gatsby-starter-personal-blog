@@ -5,7 +5,13 @@ import Button from "material-ui/Button";
 import { navigateTo } from "gatsby-link";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 
-import { encode } from "../../utils/helpers";
+//import { encode } from "../../utils/helpers";
+
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 
 const styles = theme => ({
   submit: {
@@ -54,26 +60,37 @@ class ContactForm extends React.Component {
     this.setState({ submitError: "There was a network error." });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const { email, name, message } = this.state;
-    console.log(email, name, message);
+  handleSubmit = e => {
 
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact-form", name: name, email: email, message: message })
+      body: encode({ "form-name": "contact", ...this.state })
     })
-      .then(result => {
-        console.log(result);
-        //console.log("Form submission success");
-        //navigateTo("/success");
-      })
-      .catch(error => {
-        console.error("Form submission error:", error);
-        this.handleNetworkError();
-      });
+      .then(() => alert("Success!"))
+      .catch(error => alert(error));
+
+    e.preventDefault();
+
+    // event.preventDefault();
+
+    // const { email, name, message } = this.state;
+    // console.log(email, name, message);
+
+    // fetch("/", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    //   body: encode({ "form-name": "contact-form", name: name, email: email, message: message })
+    // })
+    //   .then(result => {
+    //     console.log(result);
+    //     //console.log("Form submission success");
+    //     //navigateTo("/success");
+    //   })
+    //   .catch(error => {
+    //     console.error("Form submission error:", error);
+    //     this.handleNetworkError();
+    //   });
   };
 
   render() {
