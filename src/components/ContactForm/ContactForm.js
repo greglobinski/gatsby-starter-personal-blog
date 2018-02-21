@@ -58,6 +58,7 @@ class ContactForm extends React.Component {
     event.preventDefault();
 
     const { email, name, message } = this.state;
+    console.log(email, name, message);
 
     fetch("/", {
       method: "POST",
@@ -126,9 +127,7 @@ class ContactForm extends React.Component {
           margin="normal"
           className={classes.multilineInput}
         />
-        <label style={{ display: "none" }}>
-          Don’t fill this out: <input name="bot-field" />
-        </label>
+        <input name="bot-field" style={{ display: "none" }}/>  
         <Button
           variant="raised"
           color="primary"
