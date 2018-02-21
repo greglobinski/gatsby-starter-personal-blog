@@ -6,6 +6,7 @@ import injectSheet from "react-jss";
 
 import { setNavigatorIsAside, setNavigatorInTransition } from "../../state/store";
 import Posts from "./Posts";
+import BottomBar from "./BottomBar";
 
 const styles = theme => ({
   navigator: {
@@ -141,6 +142,7 @@ class Navigator extends React.Component {
             inTransition={inTransition}
           />
         )}
+        <BottomBar />
       </nav>
     );
   }

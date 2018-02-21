@@ -159,7 +159,10 @@ const Posts = props => {
             {posts &&
               posts.map(post => {
                 return (
-                  <li className={classes.listItem} key={post.node.fields.slug}>
+                  <li
+                    className={`${classes.listItem} ${post.node.frontmatter.category}`}
+                    key={post.node.fields.slug}
+                  >
                     <Link
                       activeClassName="active"
                       className={classes.listLink}

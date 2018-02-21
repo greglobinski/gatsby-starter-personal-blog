@@ -54,7 +54,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
           reject(result.errors);
         }
 
-        // Create blog posts pages.
+        // Create posts and pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
           // removes date subtring from slug
           const slug = edge.node.fields.slug; //.replace(/\d{4}-\d{1,2}-\d{1,2}--/i, "");

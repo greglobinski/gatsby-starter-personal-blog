@@ -94,6 +94,7 @@ export const pageQuery = graphql`
             date(formatString: "DD MMMM, YYYY")
             title
             subTitle
+            category
             cover {
               children {
                 ... on ImageSharp {
