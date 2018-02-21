@@ -61,36 +61,21 @@ class ContactForm extends React.Component {
   };
 
   handleSubmit = e => {
-
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "contact", ...this.state })
     })
-      .then(() => alert("Success!"))
-      .catch(error => alert(error));
+      .then(() => {
+        console.log("Form submission success");
+        navigateTo("/success");
+      })
+      .catch(error => {
+        console.error("Form submission error:", error);
+        this.handleNetworkError();
+      });
 
     e.preventDefault();
-
-    // event.preventDefault();
-
-    // const { email, name, message } = this.state;
-    // console.log(email, name, message);
-
-    // fetch("/", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //   body: encode({ "form-name": "contact-form", name: name, email: email, message: message })
-    // })
-    //   .then(result => {
-    //     console.log(result);
-    //     //console.log("Form submission success");
-    //     //navigateTo("/success");
-    //   })
-    //   .catch(error => {
-    //     console.error("Form submission error:", error);
-    //     this.handleNetworkError();
-    //   });
   };
 
   render() {
@@ -144,7 +129,7 @@ class ContactForm extends React.Component {
           margin="normal"
           className={classes.multilineInput}
         />
-        <input name="bot-field" style={{ display: "none" }}/>  
+        <input name="bot-field" style={{ display: "none" }} />
         <Button
           variant="raised"
           color="primary"
