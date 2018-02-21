@@ -1,0 +1,9 @@
+module.exports = {
+  bg: "#ffffff",
+  white: "#ffffff",
+  accent: "#709425",
+  bright: "#ffffff",
+  dark: "#333333",
+  gray: "#666666",
+  lightGray: "#dddddd"
+};
