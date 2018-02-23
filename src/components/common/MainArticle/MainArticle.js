@@ -18,7 +18,7 @@ const styles = theme => ({
   article: {
     maxWidth: theme.post.sizes.maxWidth,
     margin: "0 auto",
-    padding: `calc(1.5rem + ${theme.info.sizes.height}px) 1.5rem 1.5rem`,
+    padding: `calc(1.5rem + ${theme.info.sizes.height}px) 1.8rem 1.5rem 1.5rem`,
     "& strong, & b": {
       letterSpacing: "-.02em",
       fontWeight: 600

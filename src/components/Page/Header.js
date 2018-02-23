@@ -22,15 +22,17 @@ const styles = theme => ({
   }
 });
 
-const Header = ({ classes, title }) => (
+const Header = ({ classes, title, children }) => (
   <header className={classes.header}>
     <h1 className={classes.title}>{title}</h1>
+    {children}
   </header>
 );
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node
 };
 
 export default injectSheet(styles)(Header);

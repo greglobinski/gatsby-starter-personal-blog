@@ -11,7 +11,8 @@ const theme = createMuiTheme({
       link: colors.accent,
       linkHover: Color(colors.accent)
         .lighten(0.1)
-        .string()
+        .string(),
+      accent: colors.accent
     },
     fonts: {
       unstyledFamily: `"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"`,

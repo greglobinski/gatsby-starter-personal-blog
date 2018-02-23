@@ -1,5 +1,31 @@
 const config = require("./src/utils/config");
 
+const query = `{
+  allMarkdownRemark {
+    edges {
+      node {
+        objectID: id
+        fields {
+          slug
+        }
+        html
+        frontmatter {
+          title
+          subTitle
+        }
+      }
+    }
+  }
+  
+}`;
+
+const queries = [
+  {
+    query,
+    transformer: ({ data }) => data.allMarkdownRemark.edges.map(({ node }) => node)
+  }
+];
+
 module.exports = {
   siteMetadata: {
     title: `GatsbyJS`,
@@ -7,6 +33,16 @@ module.exports = {
     siteUrl: `https://gspb.greglobinski.com`
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: "S7S8TCTMYW",
+        apiKey: "faf3ce163c9adf1de18befad185831d6",
+        indexName: "pages",
+        queries,
+        chunkSize: 10000 // default: 1000
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
