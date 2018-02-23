@@ -18,7 +18,9 @@ module.exports = {
   manifestStartUrl: "/",
   manifestBackgroundColor: colors.bg,
   manifestThemeColor: colors.bg,
-  manifestDisplay: "standalone",
-  // analytics
-  analyticsTrackingId: "UA-110088221-2"
+  manifestDisplay: "standalone"
+  // algoliaAppID: process.env.ALGOLIA_APP_ID,
+  // algoliaAdminApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
+  // algoliaSearchOnlyApiKey: process.env.ALGOLIA_ADMIN_API_KEY,
+  // algoliaIndexName: process.env.ALGOLIA_INDEX_NAME
 };

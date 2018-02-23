@@ -2,8 +2,9 @@ import React from "react";
 import { JssProvider, SheetsRegistry } from "react-jss";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
-import createStore from "./src/state/store";
+require("dotenv").config();
 
+import createStore from "./src/state/store";
 import theme from "./src/styles/theme";
 
 function minifyCssString(css) {

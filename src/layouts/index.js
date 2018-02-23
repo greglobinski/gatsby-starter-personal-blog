@@ -76,7 +76,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(globals)(Layout));
 
 //eslint-disable-next-line no-undef
-export const pageQuery = graphql`
+export const guery = graphql`
   query LayoutQuery {
     posts: allMarkdownRemark(
       filter: { id: { regex: "//posts//" } }

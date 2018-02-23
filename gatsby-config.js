@@ -1,14 +1,17 @@
+require("dotenv").config();
 const config = require("./src/utils/config");
 
 const query = `{
-  allMarkdownRemark {
+  allMarkdownRemark(filter: { id: { regex: "//posts|pages//" } }) {
     edges {
-      node {
-        objectID: id
+      node {        
+        objectID: fileAbsolutePath
         fields {
           slug
         }
-        html
+        internal {
+          content
+        }
         frontmatter {
           title
           subTitle
@@ -16,7 +19,6 @@ const query = `{
       }
     }
   }
-  
 }`;
 
 const queries = [
@@ -30,15 +32,20 @@ module.exports = {
   siteMetadata: {
     title: `GatsbyJS`,
     description: `A fantastic new static site generator.`,
-    siteUrl: `https://gspb.greglobinski.com`
+    siteUrl: `https://gspb.greglobinski.com`,
+    algolia: {
+      appId: process.env.ALGOLIA_APP_ID,
+      searchOnlyApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
+      indexName: process.env.ALGOLIA_INDEX_NAME
+    }
   },
   plugins: [
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
-        appId: "S7S8TCTMYW",
-        apiKey: "faf3ce163c9adf1de18befad185831d6",
-        indexName: "pages",
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_API_KEY,
+        indexName: process.env.ALGOLIA_INDEX_NAME,
         queries,
         chunkSize: 10000 // default: 1000
       }
@@ -142,7 +149,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: config.analyticsTrackingId
+        trackingId: process.env.GOOGLE_ANALYTICS_ID
       }
     },
     {

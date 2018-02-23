@@ -2,6 +2,7 @@
   "name": "gatsby-starter-sidebar-blog",
   "description": "A GatsbyJs blog starter",
   "author": "Greg Lobinski <greglobinski@gmail.com>",
+  "repository": "https://github.com/greglobinski/gatsby-starter-personal-blog",
   "version": "0.1.0",
   "scripts": {
     "develop": "gatsby develop",
@@ -36,6 +37,7 @@
     "babel-eslint": "^8.2.1",
     "babel-plugin-dynamic-import-webpack": "^1.0.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "dotenv": "^5.0.0",
     "eslint": "^4.17.0",
     "eslint-config-google": "^0.9.1",
     "eslint-config-prettier": "^2.9.0",

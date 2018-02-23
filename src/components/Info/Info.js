@@ -197,7 +197,7 @@ const styles = theme => ({
   topMenu: {
     position: "absolute",
     top: "6px",
-    right: 0,
+    right: "2px",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       top: "14px"
       //right: "10px"

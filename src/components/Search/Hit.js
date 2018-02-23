@@ -9,6 +9,8 @@ const styles = theme => ({
     padding: ".5em 0 1em 1em",
     position: "relative",
     fontSize: "1.2em",
+    display: "block",
+    width: "100%",
     color: "#666",
     "&::before": {
       content: `"•"`,

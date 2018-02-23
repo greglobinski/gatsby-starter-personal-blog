@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import Link from "gatsby-link";
 import { InstantSearch, SearchBox, Hits, Stats, Pagination } from "react-instantsearch/dom";
 
 import Hit from "./Hit";
@@ -33,6 +32,37 @@ const styles = theme => ({
       color: "#999",
       display: "block"
     },
+    "& .ais-Pagination__root": {
+      display: "flex",
+      listStyle: "none",
+      justifyContent: "center",
+      padding: 0
+    },
+    "& .ais-Pagination__item": {
+      "& a, & span": {
+        color: "#666",
+        fontSize: "1.2em",
+        display: "block",
+        padding: ".5em .5em",
+        [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+          fontSize: "1.3em",
+          padding: ".5em .7em"
+        }
+      },
+      "& a": {
+        "&:hover": {
+          color: theme.main.colors.accent
+        }
+      },
+      "&.ais-Pagination__itemFirst, &.ais-Pagination__itemPrevious, &.ais-Pagination__itemNext": {
+        "& a, & span": {
+          padding: ".4em .5em .6em",
+          [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+            padding: ".4em .7em .6em"
+          }
+        }
+      }
+    },
     "& a": {
       fontWeight: 400
     }
@@ -40,11 +70,15 @@ const styles = theme => ({
 });
 
 const Search = props => {
-  const { classes } = props;
+  const { classes, algolia } = props;
 
   return (
     <div className={classes.search}>
-      <InstantSearch appId="S7S8TCTMYW" apiKey="d34b8a792d37f60e6668336a3d0b4584" indexName="pages">
+      <InstantSearch
+        appId={algolia.appId}
+        apiKey={algolia.searchOnlyApiKey}
+        indexName={algolia.indexName}
+      >
         <SearchBox translations={{ placeholder: "Search" }} />
         <Stats />
         <Hits hitComponent={Hit} />
@@ -55,7 +89,8 @@ const Search = props => {
 };
 
 Search.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  algolia: PropTypes.object.isRequired
 };
 
 export default injectSheet(styles)(Search);
