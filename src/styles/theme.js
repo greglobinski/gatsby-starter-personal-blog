@@ -90,8 +90,8 @@ const theme = createMuiTheme({
         lineHeight: 1.6
       },
       contentHeading: {
-        h2Size: 1.4,
-        h3Size: 1.2,
+        h2Size: 1.5,
+        h3Size: 1.3,
         weight: 600,
         lineHeight: 1.3
       },

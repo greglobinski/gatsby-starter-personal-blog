@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDisqusComments from "react-disqus-comments";
 import PropTypes from "prop-types";
 
-import config from "../../utils/config";
+import config from "../../../component/meta/config";
 
 class Disqus extends Component {
   constructor(props) {

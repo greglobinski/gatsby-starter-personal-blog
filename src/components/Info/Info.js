@@ -12,7 +12,9 @@ import { Manager, Target, Popper } from "react-popper";
 import ClickAwayListener from "material-ui/utils/ClickAwayListener";
 import Grow from "material-ui/transitions/Grow";
 import Paper from "material-ui/Paper";
-import classNames from "classnames";
+import classNames from "classnames"; 
+
+import StackIcons from "./StackIcons";
 
 import {
   setNavigatorIsAside,
@@ -390,6 +392,8 @@ class Info extends React.Component {
             </Popper>
           </Manager>
         </nav>
+
+        <StackIcons />
       </aside>
     );
   }

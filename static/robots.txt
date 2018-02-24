@@ -1,1 +1,3 @@
+User-agent: *
 
+sitemap: https://gatsby-starter-personal-blog/sitemap.xml

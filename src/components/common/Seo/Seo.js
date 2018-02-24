@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import config from "../../../utils/config";
+import config from "../../../../content/meta/config";
 
 const Seo = () => {
   const title = config.siteTitle;

@@ -1,5 +1,5 @@
 require("dotenv").config();
-const config = require("./src/utils/config");
+const config = require("./content/meta/config");
 
 const query = `{
   allMarkdownRemark(filter: { id: { regex: "//posts|pages//" } }) {
@@ -53,14 +53,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/content/posts/`,
+        path: `${__dirname}/content/posts/`,
         name: "posts"
       }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/content/pages/`,
+        path: `${__dirname}/content/pages/`,
         name: "pages"
       }
     },
@@ -68,7 +68,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `parts`,
-        path: `${__dirname}/src/content/parts/`
+        path: `${__dirname}/content/parts/`
       }
     },
     {

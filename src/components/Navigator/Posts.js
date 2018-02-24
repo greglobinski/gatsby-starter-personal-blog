@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { Scrollbars } from "react-custom-scrollbars";
 
-import config from "../../utils/config";
+import config from "../../../content/meta/config";
 
 const styles = theme => ({
   posts: {

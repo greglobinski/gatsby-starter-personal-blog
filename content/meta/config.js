@@ -1,4 +1,4 @@
-const colors = require("../styles/colors");
+const colors = require("../../src/styles/colors");
 
 module.exports = {
   pathPrefix: "",
