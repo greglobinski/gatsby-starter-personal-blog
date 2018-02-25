@@ -70,7 +70,7 @@ const Socialcons = props => {
             rel="noopener noreferrer"
             title={item.name}
           >
-            <Icon path={`/svg/${item.name}.svg`} className={classes.svg} />
+            <Icon className={classes.svg} />
           </a>
         );
       })}
