@@ -4,6 +4,7 @@ import Img from "gatsby-image";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { Scrollbars } from "react-custom-scrollbars";
+import LazyLoad from "react-lazyload";
 
 import config from "../../../content/meta/config";
 
@@ -63,15 +64,10 @@ const styles = theme => ({
     flexDirection: "row",
     padding: ".7em 1em",
     color: theme.navigator.colors.postsListItemLink,
-    "& .gatsby-image-wrapper": {
-      borderRadius: "75% 65%",
-      transition: "all .3s",
-      transitionTimingFunction: "ease"
-    },
     "@media (hover: hover)": {
       "&:hover": {
         color: theme.navigator.colors.postsListItemLinkHover,
-        "&:hover .gatsby-image-wrapper": {
+        "& .pointer": {
           borderRadius: "65% 75%"
         }
       }
@@ -81,10 +77,15 @@ const styles = theme => ({
     position: "relative",
     flexShrink: 0,
     overflow: "hidden",
+    borderRadius: "75% 65%",
     width: "60px",
     height: "60px",
     margin: "0",
     transition: "all .5s",
+    "& img": {
+      width: "100%",
+      height: "100%"
+    },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       marginRight: ".5em",
       width: "80px",
@@ -94,6 +95,8 @@ const styles = theme => ({
       marginRight: ".8em",
       width: "90px",
       height: "90px",
+      transition: "all .3s",
+      transitionTimingFunction: "ease",
       ".isAside &": {
         width: "30px",
         height: "30px"
@@ -175,8 +178,25 @@ const Posts = props => {
                       to={post.node.fields.slug}
                       onClick={linkOnClick}
                     >
-                      <div className={classes.listItemPointer}>
-                        <Img sizes={post.node.frontmatter.cover.children[0].sizes} />
+                      <div className={`${classes.listItemPointer} pointer`}>
+                        <LazyLoad height={90} overflow throttle={100}>
+                          <picture>
+                            <source
+                              type="image/webp"
+                              srcSet={
+                                post.node.frontmatter.cover.children[0].resolutions.srcSetWebp
+                              }
+                            />
+                            <source
+                              srcSet={post.node.frontmatter.cover.children[0].resolutions.srcSet}
+                            />
+                            <img
+                              srcSet={post.node.frontmatter.cover.children[0].resolutions.src}
+                              alt=""
+                            />
+                          </picture>
+                        </LazyLoad>
+                        {/*<Img sizes={post.node.frontmatter.cover.children[0].sizes} />*/}
                       </div>
                       <div className={classes.listItemText}>
                         <h1>{post.node.frontmatter.title}</h1>
