@@ -13,7 +13,6 @@ const styles = theme => ({
     top: 0,
     left: 0,
     bottom: 0,
-    //height: "100vh",
     width: "100%",
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       width: `calc(100vw - ${theme.info.sizes.width}px)`,
@@ -23,6 +22,10 @@ const styles = theme => ({
   article: {
     maxWidth: theme.post.sizes.maxWidth,
     margin: "0 auto",
+    animationName: "phoneOut",
+    animationDuration: "1.5s",
+    animationFillMode: "forwards",
+    animationTimingFunction: "ease",
     padding: `calc(1.5rem + ${theme.info.sizes.height}px) 1.5rem 1.5rem`,
     "& strong, & b": {
       letterSpacing: "-.02em",
@@ -51,6 +54,20 @@ const styles = theme => ({
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       padding: "3.5rem"
+    }
+  },
+  "@keyframes phoneOut": {
+    "0%": {
+      opacity: 0,
+      transform: "translateY(20px)"
+    },
+    "50%": {
+      opacity: 0,
+      transform: "translateY(20px)"
+    },
+    "100%": {
+      opacity: 1,
+      transform: "translateY(0)"
     }
   }
 });
