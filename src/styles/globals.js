@@ -351,12 +351,6 @@ export default {
       background: "transparent",
       textDecorationSkip: "objects",
       fontWeight: "bold",
-      // textShadow: `2px 2px ${theme.main.colors.background},
-      //   -2px 2px ${theme.main.colors.background},
-      //   -2px -2px ${theme.main.colors.background},
-      //   -2px 2px ${theme.main.colors.background},
-      //   -2px 0 ${theme.main.colors.background},
-      //   2px 0 ${theme.main.colors.background}`,
       display: "inline-block",
       lineHeight: "1.1",
       textDecoration: "none",
@@ -364,21 +358,6 @@ export default {
     },
     "input:-webkit-autofill": {
       "-webkit-box-shadow": "0 0 0 50px white inset"
-    },
-    [`@media (min-device-width: ${theme.mediaQueryTresholds.L + 1}px)`]: {
-      // "*::-webkit-scrollbar": {
-      //   width: "8px"
-      // },
-      // "*::-webkit-scrollbar-track": {
-      //   background: Color(theme.main.colors.background)
-      //     .darken(0.0)
-      //     .string()
-      // },
-      // "*::-webkit-scrollbar-thumb": {
-      //   backgroundColor: Color(theme.main.colors.background)
-      //     .darken(0.2)
-      //     .string()
-      // }
     }
   }
 };

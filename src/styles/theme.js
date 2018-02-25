@@ -16,7 +16,8 @@ const theme = createMuiTheme({
       lines: colors.superLightGray
     },
     fonts: {
-      unstyledFamily: `"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"`,
+      //unstyledFamily: `"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"`,
+      unstyledFamily: `Arial`,
       styledFamily: "Open Sans",
       styledFonts: "300,400,600,700"
     }

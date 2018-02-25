@@ -101,7 +101,7 @@ export const guery = graphql`
               children {
                 ... on ImageSharp {
                   sizes(maxWidth: 90) {
-                    ...GatsbyImageSharpSizes_withWebp_tracedSVG
+                    ...GatsbyImageSharpSizes_withWebp_noBase64
                   }
                 }
               }
