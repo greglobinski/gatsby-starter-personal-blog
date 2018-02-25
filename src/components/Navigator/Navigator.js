@@ -6,21 +6,17 @@ import injectSheet from "react-jss";
 
 import { setNavigatorIsAside, setNavigatorInTransition } from "../../state/store";
 import Posts from "./Posts";
-import BottomBar from "./BottomBar";
 
 const styles = theme => ({
   navigator: {
     //willChange: "left",
     background: theme.navigator.colors.background,
-    //background: "blue",
     position: "absolute",
     top: 0,
     left: 0,
-    //bottom: 0,
     height: "100vh",
     transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
     transform: "translate3d(0px, 0px, 0px)",
-    //transition: "-webkit-transform 225ms  0ms",
     transition: "left 750ms",
     width: "100%",
     borderRight: "1px solid #ddd",
@@ -142,7 +138,6 @@ class Navigator extends React.Component {
             inTransition={inTransition}
           />
         )}
-        <BottomBar />
       </nav>
     );
   }

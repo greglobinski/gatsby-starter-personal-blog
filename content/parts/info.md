@@ -6,5 +6,4 @@ boxTitle: "greg lobinski"
 boxTitleNote: "personal blog"
 ---
 
-a wealthy man and the owner of a luxurious mansion where extravagant parties are often hosted
-
+I am a front-end web developer. I used to be a web designer also, but now I concentrate on the code.

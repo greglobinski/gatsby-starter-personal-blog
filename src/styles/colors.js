@@ -4,6 +4,7 @@ module.exports = {
   accent: "#709425",
   bright: "#ffffff",
   dark: "#333333",
-  gray: "#666666",
-  lightGray: "#dddddd"
+  gray: "#555555",
+  lightGray: "#bbbbbb",
+  superLightGray: "#dddddd"
 };

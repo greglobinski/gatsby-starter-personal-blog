@@ -12,7 +12,8 @@ const theme = createMuiTheme({
       linkHover: Color(colors.accent)
         .lighten(0.1)
         .string(),
-      accent: colors.accent
+      accent: colors.accent,
+      lines: colors.superLightGray
     },
     fonts: {
       unstyledFamily: `"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"`,
@@ -22,8 +23,12 @@ const theme = createMuiTheme({
   },
   info: {
     colors: {
+      text: colors.gray,
       background: colors.white,
-      avatarIcon: colors.accent
+      socialIcons: colors.lightGray,
+      socialIconsHover: colors.accent,
+      menuLink: colors.gray,
+      menuLinkHover: colors.accent
     },
     sizes: {
       width: 320,
@@ -120,6 +125,7 @@ const theme = createMuiTheme({
     M: 600,
     L: 1024
   },
+
   typography: {
     fontFamily: `"Open Sans", sans-serif`,
     fontSize: 16

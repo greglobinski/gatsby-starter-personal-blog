@@ -7,10 +7,22 @@ const styles = theme => ({
     position: "absolute",
     left: 0,
     height: "60px",
-    borderTop: "1px solid #666",
     bottom: 0,
     width: "100%",
-    background: "#fff"
+    background: "#fff",
+    zIndex: 10,
+    "&::before": {
+      content: `""`,
+      position: "absolute",
+      top: 0,
+      left: "20px",
+      right: "20px",
+      height: "1px",
+      borderTop: `1px solid ${theme.main.colors.lines}`
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      width: `${theme.info.sizes.width}px`
+    }
   }
 });
 

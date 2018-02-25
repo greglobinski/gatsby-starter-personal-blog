@@ -63,22 +63,28 @@ const styles = theme => ({
     flexDirection: "row",
     padding: ".7em 1em",
     color: theme.navigator.colors.postsListItemLink,
+    "& .gatsby-image-wrapper": {
+      borderRadius: "75% 65%",
+      transition: "all .3s",
+      transitionTimingFunction: "ease"
+    },
     "@media (hover: hover)": {
       "&:hover": {
-        color: theme.navigator.colors.postsListItemLinkHover
+        color: theme.navigator.colors.postsListItemLinkHover,
+        "&:hover .gatsby-image-wrapper": {
+          borderRadius: "65% 75%"
+        }
       }
-    },
-    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {}
+    }
   },
   listItemPointer: {
-    background: "#333",
-    borderRadius: "65% 75% 65% 75%",
     position: "relative",
     flexShrink: 0,
     overflow: "hidden",
     width: "60px",
     height: "60px",
     margin: "0",
+    transition: "all .5s",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       marginRight: ".5em",
       width: "80px",

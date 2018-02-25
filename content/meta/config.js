@@ -9,7 +9,6 @@ module.exports = {
   siteImage: "preview.jpg",
   siteLanguage: "en",
   siteDescription: "PersonalBlog is a GatsbyJs starter.",
-  contactEmail: "hello@example.com",
   // author
   authorName: "greg lobinski",
   // manifest.json
@@ -18,9 +17,11 @@ module.exports = {
   manifestStartUrl: "/",
   manifestBackgroundColor: colors.bg,
   manifestThemeColor: colors.bg,
-  manifestDisplay: "standalone"
-  // algoliaAppID: process.env.ALGOLIA_APP_ID,
-  // algoliaAdminApiKey: process.env.ALGOLIA_SEARCH_ONLY_API_KEY,
-  // algoliaSearchOnlyApiKey: process.env.ALGOLIA_ADMIN_API_KEY,
-  // algoliaIndexName: process.env.ALGOLIA_INDEX_NAME
+  manifestDisplay: "standalone",
+  // social
+  authorSocialLinks: [
+    { name: "github", url: "https://github.com/greglobinski" },
+    { name: "twitter", url: "https://twitter.com/greglobinski" },
+    { name: "facebook", url: "http://facebook.com/greglobinski" }
+  ]
 };

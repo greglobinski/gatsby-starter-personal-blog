@@ -12,6 +12,7 @@ import { saveData, setNavigatorIsAside, setNavigatorInTransition } from "../stat
 import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
 import Info from "../components/Info/";
+import BottomBar from "../components/BottomBar";
 
 class Layout extends React.Component {
   componentWillMount() {
@@ -44,6 +45,7 @@ class Layout extends React.Component {
           {children()}
           <Navigator />
           <Info />
+          <BottomBar />
         </div>
       </MuiThemeProvider>
     );
@@ -120,6 +122,7 @@ export const guery = graphql`
           }
           frontmatter {
             title
+            menuTitle
           }
         }
       }
