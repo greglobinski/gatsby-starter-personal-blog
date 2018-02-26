@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+import { forceCheck } from "react-lazyload";
 //import { navigateTo } from "gatsby-link";
 
 import { setNavigatorIsAside, setNavigatorInTransition } from "../../state/store";
@@ -117,6 +118,7 @@ class Navigator extends React.Component {
       setTimeout(() => {
         this.props.setInTransition(false);
         this.props.setIsAside(true);
+        setTimeout(forceCheck, 500);
       }, 1100);
     }
   }

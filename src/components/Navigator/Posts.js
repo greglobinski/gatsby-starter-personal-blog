@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "gatsby-link";
-import Img from "gatsby-image";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { Scrollbars } from "react-custom-scrollbars";
@@ -179,7 +178,13 @@ const Posts = props => {
                       onClick={linkOnClick}
                     >
                       <div className={`${classes.listItemPointer} pointer`}>
-                        <LazyLoad height={90} overflow throttle={100}>
+                        <LazyLoad
+                          height={60}
+                          overflow={true}
+                          throttle={300}
+                          once={true}
+                          offset={100}
+                        >
                           <picture>
                             <source
                               type="image/webp"
