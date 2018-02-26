@@ -12,7 +12,7 @@ import { saveData, setNavigatorIsAside, setNavigatorInTransition } from "../stat
 import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
 import Info from "../components/Info/";
-import BottomBar from "../components/BottomBar";
+import DesktopBar from "../components/DesktopBar/";
 
 class Layout extends React.Component {
   componentWillMount() {
@@ -45,7 +45,7 @@ class Layout extends React.Component {
           {children()}
           <Navigator />
           <Info />
-          <BottomBar />
+          <DesktopBar />
         </div>
       </MuiThemeProvider>
     );

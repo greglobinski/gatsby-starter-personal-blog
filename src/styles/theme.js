@@ -15,6 +15,9 @@ const theme = createMuiTheme({
       accent: colors.accent,
       lines: colors.superLightGray
     },
+    sizes: {
+      linesMargin: "20px"
+    },
     fonts: {
       //unstyledFamily: `"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"`,
       unstyledFamily: `Arial`,
@@ -120,6 +123,11 @@ const theme = createMuiTheme({
         size: 0.85,
         lineHeight: 1.4
       }
+    }
+  },
+  bars: {
+    colors: {
+      background: colors.white
     }
   },
   mediaQueryTresholds: {

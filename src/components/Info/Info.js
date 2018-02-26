@@ -41,7 +41,7 @@ const styles = theme => ({
       "&::after": {
         content: `""`,
         position: "absolute",
-        right: "-1px",
+        right: 0,
         top: "20px",
         bottom: "20px",
         width: "1px",

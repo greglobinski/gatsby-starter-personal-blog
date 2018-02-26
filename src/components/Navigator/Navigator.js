@@ -20,7 +20,6 @@ const styles = theme => ({
     transform: "translate3d(0px, 0px, 0px)",
     transition: "left 750ms",
     width: "100%",
-    borderRight: "1px solid #ddd",
     [`@media (max-width: ${theme.mediaQueryTresholds.L - 1}px)`]: {
       "&.inTransitionTo, &.isAside": {
         left: "-100%",
@@ -30,10 +29,9 @@ const styles = theme => ({
       "&.inTransitionTo": {}
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      width: `calc(100vw - ${theme.info.sizes.width}px)`,
+      width: `calc(100vw - ${theme.info.sizes.width}px - 60px)`,
       transition: "left .8s, width 0s",
       transitionTimingFunction: "ease",
-      borderRight: "1px solid #ddd",
       left: `${theme.info.sizes.width}px`,
       "&.inTransitionTo": {
         left: `calc(-100vw + 2 * ${theme.info.sizes.width}px)`,
@@ -47,8 +45,6 @@ const styles = theme => ({
         opacity: 1,
         top: "100px",
         height: `calc(100vh - 100px)`,
-        borderTop: "1px solid #ddd",
-        borderRight: "none",
         left: 0,
         width: `${theme.info.sizes.width - 1}px`,
         zIndex: 1,
@@ -60,9 +56,7 @@ const styles = theme => ({
         left: `calc(-100vw + 2 * ${theme.info.sizes.width}px)`,
         transition: "left 0s, opacity 0s",
         transitionTimingFunction: "ease",
-        opacity: 0,
-        borderRight: "1px solid #ddd",
-        boxShadow: "5px 0 5px 0 rgba(0,0,0,.02)"
+        opacity: 0
       }
     }
   }
@@ -118,6 +112,8 @@ class Navigator extends React.Component {
       setTimeout(() => {
         this.props.setInTransition(false);
         this.props.setIsAside(true);
+        // because isAside mode shows more items than full mode
+        // we have to manualy force new visible pointer images to load
         setTimeout(forceCheck, 500);
       }, 1100);
     }

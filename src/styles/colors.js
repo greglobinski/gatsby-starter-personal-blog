@@ -6,5 +6,5 @@ module.exports = {
   dark: "#333333",
   gray: "#555555",
   lightGray: "#bbbbbb",
-  superLightGray: "#dddddd"
+  superLightGray: "#dedede"
 };

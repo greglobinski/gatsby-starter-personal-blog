@@ -52,9 +52,6 @@ const DesktopMenu = props => {
           </Link>
         );
       })}
-      <Link to="/search/" onClick={linkOnClick} className={classes.link}>
-        Search
-      </Link>
       <Link to="/contact/" onClick={linkOnClick} className={classes.link}>
         Contact
       </Link>
