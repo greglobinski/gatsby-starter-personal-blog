@@ -22,10 +22,10 @@ const styles = theme => ({
   article: {
     maxWidth: theme.post.sizes.maxWidth,
     margin: "0 auto",
-    animationName: "phoneOut",
-    animationDuration: "1.5s",
-    animationFillMode: "forwards",
-    animationTimingFunction: "ease",
+    // animationName: "phoneOut",
+    // animationDuration: "1.5s",
+    // animationFillMode: "forwards",
+    // animationTimingFunction: "ease",
     padding: `calc(1.5rem + ${theme.info.sizes.height}px) 1.5rem 1.5rem`,
     "& strong, & b": {
       letterSpacing: "-.02em",

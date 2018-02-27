@@ -5,7 +5,7 @@ import injectSheet from "react-jss";
 import { Scrollbars } from "react-custom-scrollbars";
 import LazyLoad from "react-lazyload";
 
-import config from "../../../content/meta/config";
+import PostsHeader from "./PostsHeader";
 
 const styles = theme => ({
   posts: {
@@ -23,34 +23,27 @@ const styles = theme => ({
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       padding: "2em 2em 1em",
       left: `${theme.info.sizes.width}px`,
-      ".isAside &": {
-        padding: "1em .8em 1em .5em"
+      ".is-aside &": {
+        padding: "1rem .8rem 1rem .5rem"
       }
-    }
-  },
-  header: {
-    display: "none",
-    margin: "0 0 2em 0",
-    "& h1": {
-      margin: 0
-    },
-    "& h3": {
-      margin: ".5em 0 0 0"
     }
   },
   list: {
     listStyle: "none",
     margin: 0,
-    padding: 0
+    padding: 0,
+    ".is-aside.is-closed &": {
+      display: "none"
+    }
   },
   listItem: {
     margin: "0 0 .7em 0",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      margin: "0 0 1.5em 0"
+      margin: "0 0 1.5rem 0"
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       //margin: "0 0 0 0",
-      ".isAside &": {
+      ".is-aside &": {
         margin: "0 0 0 0"
       }
     }
@@ -96,7 +89,7 @@ const styles = theme => ({
       height: "90px",
       transition: "all .3s",
       transitionTimingFunction: "ease",
-      ".isAside &": {
+      ".is-aside &": {
         width: "30px",
         height: "30px"
       }
@@ -121,7 +114,7 @@ const styles = theme => ({
       [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
         fontSize: `${theme.navigator.sizes.postsListItemH1Font *
           theme.navigator.sizes.fontIncraseForL}em`,
-        ".isAside &": {
+        ".is-aside &": {
           fontSize: "1em",
           fontWeight: 400
         }
@@ -139,13 +132,13 @@ const styles = theme => ({
       [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
         fontSize: `${theme.navigator.sizes.postsListItemH2Font *
           theme.navigator.sizes.fontIncraseForL}em`,
-        ".isAside &": {
+        ".is-aside &": {
           display: "none"
         }
       }
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      ".isAside &": {
+      ".is-aside &": {
         margin: "0 0 0 .5em"
       }
     }
@@ -159,10 +152,7 @@ const Posts = props => {
     <div className={classes.posts}>
       <Scrollbars autoHide>
         <div className={classes.inner}>
-          <header className={classes.header}>
-            <h1>{config.homeTitle}</h1>
-            <h3>List of Posts: </h3>
-          </header>
+          <PostsHeader />
           <ul className={classes.list}>
             {posts &&
               posts.map(post => {

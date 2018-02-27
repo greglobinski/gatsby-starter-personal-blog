@@ -6,7 +6,7 @@ const colors = require("./colors");
 const theme = createMuiTheme({
   main: {
     colors: {
-      background: colors.bg,
+      background: colors.white,
       text: colors.dark,
       link: colors.accent,
       linkHover: Color(colors.accent)
@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     },
     sizes: {
       width: 320,
-      height: 60
+      headerHeight: 170
     },
     fonts: {
       boxTitleSize: 1.3,
@@ -48,9 +48,11 @@ const theme = createMuiTheme({
     colors: {
       background: colors.white,
       postsListItemLink: colors.gray,
-      postsListItemLinkHover: colors.accent
+      postsListItemLinkHover: colors.accent,
+      postsHeader: colors.gray
     },
     sizes: {
+      closedHeight: 80,
       postsListItemH1Font: 1.3,
       postsListItemH2Font: 1.1,
       fontIncraseForM: 1.15,
@@ -128,6 +130,9 @@ const theme = createMuiTheme({
   bars: {
     colors: {
       background: colors.white
+    },
+    sizes: {
+      desktopBarWidth: 60
     }
   },
   mediaQueryTresholds: {

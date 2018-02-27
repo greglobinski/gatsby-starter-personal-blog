@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function asyncComponent(getComponent) {
+export default function asyncComponent(getComponent, loadingComponent) {
   class AsyncComponent extends React.Component {
     state = { Component: null };
 
@@ -16,7 +16,7 @@ export default function asyncComponent(getComponent) {
       if (Component) {
         return <Component {...this.props} />;
       }
-      return <div>Loading...</div>;
+      return loadingComponent ? loadingComponent : <div>Loading...</div>;
     }
   }
   return AsyncComponent;

@@ -10,26 +10,9 @@ import TwitterIcon from "../../images/svg/twitter.svg";
 
 const styles = theme => ({
   social: {
-    display: "none",
-    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      willChange: "opacity",
-      display: "flex",
-      justifyContent: "center",
-      flexWrap: "wrap",
-      transition: "opacity .5s",
-      transitionDelay: ".7s",
-      opacity: 1,
-      position: "relative",
-      transitionTimingFunction: "ease",
-      ".navigatorInTransitionFrom &": {
-        opacity: 1
-      },
-      ".navigatorInTransitionTo &, .navigatorIsAside &": {
-        transitionDelay: "0s",
-        transition: "opacity .3s",
-        opacity: 0
-      }
-    }
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap"
   },
   link: {
     display: "inline-block",

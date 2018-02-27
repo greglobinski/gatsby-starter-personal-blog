@@ -18,24 +18,11 @@ const styles = theme => ({
     display: "none",
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       display: "block",
-      willChange: "opacity",
       position: "absolute",
       left: 0,
       bottom: 0,
       width: "100%",
-      padding: "1em 2em",
-      transition: "opacity .5s",
-      transitionDelay: ".7s",
-      opacity: 1,
-      transitionTimingFunction: "ease",
-      ".navigatorInTransitionFrom &": {
-        opacity: 1
-      },
-      ".navigatorInTransitionTo &, .navigatorIsAside &": {
-        transitionDelay: "0s",
-        transition: "opacity .3s",
-        opacity: 0
-      }
+      padding: "1em 2em"
     }
   },
   box: {

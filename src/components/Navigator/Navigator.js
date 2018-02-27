@@ -5,7 +5,11 @@ import injectSheet from "react-jss";
 import { forceCheck } from "react-lazyload";
 //import { navigateTo } from "gatsby-link";
 
-import { setNavigatorIsAside, setNavigatorInTransition } from "../../state/store";
+import {
+  setNavigatorIsAside,
+  setNavigatorInTransition,
+  setNavigatorIsClosed
+} from "../../state/store";
 import Posts from "./Posts";
 
 const styles = theme => ({
@@ -18,45 +22,52 @@ const styles = theme => ({
     height: "100vh",
     transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
     transform: "translate3d(0px, 0px, 0px)",
-    transition: "left 750ms",
+    transition: "left 800ms",
     width: "100%",
+    "&::after": {
+      content: `""`,
+      position: "absolute",
+      top: 0,
+      left: theme.main.sizes.linesMargin,
+      right: theme.main.sizes.linesMargin,
+      height: 0,
+      borderTop: `1px solid ${theme.main.colors.lines}`
+    },
     [`@media (max-width: ${theme.mediaQueryTresholds.L - 1}px)`]: {
-      "&.inTransitionTo, &.isAside": {
+      "&.in-transition-to, &.is-aside": {
         left: "-100%",
-        transition: "left 750ms",
-        transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)"
+        transition: "left 800ms"
       },
-      "&.inTransitionTo": {}
+      "&.in-transition-to": {}
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       width: `calc(100vw - ${theme.info.sizes.width}px - 60px)`,
       transition: "left .8s, width 0s",
       transitionTimingFunction: "ease",
       left: `${theme.info.sizes.width}px`,
-      "&.inTransitionTo": {
+      "&.in-transition-to": {
         left: `calc(-100vw + 2 * ${theme.info.sizes.width}px)`,
-        transition: "left .8s, opacity 0s .8s",
-        transitionTimingFunction: "ease",
-        opacity: 0
+        top: "100vh",
+        transition: "left .8s, top 0s .8s"
       },
-      "&.isAside": {
-        transition: "left 0s, opacity .3s",
-        transitionTimingFunction: "ease",
-        opacity: 1,
-        top: "100px",
-        height: `calc(100vh - 100px)`,
+      "&.is-aside": {
+        transition: "left 0s, top .5s .1s",
         left: 0,
         width: `${theme.info.sizes.width - 1}px`,
         zIndex: 1,
-        "&.isClosed": {
-          top: `calc(100vh - 160px)`
+        "&.is-closed": {
+          top: `calc(100vh - ${theme.navigator.sizes.closedHeight}px)`,
+          height: `${theme.navigator.sizes.closedHeight}px`
+        },
+        "&.is-opened": {
+          top: "100px",
+          height: `calc(100vh - 100px)`
+        },
+        "&.in-transition-from": {
+          transition: "left 0 .5s",
+          left: `calc(-100vw + 2 * ${theme.info.sizes.width}px)`
+          //top: "100vh"
         }
-      },
-      "&.inTransitionFrom": {
-        left: `calc(-100vw + 2 * ${theme.info.sizes.width}px)`,
-        transition: "left 0s, opacity 0s",
-        transitionTimingFunction: "ease",
-        opacity: 0
       }
     }
   }
@@ -107,11 +118,12 @@ class Navigator extends React.Component {
     }
 
     if (!this.props.isAside) {
-      this.props.setInTransition("To");
+      this.props.setInTransition("to");
 
       setTimeout(() => {
         this.props.setInTransition(false);
         this.props.setIsAside(true);
+        this.props.setIsClosed(false);
         // because isAside mode shows more items than full mode
         // we have to manualy force new visible pointer images to load
         setTimeout(forceCheck, 500);
@@ -125,8 +137,8 @@ class Navigator extends React.Component {
     return (
       <nav
         className={`${this.state.linksDisabled ? "disabled" : ""} ${classes.navigator} ${
-          inTransition ? "inTransition" + inTransition : ""
-        } ${isAside ? "isAside" : ""} ${isClosed ? "isClosed" : "isOpened"}`}
+          inTransition ? "in-transition-" + inTransition : ""
+        } ${isAside ? "is-aside" : ""} ${isClosed ? "is-closed" : "is-opened"}`}
       >
         {this.props.posts.length && (
           <Posts
@@ -150,6 +162,7 @@ Navigator.propTypes = {
   inTransition: PropTypes.any.isRequired,
   setIsAside: PropTypes.func.isRequired,
   setInTransition: PropTypes.func.isRequired,
+  setIsClosed: PropTypes.func.isRequired,
   isClosed: PropTypes.bool.isRequired
 };
 
@@ -173,7 +186,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     setIsAside: val => dispatch(setNavigatorIsAside(val)),
-    setInTransition: val => dispatch(setNavigatorInTransition(val))
+    setInTransition: val => dispatch(setNavigatorInTransition(val)),
+    setIsClosed: val => dispatch(setNavigatorIsClosed(val))
   };
 };
 

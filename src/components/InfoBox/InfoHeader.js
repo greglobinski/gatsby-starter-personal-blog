@@ -8,10 +8,8 @@ import avatar from "../../images/avatar.jpg";
 const styles = theme => ({
   header: {
     lineHeight: 1,
-    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      height: "140px",
-      position: "relative"
-    }
+    position: "relative",
+    background: "blue"
   },
   avatarLink: {
     willChange: "left, top",
@@ -29,10 +27,10 @@ const styles = theme => ({
       marginLeft: "-30px",
       transition: "all .8s",
       transitionTimingFunction: "ease",
-      ".navigatorInTransitionFrom.navigatorIsOpened &": {
+      ".navigator-in-transition-from.navigator-is-opened &": {
         left: "50%"
       },
-      ".navigatorInTransitionTo.navigatorIsOpened &, .navigatorIsAside.navigatorIsOpened &": {
+      ".navigator-in-transition-to.navigator-is-opened &, .navigator-is-aside.navigator-is-opened &": {
         left: "8%",
         top: "0"
       }
@@ -85,11 +83,11 @@ const styles = theme => ({
       left: "50%",
       transform: "translate(-50%)",
       transition: "all .8s",
-      ".navigatorInTransitionFrom &": {
-        left: "50%",
-        top: "70px"
-      },
-      ".navigatorInTransitionTo &, .navigatorIsAside &": {
+      // ".navigatorInTransitionFrom &": {
+      //   left: "50%",
+      //   top: "70px"
+      // },
+      ".navigator-is-aside.navigator-is-open &": {
         left: "60%",
         top: `${1.9 - theme.info.fonts.boxTitleSizeL}em`,
         textAlign: "left"

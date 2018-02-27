@@ -9,10 +9,24 @@ import globals from "../styles/globals";
 
 import { saveData, setNavigatorIsAside, setNavigatorInTransition } from "../state/store";
 
+import asyncComponent from "../components/common/AsyncComponent/";
+import Loading from "../components/common/Loading/";
 import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
-import Info from "../components/Info/";
-import DesktopBar from "../components/DesktopBar/";
+import ActionsBar from "../components/ActionsBar/";
+
+const InfoBox = asyncComponent(
+  () =>
+    import("../components/InfoBox/")
+      .then(module => {
+        return module;
+      })
+      .catch(error => {}),
+  <Loading
+    overrides={{ width: `${theme.info.sizes.width}px`, height: "100vh", right: "auto" }}
+    afterRight={true}
+  />
+);
 
 class Layout extends React.Component {
   componentWillMount() {
@@ -44,8 +58,8 @@ class Layout extends React.Component {
           <Seo />
           {children()}
           <Navigator />
-          <Info />
-          <DesktopBar />
+          <InfoBox />
+          <ActionsBar />
         </div>
       </MuiThemeProvider>
     );
