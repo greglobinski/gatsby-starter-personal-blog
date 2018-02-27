@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import theme from "../styles/theme";
 import globals from "../styles/globals";
 
-import { saveData, setNavigatorIsAside, setNavigatorInTransition } from "../state/store";
+import { saveData } from "../state/store";
 
 import asyncComponent from "../components/common/AsyncComponent/";
 import Loading from "../components/common/Loading/";
@@ -30,9 +30,6 @@ const InfoBox = asyncComponent(
 
 class Layout extends React.Component {
   componentWillMount() {
-    // let isWideScreen =
-    //   typeof window !== "undefined" ? document.documentElement.clientWidth > 776 : false;
-
     const posts = this.props.data.posts.edges;
     const pages = this.props.data.pages.edges;
     const parts = this.props.data.parts.edges;
@@ -68,24 +65,16 @@ class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
-  saveData: PropTypes.func.isRequired,
-  updatePostsData: PropTypes.func,
-  setNavigatorIsAside: PropTypes.func,
-  setNavigatorInTransition: PropTypes.func
+  saveData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    navigatorIsAside: state.navigator.isAside,
-    navigatorIsActive: state.posts.length
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveData: data => dispatch(saveData(data)),
-    setNavigatorIsAside: val => dispatch(setNavigatorIsAside(val)),
-    setNavigatorInTransition: val => dispatch(setNavigatorInTransition(val))
+    saveData: data => dispatch(saveData(data))
   };
 };
 

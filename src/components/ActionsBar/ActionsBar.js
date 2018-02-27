@@ -11,12 +11,8 @@ import ArrowUpwardIcon from "material-ui-icons/ArrowUpward";
 import FullscreenIcon from "material-ui-icons/Fullscreen";
 import FormatSizeIcon from "material-ui-icons/FormatSize";
 
-import { backNavigatorToFullMode } from "./../../utils/shared";
-import {
-  setNavigatorIsAside,
-  setNavigatorInTransition,
-  setNavigatorIsClosed
-} from "../../state/store";
+import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
+import { featureNavigator } from "./../../utils/shared";
 
 const styles = theme => ({
   actionsBar: {
@@ -54,7 +50,7 @@ const styles = theme => ({
 });
 
 class ActionsBar extends React.Component {
-  viewListOnClick = backNavigatorToFullMode.bind(this);
+  viewListOnClick = featureNavigator.bind(this);
 
   render() {
     const { classes } = this.props;
@@ -94,29 +90,22 @@ class ActionsBar extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    navigatorIsAside: state.navigator.isAside,
-    navigatorInTransition: state.navigator.inTransition,
-    navigatorIsClosed: state.navigator.isClosed,
-    isActive: state.posts.length
+    navigatorPosition: state.navigatorPosition,
+    navigatorShape: state.navigatorShape
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setNavigatorIsAside: val => dispatch(setNavigatorIsAside(val)),
-    setNavigatorInTransition: val => dispatch(setNavigatorInTransition(val)),
-    setNavigatorIsClosed: val => dispatch(setNavigatorIsClosed(val))
+    setNavigatorPosition: val => dispatch(setNavigatorPosition(val)),
+    setNavigatorShape: val => dispatch(setNavigatorShape(val))
   };
 };
 
 ActionsBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  navigatorIsAside: PropTypes.bool.isRequired,
-  navigatorInTransition: PropTypes.any.isRequired,
-  setNavigatorIsAside: PropTypes.func.isRequired,
-  setNavigatorInTransition: PropTypes.func.isRequired,
-  setNavigatorIsClosed: PropTypes.func.isRequired,
-  navigatorIsClosed: PropTypes.bool.isRequired
+  navigatorPosition: PropTypes.string.isRequired,
+  navigatorShape: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(ActionsBar));

@@ -23,7 +23,7 @@ const styles = theme => ({
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       padding: "2em 2em 1em",
       left: `${theme.info.sizes.width}px`,
-      ".is-aside &": {
+      ".moving-featured &, .is-aside &": {
         padding: "1rem .8rem 1rem .5rem"
       }
     }
@@ -43,7 +43,7 @@ const styles = theme => ({
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       //margin: "0 0 0 0",
-      ".is-aside &": {
+      ".moving-featured &, .is-aside &": {
         margin: "0 0 0 0"
       }
     }
@@ -89,7 +89,7 @@ const styles = theme => ({
       height: "90px",
       transition: "all .3s",
       transitionTimingFunction: "ease",
-      ".is-aside &": {
+      ".moving-featured &, .is-aside &": {
         width: "30px",
         height: "30px"
       }
@@ -114,7 +114,7 @@ const styles = theme => ({
       [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
         fontSize: `${theme.navigator.sizes.postsListItemH1Font *
           theme.navigator.sizes.fontIncraseForL}em`,
-        ".is-aside &": {
+        ".moving-featured &, .is-aside &": {
           fontSize: "1em",
           fontWeight: 400
         }
@@ -132,13 +132,13 @@ const styles = theme => ({
       [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
         fontSize: `${theme.navigator.sizes.postsListItemH2Font *
           theme.navigator.sizes.fontIncraseForL}em`,
-        ".is-aside &": {
+        ".moving-featured &, .is-aside &": {
           display: "none"
         }
       }
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      ".is-aside &": {
+      ".moving-featured &, .is-aside &": {
         margin: "0 0 0 .5em"
       }
     }

@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { setNavigatorIsAside, setNavigatorInTransition } from "../state/store";
+import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 
 class Index extends React.Component {
   componentWillMount() {
-    if (this.props.navigatorIsAside) {
-      this.props.setNavigatorIsAside(false);
-    }
+    // if (this.props.navigatorPosition !== "is-featured") {
+    //   this.props.setNavigatorPosition("is-featured");
+    // }
     //this.props.setNavigatorIsAside(false);
     // if (this.props.navigatorIsAside) {
     //   this.props.setNavigatorInTransition("From");
@@ -28,21 +28,21 @@ class Index extends React.Component {
 }
 
 Index.propTypes = {
-  navigatorIsAside: PropTypes.bool.isRequired,
-  setNavigatorIsAside: PropTypes.func.isRequired,
-  setNavigatorInTransition: PropTypes.func.isRequired
+  navigatorPosition: PropTypes.string.isRequired,
+  setNavigatorPosition: PropTypes.func.isRequired,
+  setNavigatorShape: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    navigatorIsAside: state.navigator.isAside
+    navigatorPosition: state.navigatorPosition
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setNavigatorIsAside: val => dispatch(setNavigatorIsAside(val)),
-    setNavigatorInTransition: val => dispatch(setNavigatorInTransition(val))
+    setNavigatorPosition: val => dispatch(setNavigatorPosition(val)),
+    setNavigatorShape: val => dispatch(setNavigatorShape(val))
   };
 };
 

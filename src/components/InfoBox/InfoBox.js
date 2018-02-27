@@ -10,13 +10,8 @@ import InfoHeader from "./InfoHeader";
 import InfoText from "./InfoText";
 import StackIcons from "./StackIcons";
 
-import { backNavigatorToFullMode } from "./../../utils/shared";
-
-import {
-  setNavigatorIsAside,
-  setNavigatorInTransition,
-  setNavigatorIsClosed
-} from "../../state/store";
+import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
+import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
 
 const styles = theme => ({
   infoBox: {
@@ -63,37 +58,27 @@ const styles = theme => ({
 });
 
 class InfoBox extends React.Component {
-  avatarOnClick = backNavigatorToFullMode.bind(this);
+  avatarOnClick = featureNavigator.bind(this);
+  menulinkOnClick = moveNavigatorAside.bind(this);
 
-  menulinkOnClick = e => {
-    this.props.setNavigatorInTransition("to");
-    this.props.setNavigatorIsClosed(true);
-
-    setTimeout(() => {
-      this.props.setNavigatorInTransition(false);
-      this.props.setNavigatorIsAside(true);
-    }, 1000);
-  };
+  //menulinkOnClick = e => {
+  // this.props.setNavigatorInTransition("to");
+  // this.props.setNavigatorIsClosed(true);
+  // setTimeout(() => {
+  //   this.props.setNavigatorInTransition(false);
+  //   this.props.setNavigatorIsAside(true);
+  // }, 1000);
+  //};
 
   render() {
-    const {
-      classes,
-      parts,
-      pages,
-      navigatorIsAside,
-      navigatorInTransition,
-      navigatorIsClosed
-    } = this.props;
+    const { classes, parts, pages, navigatorPosition, navigatorShape } = this.props;
 
     const info = find(parts, el => el.node.frontmatter.title === "info");
 
     return (
       <aside
-        className={`${classes.infoBox} ${
-          navigatorInTransition ? "navigator-in-transition-" + navigatorInTransition : ""
-        } ${navigatorIsAside ? "navigator-is-aside" : ""} ${
-          navigatorIsClosed ? "navigator-is-closed" : "navigator-is-opened"
-        }`}
+        className={`${classes.infoBox} ${navigatorPosition ? navigatorPosition : ""} 
+        ${navigatorShape ? navigatorShape : ""}`}
       >
         {info && <InfoHeader info={info} avatarOnClick={this.avatarOnClick} />}
         <div className={classes.wrapper}>
@@ -111,12 +96,8 @@ InfoBox.propTypes = {
   classes: PropTypes.object.isRequired,
   parts: PropTypes.array.isRequired,
   pages: PropTypes.array.isRequired,
-  navigatorIsAside: PropTypes.bool.isRequired,
-  navigatorInTransition: PropTypes.any.isRequired,
-  setNavigatorIsAside: PropTypes.func.isRequired,
-  setNavigatorInTransition: PropTypes.func.isRequired,
-  setNavigatorIsClosed: PropTypes.func.isRequired,
-  navigatorIsClosed: PropTypes.bool.isRequired
+  navigatorPosition: PropTypes.string.isRequired,
+  navigatorShape: PropTypes.string.isRequired
 };
 
 InfoBox.contextTypes = {
@@ -129,18 +110,15 @@ const mapStateToProps = (state, ownProps) => {
   return {
     parts: state.parts,
     pages: state.pages,
-    navigatorIsAside: state.navigator.isAside,
-    navigatorInTransition: state.navigator.inTransition,
-    navigatorIsClosed: state.navigator.isClosed,
-    isActive: state.posts.length
+    navigatorPosition: state.navigatorPosition,
+    navigatorShape: state.navigatorShape
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setNavigatorIsAside: val => dispatch(setNavigatorIsAside(val)),
-    setNavigatorInTransition: val => dispatch(setNavigatorInTransition(val)),
-    setNavigatorIsClosed: val => dispatch(setNavigatorIsClosed(val))
+    setNavigatorPosition: val => dispatch(setNavigatorPosition(val)),
+    setNavigatorShape: val => dispatch(setNavigatorShape(val))
   };
 };
 

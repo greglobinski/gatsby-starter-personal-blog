@@ -6,9 +6,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
  */
 
 const SAVE_DATA = "SAVE_DATA";
-const SET_NAVIGATOR_IS_ASIDE = "SET_NAVIGATOR_IS_ASIDE";
-const SET_NAVIGATOR_IN_TRANSITION = "SET_NAVIGATOR_IN_TRANSITION";
-const SET_NAVIGATOR_IS_CLOSED = "SET_NAVIGATOR_IS_CLOSED";
+const SET_NAVIGATOR_POSITION = "SET_NAVIGATOR_POSITION";
+const SET_NAVIGATOR_SHAPE = "SET_NAVIGATOR_SHAPE";
 
 /*
  * action creators
@@ -17,16 +16,12 @@ export function saveData(data) {
   return { type: SAVE_DATA, data };
 }
 
-export function setNavigatorIsAside(val) {
-  return { type: SET_NAVIGATOR_IS_ASIDE, val };
+export function setNavigatorPosition(val) {
+  return { type: SET_NAVIGATOR_POSITION, val };
 }
 
-export function setNavigatorInTransition(val) {
-  return { type: SET_NAVIGATOR_IN_TRANSITION, val };
-}
-
-export function setNavigatorIsClosed(val) {
-  return { type: SET_NAVIGATOR_IS_CLOSED, val };
+export function setNavigatorShape(val) {
+  return { type: SET_NAVIGATOR_SHAPE, val };
 }
 
 /*
@@ -34,33 +29,6 @@ export function setNavigatorIsClosed(val) {
  */
 const reducer = (state, action) => {
   switch (action.type) {
-    case SET_NAVIGATOR_IS_ASIDE:
-      return {
-        ...state,
-        navigator: {
-          isAside: action.val,
-          inTransition: state.navigator.inTransition,
-          isClosed: state.navigator.isClosed
-        }
-      };
-    case SET_NAVIGATOR_IN_TRANSITION:
-      return {
-        ...state,
-        navigator: {
-          isAside: state.navigator.isAside,
-          inTransition: action.val,
-          isClosed: state.navigator.isClosed
-        }
-      };
-    case SET_NAVIGATOR_IS_CLOSED:
-      return {
-        ...state,
-        navigator: {
-          isAside: state.navigator.isAside,
-          inTransition: state.navigator.inTransition,
-          isClosed: action.val
-        }
-      };
     case SAVE_DATA:
       return {
         ...state,
@@ -68,6 +36,19 @@ const reducer = (state, action) => {
         pages: action.data.pages,
         parts: action.data.parts
       };
+
+    case SET_NAVIGATOR_POSITION:
+      return {
+        ...state,
+        navigatorPosition: action.val
+      };
+
+    case SET_NAVIGATOR_SHAPE:
+      return {
+        ...state,
+        navigatorShape: action.val
+      };
+
     default:
       return state;
   }
@@ -77,15 +58,8 @@ const initialState = {
   posts: [],
   pages: [],
   parts: [],
-  info: {
-    isRolledDown: false,
-    inTransition: false
-  },
-  navigator: {
-    isAside: true,
-    inTransition: false,
-    isClosed: false
-  }
+  navigatorPosition: "is-featured",
+  navigatorShape: "open"
 };
 
 const createStore = () =>
