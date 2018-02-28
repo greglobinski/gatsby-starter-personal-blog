@@ -1,5 +1,6 @@
 import React from "react";
 import { JssProvider, SheetsRegistry } from "react-jss";
+import { MuiThemeProvider, createGenerateClassName } from "material-ui/styles";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 require("dotenv").config();
@@ -12,13 +13,20 @@ function minifyCssString(css) {
 }
 
 exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) => {
-  const sheets = new SheetsRegistry();
+  const sheetsRegistry = new SheetsRegistry();
+
+  const generateClassName = createGenerateClassName();
+
   const store = createStore();
 
   replaceBodyHTMLString(
     renderToString(
       <Provider store={store}>
-        <JssProvider registry={sheets}>{bodyComponent}</JssProvider>
+        <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
+          <MuiThemeProvider theme={theme} sheetsManager={new Map()}>
+            {bodyComponent}
+          </MuiThemeProvider>
+        </JssProvider>
       </Provider>
     )
   );
@@ -28,7 +36,7 @@ exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadCompon
       type="text/css"
       id="server-side-jss"
       key="server-side-jss"
-      dangerouslySetInnerHTML={{ __html: minifyCssString(sheets.toString()) }}
+      dangerouslySetInnerHTML={{ __html: minifyCssString(sheetsRegistry.toString()) }}
     />
   ]);
 };

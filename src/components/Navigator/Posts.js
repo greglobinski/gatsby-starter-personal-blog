@@ -149,7 +149,7 @@ const Posts = props => {
 
   return (
     <div className={classes.posts}>
-      <Scrollbars autoHide>
+      <Scrollbars autoHide universal>
         <div className={classes.inner}>
           <PostsHeader openOnClick={openOnClick} />
           <ul className={classes.list}>

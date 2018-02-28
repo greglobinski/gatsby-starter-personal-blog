@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import IconButton from "material-ui/IconButton";
+
 import Link from "gatsby-link";
 import { connect } from "react-redux";
 
@@ -60,18 +61,13 @@ class ActionsBar extends React.Component {
     return (
       <div className={classes.actionsBar}>
         <div className={classes.firstGroup}>
-          <IconButton
-            className={classes.button}
-            aria-label="Back to list"
-            onClick={this.viewListOnClick}
-          >
+          <IconButton aria-label="Back to list" onClick={this.viewListOnClick}>
             <HomeIcon />
           </IconButton>
-          <IconButton className={classes.button} aria-label="Filter">
+          <IconButton aria-label="Filter">
             <FilterListIcon />
           </IconButton>
           <IconButton
-            className={classes.button}
             aria-label="Search"
             onClick={this.SearchOnClick}
             component={Link}
@@ -82,13 +78,13 @@ class ActionsBar extends React.Component {
           </IconButton>
         </div>
         <div className={classes.secondGroup}>
-          <IconButton className={classes.button} aria-label="Font size">
+          <IconButton aria-label="Font size">
             <FormatSizeIcon />
           </IconButton>
-          <IconButton className={classes.button} aria-label="Fullscreen">
+          <IconButton aria-label="Fullscreen">
             <FullscreenIcon />
           </IconButton>
-          <IconButton className={classes.button} aria-label="Back to top">
+          <IconButton aria-label="Back to top">
             <ArrowUpwardIcon />
           </IconButton>
         </div>
