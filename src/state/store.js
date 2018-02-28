@@ -8,6 +8,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 const SAVE_DATA = "SAVE_DATA";
 const SET_NAVIGATOR_POSITION = "SET_NAVIGATOR_POSITION";
 const SET_NAVIGATOR_SHAPE = "SET_NAVIGATOR_SHAPE";
+const SET_NAVIGATOR_FILTER = "SET_NAVIGATOR_FILTER";
 
 /*
  * action creators
@@ -22,6 +23,10 @@ export function setNavigatorPosition(val) {
 
 export function setNavigatorShape(val) {
   return { type: SET_NAVIGATOR_SHAPE, val };
+}
+
+export function setNavigatorFilter(val) {
+  return { type: SET_NAVIGATOR_FILTER, val };
 }
 
 /*
@@ -49,6 +54,12 @@ const reducer = (state, action) => {
         navigatorShape: action.val
       };
 
+    case SET_NAVIGATOR_FILTER:
+      return {
+        ...state,
+        navigatorFilter: action.val
+      };
+
     default:
       return state;
   }
@@ -59,7 +70,8 @@ const initialState = {
   pages: [],
   parts: [],
   navigatorPosition: "is-featured",
-  navigatorShape: "open"
+  navigatorShape: "open",
+  navigatorFilter: ""
 };
 
 const createStore = () =>

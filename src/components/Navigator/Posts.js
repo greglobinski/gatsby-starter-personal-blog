@@ -21,7 +21,7 @@ const styles = theme => ({
       padding: `calc(3em + ${theme.info.sizes.height}px) 2em 2.5em`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      padding: "2em 2em 1em",
+      padding: "1em 2em 1em",
       left: `${theme.info.sizes.width}px`,
       ".moving-featured &, .is-aside &": {
         padding: "1rem .8rem 1rem .5rem"
@@ -32,7 +32,7 @@ const styles = theme => ({
     listStyle: "none",
     margin: 0,
     padding: 0,
-    ".is-aside.is-closed &": {
+    ".is-aside.closed &, .moving-featured.closed &": {
       display: "none"
     }
   },
@@ -42,7 +42,6 @@ const styles = theme => ({
       margin: "0 0 1.5rem 0"
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      //margin: "0 0 0 0",
       ".moving-featured &, .is-aside &": {
         margin: "0 0 0 0"
       }
@@ -146,13 +145,13 @@ const styles = theme => ({
 });
 
 const Posts = props => {
-  const { classes, posts, linkOnClick } = props;
+  const { classes, posts, linkOnClick, openOnClick } = props;
 
   return (
     <div className={classes.posts}>
       <Scrollbars autoHide>
         <div className={classes.inner}>
-          <PostsHeader />
+          <PostsHeader openOnClick={openOnClick} />
           <ul className={classes.list}>
             {posts &&
               posts.map(post => {
@@ -213,7 +212,10 @@ const Posts = props => {
 Posts.propTypes = {
   classes: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
-  linkOnClick: PropTypes.func
+  linkOnClick: PropTypes.func.isRequired,
+  openOnClick: PropTypes.func.isRequired,
+  navigatorPosition: PropTypes.string.isRequired,
+  navigatorShape: PropTypes.string.isRequired
 };
 
 export default injectSheet(styles)(Posts);

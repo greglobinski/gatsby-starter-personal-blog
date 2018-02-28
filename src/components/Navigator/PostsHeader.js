@@ -1,22 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import IconButton from "material-ui/IconButton";
 
 import ExpandLessIcon from "material-ui-icons/ExpandLess";
 
 const styles = theme => ({
-  header: {
+  closed: {
     display: "none",
-    ".is-aside &": {
+    ".is-aside.closed &, .moving-featured.closed &": {
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
       position: "absolute",
+      cursor: "pointer",
       top: 0,
       left: 0,
       width: "100%",
+      margin: 0,
       height: `${theme.navigator.sizes.closedHeight}px`,
       padding: "0 30px 0 40px"
     },
@@ -29,36 +30,30 @@ const styles = theme => ({
       "& small": {
         fontSize: ".6em",
         display: "block",
-        margin: "0 0 .2em",
+        margin: "0 0 .1em",
         fontWeight: 300,
-        letterSpacing: ".2em",
-        textTransform: "none"
+        letterSpacing: ".2em"
       }
     }
-  },
-  icon: {
-    width: 50,
-    height: 50
   }
 });
 
 const PostsHeader = props => {
-  const { classes } = props;
+  const { classes, openOnClick } = props;
 
   return (
-    <header className={classes.header}>
-      <h3>
-        <small>unfold</small>List of posts
-      </h3>
-      <IconButton aria-label="Filter">
-        <ExpandLessIcon className={classes.icon} color="primary" />
-      </IconButton>
+    <header>
+      <div className={classes.closed} onClick={openOnClick}>
+        <h3>List of posts</h3>
+        <ExpandLessIcon />
+      </div>
     </header>
   );
 };
 
 PostsHeader.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  openOnClick: PropTypes.func.isRequired
 };
 
 export default injectSheet(styles)(PostsHeader);

@@ -48,10 +48,10 @@ const styles = theme => ({
     transition: "bottom .5s 0s",
     opacity: 1,
     transitionTimingFunction: "ease",
-    ".navigator-is-aside.navigator-is-closed &": {
+    ".is-aside.closed &": {
       bottom: `${theme.navigator.sizes.closedHeight}px`
     },
-    ".navigator-is-aside.navigator-is-closed.navigator-in-transition-from &": {
+    ".moving-featured &": {
       bottom: 0
     }
   }

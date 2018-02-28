@@ -25,12 +25,12 @@ const styles = theme => ({
       top: "10px",
       left: "50%",
       marginLeft: "-30px",
-      transition: "all .8s",
+      transition: "all .5s",
       transitionTimingFunction: "ease",
       ".navigator-in-transition-from.navigator-is-opened &": {
         left: "50%"
       },
-      ".navigator-in-transition-to.navigator-is-opened &, .navigator-is-aside.navigator-is-opened &": {
+      ".is-aside.open &": {
         left: "8%",
         top: "0"
       }
@@ -82,12 +82,12 @@ const styles = theme => ({
       textAlign: "center",
       left: "50%",
       transform: "translate(-50%)",
-      transition: "all .8s",
+      transition: "all .5s",
       // ".navigatorInTransitionFrom &": {
       //   left: "50%",
       //   top: "70px"
       // },
-      ".navigator-is-aside.navigator-is-open &": {
+      ".is-aside.open &": {
         left: "60%",
         top: `${1.9 - theme.info.fonts.boxTitleSizeL}em`,
         textAlign: "left"

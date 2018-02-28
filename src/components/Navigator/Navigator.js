@@ -2,8 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-
-import { navigateTo } from "gatsby-link";
+import { forceCheck } from "react-lazyload";
 
 import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
 import { moveNavigatorAside } from "./../../utils/shared";
@@ -18,20 +17,10 @@ const styles = theme => ({
     top: 0,
     left: 0,
     height: "100vh",
-    //transitionTimingFunction: "cubic-bezier(0, 0, 0.2, 1)",
     transitionTimingFunction: "ease",
     transform: "translate3d(0, 0, 0)",
     transition: "left 800ms",
     width: "100%",
-    "&::after": {
-      content: `""`,
-      position: "absolute",
-      top: 0,
-      left: theme.main.sizes.linesMargin,
-      right: theme.main.sizes.linesMargin,
-      height: 0,
-      borderTop: `1px solid ${theme.main.colors.lines}`
-    },
     [`@media (max-width: ${theme.mediaQueryTresholds.L - 1}px)`]: {
       "&.in-transition-to, &.is-aside": {
         left: "-100%",
@@ -41,7 +30,7 @@ const styles = theme => ({
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       "&.is-featured": {
         transition: "left .9s",
-        width: `calc(100vw - ${theme.info.sizes.width}px - 60px)`,
+        width: `calc(100vw - ${theme.info.sizes.width}px - ${theme.bars.sizes.actionsBarWidth}px)`,
         left: `${theme.info.sizes.width}px`,
         top: 0
       },
@@ -57,6 +46,15 @@ const styles = theme => ({
         "&.open": {
           top: "100px",
           height: `calc(100vh - 100px)`
+        },
+        "&::after": {
+          content: `""`,
+          position: "absolute",
+          top: 0,
+          left: theme.main.sizes.linesMargin,
+          right: theme.main.sizes.linesMargin,
+          height: 0,
+          borderTop: `1px solid ${theme.main.colors.lines}`
         }
       },
       "&.moving-aside": {
@@ -89,55 +87,12 @@ const styles = theme => ({
 });
 
 class Navigator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      linksDisabled: false
-    };
-    //this.linkOnClick = this.linkOnClick.bind(this);
-  }
-
   linkOnClick = moveNavigatorAside.bind(this);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.navigatorPosition !== this.props.navigatorPosition) {
-      if (this.props.navigatorPosition === "is-featured") {
-        const { route } = this.context.router;
-        const { location } = route;
-        const { pathname } = location;
-        // thanks to this Navigator smoothly finishes transition and only then the url is updated
-        // this delay lets Navigator progressively cover a recently visible page
-        if (pathname !== "/") {
-          setTimeout(() => {
-            navigateTo("/");
-          }, 1000);
-        }
-      }
-    }
-    // this manages special case when Navigator got back from isAside mode to full mode
-    // if (prevProps.isAside !== this.props.isAside) {
-    //   if (this.props.isAside === false) {
-    //     // this prevents too early clicks during Navigator transition
-    //     // from isAside mode, take a look at linkOnClick method below
-    //     this.setState({
-    //       linksDisabled: true
-    //     });
-    //     const { route, history } = this.context.router;
-    //     const { location } = route;
-    //     const { pathname } = location;
-    //     // thanks to this Navigator smoothly finishes transition and only then the url is updated
-    //     // this delay lets Navigator progressively cover a recently visible page
-    //     if (pathname !== "/") {
-    //       setTimeout(() => {
-    //         history.push("/");
-    //         this.setState({
-    //           linksDisabled: false
-    //         });
-    //       }, 1000);
-    //     }
-    //   }
-    // }
-  }
+  openOnClick = e => {
+    this.props.setNavigatorShape("open");
+    setTimeout(forceCheck, 600);
+  };
 
   render() {
     const { classes, posts, navigatorPosition, navigatorShape } = this.props;
@@ -148,7 +103,15 @@ class Navigator extends React.Component {
           navigatorShape ? navigatorShape : ""
         } `}
       >
-        {this.props.posts.length && <Posts posts={posts} linkOnClick={this.linkOnClick} />}
+        {this.props.posts.length && (
+          <Posts
+            posts={posts}
+            navigatorPosition={navigatorPosition}
+            navigatorShape={navigatorShape}
+            linkOnClick={this.linkOnClick}
+            openOnClick={this.openOnClick}
+          />
+        )}
       </nav>
     );
   }

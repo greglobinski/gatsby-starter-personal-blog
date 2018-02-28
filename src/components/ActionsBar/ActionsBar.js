@@ -2,9 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import IconButton from "material-ui/IconButton";
+import Link from "gatsby-link";
 import { connect } from "react-redux";
 
-import ViewListIcon from "material-ui-icons/FormatListBulleted";
+import HomeIcon from "material-ui-icons/Home";
 import SearchIcon from "material-ui-icons/Search";
 import FilterListIcon from "material-ui-icons/FilterList";
 import ArrowUpwardIcon from "material-ui-icons/ArrowUpward";
@@ -12,7 +13,7 @@ import FullscreenIcon from "material-ui-icons/Fullscreen";
 import FormatSizeIcon from "material-ui-icons/FormatSize";
 
 import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
-import { featureNavigator } from "./../../utils/shared";
+import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
 
 const styles = theme => ({
   actionsBar: {
@@ -21,7 +22,7 @@ const styles = theme => ({
     top: 0,
     right: 0,
     height: "100vh",
-    width: `${theme.bars.sizes.desktopBarWidth}px`,
+    width: `${theme.bars.sizes.actionsBarWidth}px`,
     "&::before": {
       content: `""`,
       position: "absolute",
@@ -51,6 +52,7 @@ const styles = theme => ({
 
 class ActionsBar extends React.Component {
   viewListOnClick = featureNavigator.bind(this);
+  SearchOnClick = moveNavigatorAside.bind(this);
 
   render() {
     const { classes } = this.props;
@@ -63,12 +65,19 @@ class ActionsBar extends React.Component {
             aria-label="Back to list"
             onClick={this.viewListOnClick}
           >
-            <ViewListIcon />
+            <HomeIcon />
           </IconButton>
           <IconButton className={classes.button} aria-label="Filter">
             <FilterListIcon />
           </IconButton>
-          <IconButton className={classes.button} aria-label="Search">
+          <IconButton
+            className={classes.button}
+            aria-label="Search"
+            onClick={this.SearchOnClick}
+            component={Link}
+            data-shape="closed"
+            to="/search/"
+          >
             <SearchIcon />
           </IconButton>
         </div>

@@ -132,7 +132,7 @@ const theme = createMuiTheme({
       background: colors.white
     },
     sizes: {
-      desktopBarWidth: 60
+      actionsBarWidth: 60
     }
   },
   mediaQueryTresholds: {

@@ -11,7 +11,7 @@ const styles = theme => ({
     bottom: 0,
     width: "100%",
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      width: `calc(100vw - ${theme.info.sizes.width}px)`,
+      width: `calc(100vw - ${theme.info.sizes.width}px - ${theme.bars.sizes.actionsBarWidth}px)`,
       left: `${theme.info.sizes.width}px`
     }
   },
