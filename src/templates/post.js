@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import { Scrollbars } from "react-custom-scrollbars";
-var find = require("lodash/find");
+require("core-js/fn/array/find");
 
 //import Seo from "../components/Other/Seo";
 import Article from "../components/Article/";
@@ -17,7 +17,7 @@ const styles = theme => ({
     height: "100vh",
     width: "100%",
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      width: `calc(100vw - ${theme.info.sizes.width}px - ${theme.bars.sizes.actionsBarWidth}px)`,
+      width: `calc(100vw - ${theme.info.sizes.width}px - ${theme.bars.sizes.actionsBar}px)`,
       left: `${theme.info.sizes.width}px`
     }
   }
@@ -88,7 +88,7 @@ class PostTemplate extends React.Component {
     const { post } = this.props.data;
     const { classes, parts } = this.props;
 
-    const footnote = find(parts, el => el.node.frontmatter.title === "footnote");
+    const footnote = parts.find(el => el.node.frontmatter.title === "footnote");
     const footnoteContent = footnote ? footnote.node.html : null;
 
     //let { Share } = this.state;

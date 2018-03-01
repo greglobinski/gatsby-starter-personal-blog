@@ -56,8 +56,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         // Create posts and pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
-          // removes date subtring from slug
-          const slug = edge.node.fields.slug; //.replace(/\d{4}-\d{1,2}-\d{1,2}--/i, "");
+          const slug = edge.node.fields.slug; 
           const isPost = /posts/.test(edge.node.id);
 
           createPage({
@@ -74,6 +73,26 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 };
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
+
+  // config.removeLoader('url-loader');
+  // config.loader('url-loader', {
+  //   test: /\.(jpg|jpeg|png|gif|mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
+  //   loader: 'url',
+  //   query: {
+  //     limit: 10000,
+  //     name: 'static/[name].[hash:8].[ext]',
+  //   },
+  // });
+
+  // config.loader('svgr', {
+  //   test: /\.svg$/,
+  //   include:  new RegExp('svg-icons'),
+  //   loaders: [
+  //     'babel-loader',
+  //     `svgr/webpack`,
+  //   ],
+  // });
+
   switch (stage) {
     case "build-javascript":
       {

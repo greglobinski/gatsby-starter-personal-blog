@@ -210,7 +210,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-svgr",
       options: {
-        dir: `${__dirname}/src/images/svg/`
+        dir: `svg-icons`
       }
     }
   ]

@@ -19,33 +19,36 @@ const styles = theme => ({
     height: "100vh",
     transitionTimingFunction: "ease",
     transform: "translate3d(0, 0, 0)",
-    transition: "left 800ms",
+    transition: "left .9s",
     width: "100%",
     [`@media (max-width: ${theme.mediaQueryTresholds.L - 1}px)`]: {
-      "&.in-transition-to, &.is-aside": {
-        left: "-100%",
-        transition: "left 800ms"
+      "&.is-aside": {
+        left: "-100%"
+      },
+      "&.is-featured": {
+        left: 0
       }
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       "&.is-featured": {
         transition: "left .9s",
-        width: `calc(100vw - ${theme.info.sizes.width}px - ${theme.bars.sizes.actionsBarWidth}px)`,
+        width: `calc(100vw - ${theme.info.sizes.width}px - ${theme.bars.sizes.actionsBar}px)`,
         left: `${theme.info.sizes.width}px`,
         top: 0
       },
       "&.is-aside": {
-        transition: "top 0.5s",
+        transition: "none, bottom 0.5s",
         left: 0,
         width: `${theme.info.sizes.width - 1}px`,
         zIndex: 1,
+        top: "auto",
         "&.closed": {
-          top: `calc(100vh - ${theme.navigator.sizes.closedHeight}px)`,
-          height: `${theme.navigator.sizes.closedHeight}px`
+          bottom: `calc(-100% + 100px + ${theme.navigator.sizes.closedHeight}px)`,
+          height: `calc(100% - 100px)`
         },
         "&.open": {
-          top: "100px",
-          height: `calc(100vh - 100px)`
+          bottom: 0,
+          height: `calc(100% - 100px)`
         },
         "&::after": {
           content: `""`,
@@ -66,12 +69,22 @@ const styles = theme => ({
       "&.resizing-aside": {
         transition: "none",
         width: `${theme.info.sizes.width - 1}px`,
-        top: "100vh",
-        left: 0
+        top: "auto",
+        left: 0,
+        "&.closed": {
+          bottom: `calc(-100% + 100px)`,
+          height: `calc(100% - 100px)`
+        },
+        "&.open": {
+          bottom: `calc(-100% + 100px)`,
+          height: `calc(100% - 100px)`
+        }
       },
       "&.moving-featured": {
-        transition: "top .3s",
-        top: "100vh",
+        transition: "bottom .3s",
+
+        bottom: "-100%",
+        top: "auto",
         left: 0,
         zIndex: 1,
         width: `${theme.info.sizes.width - 1}px`
@@ -79,6 +92,7 @@ const styles = theme => ({
       "&.resizing-featured": {
         transition: "none",
         top: 0,
+        bottom: "auto",
         left: `calc(-100vw + ${2 * theme.info.sizes.width + 60}px)`,
         width: `calc(100vw - ${theme.info.sizes.width}px - 60px)`
       }

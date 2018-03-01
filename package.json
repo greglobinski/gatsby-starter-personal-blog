@@ -82,6 +82,7 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-disqus-comments": "^1.1.1",
     "react-facebook": "^4.2.1",
+    "react-headroom": "^2.2.2",
     "react-helmet": "^5.1.3",
     "react-instantsearch": "^4.5.1",
     "react-lazyload": "^2.3.0",

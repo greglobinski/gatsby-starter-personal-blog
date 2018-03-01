@@ -339,10 +339,11 @@ export default {
     },
     body: {
       margin: 0,
-      overflow: "hidden",
+      //overflow: "hidden",
       "-webkit-tap-highlight-color": "rgba(0,0,0,.05)"
     },
-    maing: {
+    wrapper: {},
+    main: {
       position: "relative"
     },
     "h1, h2, h3": {

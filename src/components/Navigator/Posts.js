@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { Scrollbars } from "react-custom-scrollbars";
 import LazyLoad from "react-lazyload";
+import { forceCheck } from "react-lazyload";
 
 import PostsHeader from "./PostsHeader";
 
@@ -16,12 +17,12 @@ const styles = theme => ({
     width: "100%"
   },
   inner: {
-    padding: `calc(1.3em + ${theme.info.sizes.height}px) .5em 1.3em`,
+    padding: `1.3rem  calc(0rem + 17px) calc(1.3rem + 17px) 17px`,
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      padding: `calc(3em + ${theme.info.sizes.height}px) 2em 2.5em`
+      padding: `2rem  calc(2rem + 17px) calc(2rem + 17px) 2.5rem`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      padding: "1em 2em 1em",
+      padding: `2rem  calc(1.5rem + 17px) calc(2rem + 17px) 2rem`,
       left: `${theme.info.sizes.width}px`,
       ".moving-featured &, .is-aside &": {
         padding: "1rem .8rem 1rem .5rem"
@@ -53,7 +54,7 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
-    padding: ".7em 1em",
+    padding: ".7em 1em .7em .5em",
     color: theme.navigator.colors.postsListItemLink,
     "@media (hover: hover)": {
       "&:hover": {
@@ -149,7 +150,7 @@ const Posts = props => {
 
   return (
     <div className={classes.posts}>
-      <Scrollbars autoHide universal>
+      <Scrollbars autoHide universal={true} onScroll={forceCheck}>
         <div className={classes.inner}>
           <PostsHeader openOnClick={openOnClick} />
           <ul className={classes.list}>
@@ -185,7 +186,7 @@ const Posts = props => {
                               srcSet={post.node.frontmatter.cover.children[0].resolutions.srcSet}
                             />
                             <img
-                              srcSet={post.node.frontmatter.cover.children[0].resolutions.src}
+                              src={post.node.frontmatter.cover.children[0].resolutions.src}
                               alt=""
                             />
                           </picture>

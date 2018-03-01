@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-var find = require("lodash/find");
+require('core-js/fn/array/find');
 
 import asyncComponent from "../common/AsyncComponent/";
 import Author from "./Author";
@@ -26,7 +26,7 @@ const Share = asyncComponent(() =>
 );
 
 const Footer = ({ classes, parts, post, slug }) => {
-  const author = find(parts, el => el.node.frontmatter.title === "author");
+  const author = parts.find(el => el.node.frontmatter.title === "author");
   const authorContent = author ? author.node.html : null;
 
   return (

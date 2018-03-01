@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { connect } from "react-redux";
-var find = require("lodash/find");
+require("core-js/fn/array/find");
 
 import SocialIcons from "./SocialIcons";
 import InfoMenu from "./InfoMenu";
@@ -16,7 +16,6 @@ import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
 const styles = theme => ({
   infoBox: {
     display: "none",
-    background: "red",
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       display: "block",
       color: theme.info.colors.text,
@@ -25,7 +24,7 @@ const styles = theme => ({
       left: 0,
       top: 0,
       width: `${theme.info.sizes.width}px`,
-      height: "100vh",
+      height: "100%",
       padding: "20px 40px",
       "&::after": {
         content: `""`,
@@ -74,7 +73,7 @@ class InfoBox extends React.Component {
   render() {
     const { classes, parts, pages, navigatorPosition, navigatorShape } = this.props;
 
-    const info = find(parts, el => el.node.frontmatter.title === "info");
+    const info = parts.find(el => el.node.frontmatter.title === "info");
 
     return (
       <aside

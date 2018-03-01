@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+require('core-js/fn/array/find');
 
 import MainArticle from "../components/common/MainArticle";
 import PageHeader from "../components/Page/PageHeader";

@@ -20,39 +20,58 @@ const styles = theme => ({
   actionsBar: {
     position: "absolute",
     background: theme.bars.colors.background,
-    top: 0,
-    right: 0,
-    height: "100vh",
-    width: `${theme.bars.sizes.actionsBarWidth}px`,
+    left: 0,
+    //top: `calc(100vh - ${theme.bars.sizes.actionsBar}px)`,
+    bottom: 0,
+    display: "flex",
+    flexDirection: "row",
+    padding: `0 ${theme.main.sizes.linesMargin}`,
+    justifyContent: "space-between",
+    height: `${theme.bars.sizes.actionsBar}px`,
+    width: "100%",
     "&::before": {
       content: `""`,
       position: "absolute",
-      top: theme.main.sizes.linesMargin,
-      bottom: theme.main.sizes.linesMargin,
-      left: 0,
-      width: 0,
-      borderLeft: `1px solid ${theme.main.colors.lines}`
+      left: theme.main.sizes.linesMargin,
+      right: theme.main.sizes.linesMargin,
+      height: 0,
+      top: 0,
+      borderTop: `1px solid ${theme.main.colors.lines}`
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+      padding: `0 calc(${theme.main.sizes.linesMargin} * 1.5)`
+    },
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      flexDirection: "column",
+      top: 0,
+      right: 0,
+      left: "auto",
+      height: "100%",
+      padding: `${theme.main.sizes.linesMargin} 0`,
+      width: `${theme.bars.sizes.actionsBar}px`,
+      "&::before": {
+        top: theme.main.sizes.linesMargin,
+        bottom: theme.main.sizes.linesMargin,
+        left: 0,
+        right: "auto",
+        width: 0,
+        height: "auto",
+        borderLeft: `1px solid ${theme.main.colors.lines}`
+      }
     }
   },
   group: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     alignItems: "center",
-    position: "absolute",
-    width: "100%"
-  },
-  firstGroup: {
-    extend: "group",
-    top: theme.main.sizes.linesMargin
-  },
-  secondGroup: {
-    extend: "group",
-    bottom: theme.main.sizes.linesMargin
+    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
+      flexDirection: "column"
+    }
   }
 });
 
 class ActionsBar extends React.Component {
-  viewListOnClick = featureNavigator.bind(this);
+  homeOnClick = featureNavigator.bind(this);
   SearchOnClick = moveNavigatorAside.bind(this);
 
   render() {
@@ -60,8 +79,8 @@ class ActionsBar extends React.Component {
 
     return (
       <div className={classes.actionsBar}>
-        <div className={classes.firstGroup}>
-          <IconButton aria-label="Back to list" onClick={this.viewListOnClick}>
+        <div className={classes.group}>
+          <IconButton aria-label="Back to list" onClick={this.homeOnClick}>
             <HomeIcon />
           </IconButton>
           <IconButton aria-label="Filter">
@@ -77,7 +96,7 @@ class ActionsBar extends React.Component {
             <SearchIcon />
           </IconButton>
         </div>
-        <div className={classes.secondGroup}>
+        <div className={classes.group}>
           <IconButton aria-label="Font size">
             <FormatSizeIcon />
           </IconButton>

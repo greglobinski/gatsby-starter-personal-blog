@@ -51,12 +51,22 @@ class Layout extends React.Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div>
-          <ActionsBar />
+        <div
+          style={{
+            padding: "1px",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            right: 0,
+            overflow: "hidden"
+          }}
+        >
           <Seo />
           {children()}
           <Navigator />
           <InfoBox />
+          <ActionsBar />
         </div>
       </MuiThemeProvider>
     );
