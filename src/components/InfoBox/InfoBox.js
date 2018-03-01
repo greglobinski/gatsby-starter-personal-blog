@@ -16,6 +16,7 @@ import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
 const styles = theme => ({
   infoBox: {
     display: "none",
+    background: "red",
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       display: "block",
       color: theme.info.colors.text,
