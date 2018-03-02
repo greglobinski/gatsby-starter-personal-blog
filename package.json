@@ -6,6 +6,7 @@
   "version": "0.1.0",
   "scripts": {
     "develop": "gatsby develop",
+    "develop-host": "gatsby develop --host 192.168.0.112",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "format-output": "prettier src/**/*.{js,jsx}",
@@ -22,16 +23,26 @@
     "icon144": "sharp -i ./src/images/icon.png -o ./static/icons/icon-144x144.png resize 144",
     "icon96": "sharp -i ./src/images/icon.png -o ./static/icons/icon-96x96.png resize 96",
     "icon48": "sharp -i ./src/images/icon.png -o ./static/icons/icon-48x48.png resize 48",
-    "appleIcon180": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-180x180.png resize 180",
-    "appleIcon152": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-152x152.png resize 152",
-    "appleIcon144": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-144x144.png resize 144",
-    "appleIcon120": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-120x120.png resize 120",
-    "appleIcon114": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-114x114.png resize 114",
-    "appleIcon76": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-76x76.png resize 76",
-    "appleIcon72": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-72x72.png resize 72",
-    "appleIcon60": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-60x60.png resize 60",
-    "appleIcon57": "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-57x57.png resize 57",
-    "generate-manifest-icons": "yarn favIcon16 && yarn favIcon32 && yarn favIcon96 && yarn icon512 && yarn icon384 && yarn icon256 && yarn icon192 && yarn icon144 && yarn icon96 && yarn icon48 && yarn appleIcon180 && yarn appleIcon152 && yarn appleIcon144 && yarn appleIcon120 && yarn appleIcon114 && yarn appleIcon76 && yarn appleIcon72 && yarn appleIcon60 && yarn appleIcon57"
+    "appleIcon180":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-180x180.png resize 180",
+    "appleIcon152":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-152x152.png resize 152",
+    "appleIcon144":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-144x144.png resize 144",
+    "appleIcon120":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-120x120.png resize 120",
+    "appleIcon114":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-114x114.png resize 114",
+    "appleIcon76":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-76x76.png resize 76",
+    "appleIcon72":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-72x72.png resize 72",
+    "appleIcon60":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-60x60.png resize 60",
+    "appleIcon57":
+      "sharp -i ./src/images/apple-icon.png -o ./static/icons/apple-icon-57x57.png resize 57",
+    "generate-manifest-icons":
+      "yarn favIcon16 && yarn favIcon32 && yarn favIcon96 && yarn icon512 && yarn icon384 && yarn icon256 && yarn icon192 && yarn icon144 && yarn icon96 && yarn icon48 && yarn appleIcon180 && yarn appleIcon152 && yarn appleIcon144 && yarn appleIcon120 && yarn appleIcon114 && yarn appleIcon76 && yarn appleIcon72 && yarn appleIcon60 && yarn appleIcon57"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

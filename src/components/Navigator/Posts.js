@@ -22,7 +22,7 @@ const styles = theme => ({
       padding: `2rem  calc(2rem + 17px) calc(2rem + 17px) 2.5rem`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      padding: `2rem  calc(1.5rem + 17px) calc(2rem + 17px) 2rem`,
+      padding: `2rem  calc(1rem + 17px) calc(2rem + 17px) 2rem`,
       left: `${theme.info.sizes.width}px`,
       ".moving-featured &, .is-aside &": {
         padding: "1rem .8rem 1rem .5rem"
@@ -54,7 +54,7 @@ const styles = theme => ({
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
-    padding: ".7em 1em .7em .5em",
+    padding: ".7em 1em .7em 1em",
     color: theme.navigator.colors.postsListItemLink,
     "@media (hover: hover)": {
       "&:hover": {

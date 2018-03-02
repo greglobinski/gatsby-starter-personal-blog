@@ -15,6 +15,8 @@ import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
 import ActionsBar from "../components/ActionsBar/";
 
+import { isWideScreen } from "../utils/helpers";
+
 const InfoBox = asyncComponent(
   () =>
     import("../components/InfoBox/")
@@ -35,15 +37,6 @@ class Layout extends React.Component {
     const parts = this.props.data.parts.edges;
 
     this.props.saveData({ posts, pages, parts });
-
-    //this.props.setNavigatorIsAside(true);
-    // if (typeof window !== `undefined`) {
-    //   this.props.setNavigatorInTransition(true);
-
-    //   setTimeout(() => {
-    //     this.props.setNavigatorInTransition(false);
-    //   }, isWideScreen ? 500 : 0);
-    // }
   }
 
   render() {
@@ -65,7 +58,7 @@ class Layout extends React.Component {
           <Seo />
           {children()}
           <Navigator />
-          <InfoBox />
+          {isWideScreen() && <InfoBox />}
           <ActionsBar />
         </div>
       </MuiThemeProvider>
