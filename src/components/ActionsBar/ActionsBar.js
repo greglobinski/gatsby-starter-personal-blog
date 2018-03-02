@@ -15,6 +15,7 @@ import FormatSizeIcon from "material-ui-icons/FormatSize";
 
 import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
+import { isWideScreen } from "../../utils/helpers";
 
 const styles = theme => ({
   actionsBar: {
@@ -100,9 +101,11 @@ class ActionsBar extends React.Component {
           <IconButton aria-label="Font size">
             <FormatSizeIcon />
           </IconButton>
-          <IconButton aria-label="Fullscreen">
-            <FullscreenIcon />
-          </IconButton>
+          {isWideScreen() && (
+            <IconButton aria-label="Fullscreen">
+              <FullscreenIcon />
+            </IconButton>
+          )}
           <IconButton aria-label="Back to top">
             <ArrowUpwardIcon />
           </IconButton>

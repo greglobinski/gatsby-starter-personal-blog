@@ -61,15 +61,6 @@ class InfoBox extends React.Component {
   avatarOnClick = featureNavigator.bind(this);
   menulinkOnClick = moveNavigatorAside.bind(this);
 
-  //menulinkOnClick = e => {
-  // this.props.setNavigatorInTransition("to");
-  // this.props.setNavigatorIsClosed(true);
-  // setTimeout(() => {
-  //   this.props.setNavigatorInTransition(false);
-  //   this.props.setNavigatorIsAside(true);
-  // }, 1000);
-  //};
-
   render() {
     const { classes, parts, pages, navigatorPosition, navigatorShape } = this.props;
 
@@ -123,26 +114,3 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(InfoBox));
-
-// menulinkOnClick = e => {
-//   if (e.target.hasAttribute("data-slug")) {
-//     if (e.target.getAttribute("data-slug") === "/") {
-//       if (this.props.navigatorIsAside) {
-//         this.props.setNavigatorInTransition("From");
-
-//         setTimeout(() => {
-//           this.props.setNavigatorInTransition(false);
-//           this.props.setNavigatorIsAside(false);
-//         }, 100);
-//       }
-//     }
-//   } else {
-//     this.props.setNavigatorInTransition("To");
-
-//     setTimeout(() => {
-//       this.props.setNavigatorIsClosed(false);
-//       this.props.setNavigatorInTransition(false);
-//       this.props.setNavigatorIsAside(true);
-//     }, 1100);
-//   }
-// };

@@ -14,6 +14,7 @@ import Loading from "../components/common/Loading/";
 import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
 import ActionsBar from "../components/ActionsBar/";
+import TopBar from "../components/TopBar/";
 
 import { isWideScreen } from "../utils/helpers";
 
@@ -60,6 +61,7 @@ class Layout extends React.Component {
           <Navigator />
           {isWideScreen() && <InfoBox />}
           <ActionsBar />
+          <TopBar />
         </div>
       </MuiThemeProvider>
     );
@@ -72,7 +74,9 @@ Layout.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  return {};
+  return {
+    pages: state.pages
+  };
 };
 
 const mapDispatchToProps = dispatch => {

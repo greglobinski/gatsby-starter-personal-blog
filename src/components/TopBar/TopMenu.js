@@ -11,17 +11,10 @@ import Paper from "material-ui/Paper";
 import classNames from "classnames";
 
 const styles = theme => ({
-  mobileMenu: {
-    position: "absolute",
-    top: "6px",
-    right: "2px",
-    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      top: "14px"
-      //right: "10px"
-    },
-    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      display: "none"
-    }
+  topMenu: {
+    float: "right",
+    margin: "0 10px 0 0",
+    [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {}
   },
   buttonRoot: {
     "&:hover": {
@@ -38,7 +31,7 @@ const styles = theme => ({
   }
 });
 
-class MobileMenu extends React.Component {
+class TopMenu extends React.Component {
   state = {
     anchorEl: null,
     open: false
@@ -67,7 +60,7 @@ class MobileMenu extends React.Component {
     const { anchorEl, open } = this.state;
 
     return (
-      <nav className={classes.mobileMenu}>
+      <nav className={classes.topMenu}>
         <Manager>
           <Target>
             <IconButton
@@ -88,22 +81,39 @@ class MobileMenu extends React.Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: "0 0 0" }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.linkOnClick} data-slug="/">
+                    <MenuItem
+                      onClick={e => {
+                        this.props.homeLinkOnClick(e);
+                        this.handleClose();
+                      }}
+                    >
                       Home
                     </MenuItem>
-                    {pages.map((page, i) => (
-                      <a
-                        key={page.node.fields.slug}
-                        href={page.node.fields.slug}
-                        style={{ display: "block" }}
-                      >
-                        <MenuItem onClick={this.linkOnClick}>
-                          {page.node.frontmatter.title}
-                        </MenuItem>
-                      </a>
-                    ))}
+                    {pages.map((page, i) => {
+                      const { fields, frontmatter } = page.node;
+
+                      return (
+                        <a key={fields.slug} href={fields.slug} style={{ display: "block" }}>
+                          <MenuItem
+                            onClick={e => {
+                              this.props.pageLinkOnClick(e);
+                              this.handleClose();
+                            }}
+                          >
+                            {frontmatter.menuTitle ? frontmatter.menuTitle : frontmatter.title}
+                          </MenuItem>
+                        </a>
+                      );
+                    })}
                     <a href="/contact/" style={{ display: "block" }}>
-                      <MenuItem onClick={this.linkOnClick}>Contact</MenuItem>
+                      <MenuItem
+                        onClick={e => {
+                          this.props.pageLinkOnClick(e);
+                          this.handleClose();
+                        }}
+                      >
+                        Contact
+                      </MenuItem>
                     </a>
                   </MenuList>
                 </Paper>
@@ -116,9 +126,11 @@ class MobileMenu extends React.Component {
   }
 }
 
-MobileMenu.propTypes = {
+TopMenu.propTypes = {
   pages: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  pageLinkOnClick: PropTypes.func.isRequired,
+  homeLinkOnClick: PropTypes.func.isRequired
 };
 
-export default injectSheet(styles)(MobileMenu);
+export default injectSheet(styles)(TopMenu);
