@@ -148,9 +148,13 @@ const styles = theme => ({
 const Posts = props => {
   const { classes, posts, linkOnClick, openOnClick } = props;
 
+  function onScroll(values) {
+    //console.log(values);
+  }
+
   return (
     <div className={classes.posts}>
-      <Scrollbars autoHide universal={true} onScroll={forceCheck}>
+      <Scrollbars autoHide universal={true} onScrollFrame={onScroll} onScroll={forceCheck}>
         <div className={classes.inner}>
           <PostsHeader openOnClick={openOnClick} />
           <ul className={classes.list}>

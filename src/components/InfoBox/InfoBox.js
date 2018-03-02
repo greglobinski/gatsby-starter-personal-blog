@@ -88,7 +88,8 @@ InfoBox.propTypes = {
   parts: PropTypes.array.isRequired,
   pages: PropTypes.array.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
-  navigatorShape: PropTypes.string.isRequired
+  navigatorShape: PropTypes.string.isRequired,
+  isWideScreen: PropTypes.bool.isRequired
 };
 
 InfoBox.contextTypes = {
@@ -102,7 +103,8 @@ const mapStateToProps = (state, ownProps) => {
     parts: state.parts,
     pages: state.pages,
     navigatorPosition: state.navigatorPosition,
-    navigatorShape: state.navigatorShape
+    navigatorShape: state.navigatorShape,
+    isWideScreen: state.isWideScreen
   };
 };
 

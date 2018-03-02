@@ -137,7 +137,8 @@ Navigator.propTypes = {
   navigatorPosition: PropTypes.string.isRequired,
   navigatorShape: PropTypes.string.isRequired,
   setNavigatorPosition: PropTypes.func.isRequired,
-  setNavigatorShape: PropTypes.func.isRequired
+  setNavigatorShape: PropTypes.func.isRequired,
+  isWideScreen: PropTypes.bool.isRequired
 };
 
 Navigator.contextTypes = {
@@ -151,7 +152,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     posts: state.posts,
     navigatorPosition: state.navigatorPosition,
-    navigatorShape: state.navigatorShape
+    navigatorShape: state.navigatorShape,
+    isWideScreen: state.isWideScreen
   };
 };
 

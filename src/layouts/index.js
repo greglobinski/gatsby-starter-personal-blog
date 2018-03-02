@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import theme from "../styles/theme";
 import globals from "../styles/globals";
 
-import { saveData } from "../state/store";
+import { saveData, setIsWideScreen } from "../state/store";
 
 import asyncComponent from "../components/common/AsyncComponent/";
 import Loading from "../components/common/Loading/";
@@ -32,6 +32,8 @@ const InfoBox = asyncComponent(
 );
 
 class Layout extends React.Component {
+  resizeTimeout = null;
+
   componentWillMount() {
     const posts = this.props.data.posts.edges;
     const pages = this.props.data.pages.edges;
@@ -39,6 +41,28 @@ class Layout extends React.Component {
 
     this.props.saveData({ posts, pages, parts });
   }
+
+  componentDidMount() {
+    this.actualResizeHandler();
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", this.resizeThrottler, false);
+    }
+  }
+
+  resizeThrottler = () => {
+    console.log("resizeThrottle");
+    if (!this.resizeTimeout) {
+      this.resizeTimeout = setTimeout(() => {
+        this.resizeTimeout = null;
+        this.actualResizeHandler();
+      }, 500);
+    }
+  };
+
+  actualResizeHandler = () => {
+    this.props.setIsWideScreen(isWideScreen());
+  };
 
   render() {
     const { children } = this.props;
@@ -59,7 +83,7 @@ class Layout extends React.Component {
           <Seo />
           {children()}
           <Navigator />
-          {isWideScreen() && <InfoBox />}
+          {this.props.isWideScreen && <InfoBox />}
           <ActionsBar />
           <TopBar />
         </div>
@@ -70,18 +94,22 @@ class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
-  saveData: PropTypes.func.isRequired
+  saveData: PropTypes.func.isRequired,
+  setIsWideScreen: PropTypes.func.isRequired,
+  isWideScreen: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    pages: state.pages
+    pages: state.pages,
+    isWideScreen: state.isWideScreen
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveData: data => dispatch(saveData(data))
+    saveData: data => dispatch(saveData(data)),
+    setIsWideScreen: val => dispatch(setIsWideScreen(val))
   };
 };
 

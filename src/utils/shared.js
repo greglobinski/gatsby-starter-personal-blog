@@ -1,11 +1,10 @@
 import { forceCheck } from "react-lazyload";
-import { isWideScreen } from "./helpers";
 
 export function featureNavigator(e) {
   e.preventDefault();
 
   if (this.props.navigatorPosition === "is-aside") {
-    if (isWideScreen()) {
+    if (this.props.isWideScreen) {
       this.props.setNavigatorPosition("moving-featured");
 
       setTimeout(() => {
@@ -36,7 +35,7 @@ export function moveNavigatorAside(e) {
   const navigatorShape = dataShape ? dataShape : "open";
 
   if (this.props.navigatorPosition === "is-featured") {
-    if (isWideScreen()) {
+    if (this.props.isWideScreen) {
       this.props.setNavigatorPosition("moving-aside");
 
       setTimeout(() => {

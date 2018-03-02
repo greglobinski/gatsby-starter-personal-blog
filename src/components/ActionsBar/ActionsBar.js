@@ -5,17 +5,18 @@ import IconButton from "material-ui/IconButton";
 
 import Link from "gatsby-link";
 import { connect } from "react-redux";
+import screenfull from "screenfull";
 
 import HomeIcon from "material-ui-icons/Home";
 import SearchIcon from "material-ui-icons/Search";
 import FilterListIcon from "material-ui-icons/FilterList";
 import ArrowUpwardIcon from "material-ui-icons/ArrowUpward";
 import FullscreenIcon from "material-ui-icons/Fullscreen";
+import FullscreenExitIcon from "material-ui-icons/FullscreenExit";
 import FormatSizeIcon from "material-ui-icons/FormatSize";
 
 import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
-import { isWideScreen } from "../../utils/helpers";
 
 const styles = theme => ({
   actionsBar: {
@@ -72,11 +73,31 @@ const styles = theme => ({
 });
 
 class ActionsBar extends React.Component {
+  state = {
+    fullscreen: false
+  };
+
+  componentDidMount() {
+    if (screenfull.enabled) {
+      screenfull.on("change", () => {
+        this.setState({
+          fullscreen: screenfull.isFullscreen
+        });
+      });
+    }
+  }
+
   homeOnClick = featureNavigator.bind(this);
-  SearchOnClick = moveNavigatorAside.bind(this);
+  searchOnClick = moveNavigatorAside.bind(this);
+
+  fullscreenOnClick = () => {
+    if (screenfull.enabled) {
+      screenfull.toggle();
+    }
+  };
 
   render() {
-    const { classes } = this.props;
+    const { classes, navigatorPosition, isWideScreen } = this.props;
 
     return (
       <div className={classes.actionsBar}>
@@ -84,12 +105,14 @@ class ActionsBar extends React.Component {
           <IconButton aria-label="Back to list" onClick={this.homeOnClick}>
             <HomeIcon />
           </IconButton>
-          <IconButton aria-label="Filter">
-            <FilterListIcon />
-          </IconButton>
+          {(isWideScreen || navigatorPosition !== "is-aside") && (
+            <IconButton aria-label="Filter">
+              <FilterListIcon />
+            </IconButton>
+          )}
           <IconButton
             aria-label="Search"
-            onClick={this.SearchOnClick}
+            onClick={this.searchOnClick}
             component={Link}
             data-shape="closed"
             to="/search/"
@@ -98,27 +121,42 @@ class ActionsBar extends React.Component {
           </IconButton>
         </div>
         <div className={classes.group}>
-          <IconButton aria-label="Font size">
-            <FormatSizeIcon />
-          </IconButton>
-          {isWideScreen() && (
-            <IconButton aria-label="Fullscreen">
-              <FullscreenIcon />
+          {navigatorPosition === "is-aside" && (
+            <IconButton aria-label="Font size">
+              <FormatSizeIcon />
             </IconButton>
           )}
-          <IconButton aria-label="Back to top">
-            <ArrowUpwardIcon />
-          </IconButton>
+          {screenfull.enabled && (
+            <IconButton aria-label="Fullscreen" onClick={this.fullscreenOnClick}>
+              {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
+            </IconButton>
+          )}
+          {navigatorPosition === "is-aside" && (
+            <IconButton aria-label="Back to top">
+              <ArrowUpwardIcon />
+            </IconButton>
+          )}
+          {screenfull.isFullscreen}
         </div>
       </div>
     );
   }
 }
 
+ActionsBar.propTypes = {
+  posts: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
+  navigatorPosition: PropTypes.string.isRequired,
+  navigatorShape: PropTypes.string.isRequired,
+  isWideScreen: PropTypes.bool.isRequired
+};
+
 const mapStateToProps = (state, ownProps) => {
   return {
+    posts: state.posts,
     navigatorPosition: state.navigatorPosition,
-    navigatorShape: state.navigatorShape
+    navigatorShape: state.navigatorShape,
+    isWideScreen: state.isWideScreen
   };
 };
 
@@ -127,12 +165,6 @@ const mapDispatchToProps = dispatch => {
     setNavigatorPosition: val => dispatch(setNavigatorPosition(val)),
     setNavigatorShape: val => dispatch(setNavigatorShape(val))
   };
-};
-
-ActionsBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  navigatorPosition: PropTypes.string.isRequired,
-  navigatorShape: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(ActionsBar));
