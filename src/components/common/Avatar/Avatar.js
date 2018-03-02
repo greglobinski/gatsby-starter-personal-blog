@@ -8,7 +8,10 @@ import config from "../../../../content/meta/config";
 
 const styles = theme => ({
   avatar: {
-    boxShadow: "0px 0px 0px 2px white, 0px 0px 1px 2px #666"
+    width: "28px",
+    height: "28px",
+    float: "left",
+    margin: "10px 0 0 30px"
   }
 });
 

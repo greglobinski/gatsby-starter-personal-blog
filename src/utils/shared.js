@@ -2,7 +2,6 @@ import { forceCheck } from "react-lazyload";
 import { isWideScreen } from "./helpers";
 
 export function featureNavigator(e) {
-  console.log("featureNavigator");
   e.preventDefault();
 
   if (this.props.navigatorPosition === "is-aside") {

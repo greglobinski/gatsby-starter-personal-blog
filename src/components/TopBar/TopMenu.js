@@ -13,7 +13,7 @@ import classNames from "classnames";
 const styles = theme => ({
   topMenu: {
     float: "right",
-    margin: "0 10px 0 0",
+    margin: "5px 10px 0 0",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {}
   },
   buttonRoot: {
