@@ -16,7 +16,7 @@ import Navigator from "../components/Navigator/";
 import ActionsBar from "../components/ActionsBar/";
 import TopBar from "../components/TopBar/";
 
-import { isWideScreen } from "../utils/helpers";
+import { isWideScreen, timeoutThrottlerHandler } from "../utils/helpers";
 
 const InfoBox = asyncComponent(
   () =>
@@ -32,7 +32,7 @@ const InfoBox = asyncComponent(
 );
 
 class Layout extends React.Component {
-  resizeTimeout = null;
+  timeouts = {};
 
   componentWillMount() {
     const posts = this.props.data.posts.edges;
@@ -43,24 +43,17 @@ class Layout extends React.Component {
   }
 
   componentDidMount() {
-    this.actualResizeHandler();
-
+    this.props.setIsWideScreen(isWideScreen());
     if (typeof window !== "undefined") {
       window.addEventListener("resize", this.resizeThrottler, false);
     }
   }
 
   resizeThrottler = () => {
-    console.log("resizeThrottle");
-    if (!this.resizeTimeout) {
-      this.resizeTimeout = setTimeout(() => {
-        this.resizeTimeout = null;
-        this.actualResizeHandler();
-      }, 500);
-    }
+    return timeoutThrottlerHandler(this.timeouts, "resize", 500, this.resizeHandler);
   };
 
-  actualResizeHandler = () => {
+  resizeHandler = () => {
     this.props.setIsWideScreen(isWideScreen());
   };
 
@@ -80,12 +73,12 @@ class Layout extends React.Component {
             overflow: "hidden"
           }}
         >
-          <Seo />
           {children()}
           <Navigator />
-          {this.props.isWideScreen && <InfoBox />}
           <ActionsBar />
           <TopBar />
+          <Seo />
+          {this.props.isWideScreen && <InfoBox />}
         </div>
       </MuiThemeProvider>
     );
