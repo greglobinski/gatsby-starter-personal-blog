@@ -1,35 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import injectSheet from "react-jss";
-import { connect } from "react-redux";
-import { Scrollbars } from "react-custom-scrollbars";
+import Main from "../components/Main/";
 require("core-js/fn/array/find");
 
 //import Seo from "../components/Other/Seo";
-import Article from "../components/Article/";
+import Post from "../components/Post/";
 import Footer from "../components/Footer/";
-
-const styles = theme => ({
-  main: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    height: "100vh",
-    width: "100%",
-    [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      width: `calc(100vw - ${theme.info.sizes.width}px - ${theme.bars.sizes.actionsBar}px)`,
-      left: `${theme.info.sizes.width}px`
-    }
-  }
-});
-
-// const Disqus = asyncComponent(() =>
-//   import("../components/Disqus/")
-//     .then(module => {
-//       return module;
-//     })
-//     .catch(error => {})
-// );
 
 class PostTemplate extends React.Component {
   componentDidMount() {
@@ -74,9 +50,6 @@ class PostTemplate extends React.Component {
     // }, 1500);
   }
 
-  componentDidUpdate() {
-    //console.log("%c componentDidUpdate", "background: #222; color: #bada55");
-  }
   // componentDidMount() {
   //   import("../components/Share/").then(Share => {
   //     this.setState({ Share });
@@ -85,27 +58,21 @@ class PostTemplate extends React.Component {
 
   render() {
     const { slug } = this.props.pathContext;
-    const { post } = this.props.data;
-    const { classes, parts } = this.props;
-
-    const footnote = parts.find(el => el.node.frontmatter.title === "footnote");
-    const footnoteContent = footnote ? footnote.node.html : null;
-
-    //let { Share } = this.state;
+    const post = ((this.props || {}).data || {}).post;
+    const footnote = ((this.props || {}).data || {}).footnote;
 
     return (
-      <main className={classes.main}>
-        <Scrollbars autoHide>
-          <Article post={post} slug={slug} />
+      <Main>
+        <Post post={post} slug={slug} />
 
-          {/* <div
+        {/* <div
             id="fb-comments"
             className="fb-comments"
             data-href="https://www.facebook.com/cna.net.au/"
             data-numposts="10"
           /> */}
-          {/* <div id="fb-root" /> */}
-          {/* <span
+        {/* <div id="fb-root" /> */}
+        {/* <span
             className="fb-comments-count"
             data-href="https://silly-mcclintock-36e6bf.netlify.com/two-things-are-infinite/"
           />
@@ -116,32 +83,18 @@ class PostTemplate extends React.Component {
             data-width="100%"
             data-numposts="5"
           /> */}
-          <Footer footnoteContent={footnoteContent} />
-        </Scrollbars>
-      </main>
+        <Footer footnote={footnote} />
+      </Main>
     );
   }
 }
 
 PostTemplate.propTypes = {
   data: PropTypes.object.isRequired,
-  parts: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired,
   pathContext: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    parts: state.parts,
-    navigatorIsActive: state.posts.length
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(PostTemplate));
+export default PostTemplate;
 
 //eslint-disable-next-line no-undef
 export const postQuery = graphql`
@@ -163,6 +116,15 @@ export const postQuery = graphql`
             }
           }
         }
+      }
+    }
+    footnote: markdownRemark(id: { regex: "/footnote/" }) {
+      id
+      html
+      frontmatter {
+        title
+        boxTitle
+        boxTitleNote
       }
     }
   }

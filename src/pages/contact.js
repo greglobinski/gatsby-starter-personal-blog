@@ -3,24 +3,26 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Obfuscate from "react-obfuscate";
 
-import MainArticle from "../components/common/MainArticle";
+import Main from "../components/Main";
+import Article from "../components/Main/Article";
 import PageHeader from "../components/Page/PageHeader";
+import Content from "../components/Main/Content";
 import Form from "../components/ContactForm";
 
 const styles = theme => ({});
 
 const Contact = () => {
-  //const { classes } = this.props;
-
   return (
-    <MainArticle>
-      <PageHeader title="Contact" />
-      <p>
-        Feel free to contact me by email: <Obfuscate email="greglobinski@gmail.com" /> or use the
-        form below.
-      </p>
-      <Form />
-    </MainArticle>
+    <Main>
+      <Article>
+        <PageHeader title="Contact" />
+        <Content>
+          Feel free to contact me by email: <Obfuscate email="greglobinski@gmail.com" /> or use the
+          form below.
+        </Content>
+        <Form />
+      </Article>
+    </Main>
   );
 };
 

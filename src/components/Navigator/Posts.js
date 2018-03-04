@@ -2,11 +2,10 @@ import React from "react";
 import Link from "gatsby-link";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import { Scrollbars } from "react-custom-scrollbars";
 import LazyLoad from "react-lazyload";
-import { forceCheck } from "react-lazyload";
 
 import PostsHeader from "./PostsHeader";
+import SpringScrollbars from "../SpringScrollbars";
 
 const styles = theme => ({
   posts: {
@@ -17,9 +16,13 @@ const styles = theme => ({
     width: "100%"
   },
   inner: {
-    padding: `1.3rem  calc(0rem + 17px) calc(1.3rem + 17px) 17px`,
+    padding: `calc(${theme.bars.sizes.topBar}px + 1.3rem) 1.3rem calc(${
+      theme.bars.sizes.actionsBar
+    }px + 1.3rem) 1.3rem`,
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      padding: `2rem  calc(2rem + 17px) calc(2rem + 17px) 2.5rem`
+      padding: `calc(${theme.bars.sizes.topBar}px + 2rem) 2rem calc(${
+        theme.bars.sizes.actionsBar
+      }px + 2rem) 2rem`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       padding: `2rem  calc(1rem + 17px) calc(2rem + 17px) 2rem`,
@@ -145,74 +148,72 @@ const styles = theme => ({
   }
 });
 
-const Posts = props => {
-  const { classes, posts, linkOnClick, openOnClick } = props;
+class Posts extends React.Component {
+  render() {
+    const { classes, posts, linkOnClick, openOnClick } = this.props;
 
-  function onScroll(values) {
-    //console.log(values);
-  }
-
-  return (
-    <div className={classes.posts}>
-      <Scrollbars autoHide universal={true} onScrollFrame={onScroll} onScroll={forceCheck}>
-        <div className={classes.inner}>
-          <PostsHeader openOnClick={openOnClick} />
-          <ul className={classes.list}>
-            {posts &&
-              posts.map(post => {
-                return (
-                  <li
-                    className={`${classes.listItem} ${post.node.frontmatter.category}`}
-                    key={post.node.fields.slug}
-                  >
-                    <Link
-                      activeClassName="active"
-                      className={classes.listLink}
-                      to={post.node.fields.slug}
-                      onClick={linkOnClick}
+    return (
+      <div className={classes.posts}>
+        <SpringScrollbars forceCheckOnScroll={true} isNavigator={true}>
+          <div className={classes.inner}>
+            <PostsHeader openOnClick={openOnClick} />
+            <ul className={classes.list}>
+              {posts &&
+                posts.map(post => {
+                  return (
+                    <li
+                      className={`${classes.listItem} ${post.node.frontmatter.category}`}
+                      key={post.node.fields.slug}
                     >
-                      <div className={`${classes.listItemPointer} pointer`}>
-                        <LazyLoad
-                          height={60}
-                          overflow={true}
-                          throttle={300}
-                          once={true}
-                          offset={100}
-                        >
-                          <picture>
-                            <source
-                              type="image/webp"
-                              srcSet={
-                                post.node.frontmatter.cover.children[0].resolutions.srcSetWebp
-                              }
-                            />
-                            <source
-                              srcSet={post.node.frontmatter.cover.children[0].resolutions.srcSet}
-                            />
-                            <img
-                              src={post.node.frontmatter.cover.children[0].resolutions.src}
-                              alt=""
-                            />
-                          </picture>
-                        </LazyLoad>
-                        {/*<Img sizes={post.node.frontmatter.cover.children[0].sizes} />*/}
-                      </div>
-                      <div className={classes.listItemText}>
-                        <h1>{post.node.frontmatter.title}</h1>
-                        {post.node.frontmatter.subTitle && (
-                          <h2>{post.node.frontmatter.subTitle}</h2>
-                        )}
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
-      </Scrollbars>
-    </div>
-  );
-};
+                      <Link
+                        activeClassName="active"
+                        className={classes.listLink}
+                        to={post.node.fields.slug}
+                        onClick={linkOnClick}
+                      >
+                        <div className={`${classes.listItemPointer} pointer`}>
+                          <LazyLoad
+                            height={60}
+                            overflow={true}
+                            throttle={300}
+                            once={true}
+                            offset={100}
+                          >
+                            <picture>
+                              <source
+                                type="image/webp"
+                                srcSet={
+                                  post.node.frontmatter.cover.children[0].resolutions.srcSetWebp
+                                }
+                              />
+                              <source
+                                srcSet={post.node.frontmatter.cover.children[0].resolutions.srcSet}
+                              />
+                              <img
+                                src={post.node.frontmatter.cover.children[0].resolutions.src}
+                                alt=""
+                              />
+                            </picture>
+                          </LazyLoad>
+                          {/*<Img sizes={post.node.frontmatter.cover.children[0].sizes} />*/}
+                        </div>
+                        <div className={classes.listItemText}>
+                          <h1>{post.node.frontmatter.title}</h1>
+                          {post.node.frontmatter.subTitle && (
+                            <h2>{post.node.frontmatter.subTitle}</h2>
+                          )}
+                        </div>
+                      </Link>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
+        </SpringScrollbars>
+      </div>
+    );
+  }
+}
 
 Posts.propTypes = {
   classes: PropTypes.object.isRequired,

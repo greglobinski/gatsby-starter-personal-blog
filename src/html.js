@@ -27,6 +27,7 @@ module.exports = class HTML extends React.Component {
           <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png" />
         </head>
         <body {...this.props.bodyAttributes}>
+          <noscript>You need to enable JavaScript to run this app!</noscript>
           {this.props.preBodyComponents}
           <div key={`body`} id="___gatsby" dangerouslySetInnerHTML={{ __html: this.props.body }} />
           {this.props.postBodyComponents}

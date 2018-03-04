@@ -29,8 +29,8 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const postTemplate = path.resolve("./src/templates/post.js");
-    const pageTemplate = path.resolve("./src/templates/page.js");
+    const postTemplate = path.resolve("./src/templates/PostTemplate.js");
+    const pageTemplate = path.resolve("./src/templates/PageTemplate.js");
     resolve(
       graphql(
         `
@@ -56,7 +56,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
         // Create posts and pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
-          const slug = edge.node.fields.slug; 
+          const slug = edge.node.fields.slug;
           const isPost = /posts/.test(edge.node.id);
 
           createPage({
@@ -73,7 +73,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 };
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
-
   // config.removeLoader('url-loader');
   // config.loader('url-loader', {
   //   test: /\.(jpg|jpeg|png|gif|mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,

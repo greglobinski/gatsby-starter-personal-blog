@@ -61,7 +61,7 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
         __html: `
         WebFontConfig = {
           google: {
-      families: ["${theme.main.fonts.styledFamily}:${theme.main.fonts.styledFonts}"]
+      families: ["${theme.base.fonts.styledFamily}:${theme.base.fonts.styledFonts}"]
     }
    };
 

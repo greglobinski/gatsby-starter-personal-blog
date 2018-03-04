@@ -45,7 +45,7 @@ const styles = theme => ({
   }
 });
 
-class Share extends React.Component {
+class PostShare extends React.Component {
   render() {
     const { post, classes, slug } = this.props;
     const { excerpt, frontmatter } = post;
@@ -68,8 +68,12 @@ class Share extends React.Component {
               {count => <div className="share-count">{filter(count)}</div>}
             </GooglePlusShareCount>
           </GooglePlusShareButton>
-          <FacebookShareButton url={url} quote={`${title} - ${excerpt}`}>
-            <FacebookIcon round size={iconSize} />
+          <FacebookShareButton
+            url={url}
+            quote={`${title} - ${excerpt}`}
+            aria-label="Facebook share"
+          >
+            <FacebookIcon round={false} size={iconSize} />
             <FacebookShareCount url={url}>
               {count => <div className="share-count">{filter(count)}</div>}
             </FacebookShareCount>
@@ -86,10 +90,10 @@ class Share extends React.Component {
   }
 }
 
-Share.propTypes = {
+PostShare.propTypes = {
   post: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired
 };
 
-export default injectSheet(styles)(Share);
+export default injectSheet(styles)(PostShare);

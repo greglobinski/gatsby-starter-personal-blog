@@ -4,7 +4,7 @@ import Color from "color";
 const colors = require("./colors");
 
 const theme = createMuiTheme({
-  main: {
+  base: {
     colors: {
       background: colors.white,
       text: colors.dark,
@@ -19,10 +19,9 @@ const theme = createMuiTheme({
       linesMargin: "20px"
     },
     fonts: {
-      //unstyledFamily: `"-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "sans-serif"`,
       unstyledFamily: `Arial`,
       styledFamily: "Open Sans",
-      styledFonts: "300,400,600,700"
+      styledFonts: "300,400,600"
     }
   },
   info: {
@@ -59,7 +58,7 @@ const theme = createMuiTheme({
       fontIncraseForL: 1.3
     }
   },
-  post: {
+  main: {
     colors: {
       background: colors.white,
       title: colors.gray,
@@ -73,22 +72,22 @@ const theme = createMuiTheme({
       linkHover: colors.dark
     },
     sizes: {
-      maxWidth: "50em"
+      articleMaxWidth: "50em"
     },
     fonts: {
       title: {
         size: 1.9,
+        sizeM: 2.5,
+        sizeL: 2.7,
         weight: 600,
-        lineHeight: 1.1,
-        xSizeM: 1.3,
-        xSizeL: 1.4
+        lineHeight: 1.1
       },
       subTitle: {
         size: 1.5,
+        sizeM: 1.8,
+        sizeL: 1.95,
         weight: 300,
-        lineHeight: 1.1,
-        xSizeM: 1.2,
-        xSizeL: 1.3
+        lineHeight: 1.1
       },
       meta: {
         size: 0.9,
@@ -96,8 +95,8 @@ const theme = createMuiTheme({
       },
       content: {
         size: 1.0,
-        xSizeM: 1.15,
-        xSizeL: 1.1,
+        sizeM: 1.15,
+        sizeL: 1.1,
         lineHeight: 1.6
       },
       contentHeading: {
@@ -114,7 +113,9 @@ const theme = createMuiTheme({
   },
   footer: {
     colors: {
-      text: colors.gray,
+      text: Color(colors.gray)
+        .lighten(0.5)
+        .string(),
       link: colors.accent,
       linkHover: Color(colors.accent)
         .lighten(0.2)
@@ -122,7 +123,7 @@ const theme = createMuiTheme({
     },
     fonts: {
       footnote: {
-        size: 0.85,
+        size: 0.8,
         lineHeight: 1.4
       }
     }
@@ -132,7 +133,8 @@ const theme = createMuiTheme({
       background: colors.white
     },
     sizes: {
-      actionsBar: 60
+      actionsBar: 60,
+      topBar: 60
     }
   },
   mediaQueryTresholds: {

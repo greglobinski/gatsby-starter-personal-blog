@@ -10,6 +10,7 @@ const SET_NAVIGATOR_POSITION = "SET_NAVIGATOR_POSITION";
 const SET_NAVIGATOR_SHAPE = "SET_NAVIGATOR_SHAPE";
 const SET_NAVIGATOR_FILTER = "SET_NAVIGATOR_FILTER";
 const SET_IS_WIDE_SCREEN = "SET_IS_WIDE_SCREEN";
+const SET_SCROLL_TO_TOP = "SET_SCROLL_TO_TOP";
 
 /*
  * action creators
@@ -32,6 +33,10 @@ export function setNavigatorFilter(val) {
 
 export function setIsWideScreen(val) {
   return { type: SET_IS_WIDE_SCREEN, val };
+}
+
+export function setScrollToTop(val) {
+  return { type: SET_SCROLL_TO_TOP, val };
 }
 
 /*
@@ -71,6 +76,12 @@ const reducer = (state, action) => {
         isWideScreen: action.val
       };
 
+    case SET_SCROLL_TO_TOP:
+      return {
+        ...state,
+        scrollToTop: action.val
+      };
+
     default:
       return state;
   }
@@ -80,10 +91,11 @@ const initialState = {
   posts: [],
   pages: [],
   parts: [],
-  navigatorPosition: "is-featured",
+  navigatorPosition: "is-aside",
   navigatorShape: "open",
   navigatorFilter: "",
-  isWideScreen: false
+  isWideScreen: false,
+  scrollToTop: false
 };
 
 const createStore = () =>

@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import Svg from "../common/Svg";
 
-import logos from "../../images/logos";
+import AlgoliaIcon from "../../images/svg-icons/algolia-full.svg";
 
 const styles = theme => ({
   header: {
@@ -14,17 +13,17 @@ const styles = theme => ({
     alignContent: "center"
   },
   title: {
-    color: theme.post.colors.title,
-    fontSize: `${theme.post.fonts.title.size}em`,
+    color: theme.main.colors.title,
+    fontSize: `${theme.main.fonts.title.size}em`,
     letterSpacing: "-0.04em",
-    fontWeight: theme.post.fonts.title.weight,
-    lineHeight: theme.post.fonts.title.lineHeight,
+    fontWeight: theme.main.fonts.title.weight,
+    lineHeight: theme.main.fonts.title.lineHeight,
     margin: "0",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      fontSize: `${theme.post.fonts.title.size * theme.post.fonts.title.xSizeM}em`
+      fontSize: `${theme.main.fonts.title.size * theme.main.fonts.title.xSizeM}em`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      fontSize: `${theme.post.fonts.title.size * theme.post.fonts.title.xSizeL}em`
+      fontSize: `${theme.main.fonts.title.size * theme.main.fonts.title.xSizeL}em`
     }
   },
   mark: {
@@ -53,7 +52,7 @@ const Header = props => {
           rel="noopener noreferrer"
           target="_blank"
         >
-          <Svg svg={logos.SEARCH} />
+          <AlgoliaIcon />
         </a>
       )}
     </header>

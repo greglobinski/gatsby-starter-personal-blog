@@ -33,7 +33,7 @@ const styles = theme => ({
         top: "20px",
         bottom: "20px",
         width: "1px",
-        borderRight: `1px solid ${theme.main.colors.lines}`
+        borderRight: `1px solid ${theme.base.colors.lines}`
       }
     }
   },
@@ -63,7 +63,7 @@ class InfoBox extends React.Component {
 
   render() {
     const { classes, parts, pages, navigatorPosition, navigatorShape } = this.props;
-
+    // TODO: get info content from layout graphql query
     const info = parts.find(el => el.node.frontmatter.title === "info");
 
     return (

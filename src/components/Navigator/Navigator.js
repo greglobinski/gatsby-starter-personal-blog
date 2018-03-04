@@ -54,10 +54,10 @@ const styles = theme => ({
           content: `""`,
           position: "absolute",
           top: 0,
-          left: theme.main.sizes.linesMargin,
-          right: theme.main.sizes.linesMargin,
+          left: theme.base.sizes.linesMargin,
+          right: theme.base.sizes.linesMargin,
           height: 0,
-          borderTop: `1px solid ${theme.main.colors.lines}`
+          borderTop: `1px solid ${theme.base.colors.lines}`
         }
       },
       "&.moving-aside": {
@@ -141,13 +141,6 @@ Navigator.propTypes = {
   isWideScreen: PropTypes.bool.isRequired
 };
 
-Navigator.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.object,
-    location: PropTypes.object
-  })
-};
-
 const mapStateToProps = (state, ownProps) => {
   return {
     posts: state.posts,
@@ -157,11 +150,9 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setNavigatorPosition: val => dispatch(setNavigatorPosition(val)),
-    setNavigatorShape: val => dispatch(setNavigatorShape(val))
-  };
+const mapDispatchToProps = {
+  setNavigatorPosition,
+  setNavigatorShape
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Navigator));

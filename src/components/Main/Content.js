@@ -4,12 +4,12 @@ import injectSheet from "react-jss";
 
 const styles = theme => ({
   content: {
-    color: theme.post.colors.content,
-    fontSize: `${theme.post.fonts.content.size}em`,
-    lineHeight: theme.post.fonts.content.lineHeight,
+    color: theme.main.colors.content,
+    fontSize: `${theme.main.fonts.content.size}em`,
+    lineHeight: theme.main.fonts.content.lineHeight,
     "& a": {
-      borderBottom: `1px solid ${theme.main.colors.link}`,
-      color: theme.main.colors.link
+      borderBottom: `1px solid ${theme.base.colors.link}`,
+      color: theme.base.colors.link
     },
     "& .gatsby-resp-image-link": {
       margin: "2.5em -1.5rem",
@@ -19,22 +19,22 @@ const styles = theme => ({
       }
     },
     "& h2, & h3": {
-      color: theme.post.colors.contentHeading,
-      fontSize: `${theme.post.fonts.contentHeading.h2Size}em`,
-      fontWeight: theme.post.fonts.contentHeading.weight,
-      lineHeight: theme.post.fonts.contentHeading.lineHeight,
+      color: theme.main.colors.contentHeading,
+      fontSize: `${theme.main.fonts.contentHeading.h2Size}em`,
+      fontWeight: theme.main.fonts.contentHeading.weight,
+      lineHeight: theme.main.fonts.contentHeading.lineHeight,
       margin: "2em 0 1em",
       letterSpacing: "-0.02em"
     },
     "& h3": {
-      fontSize: `${theme.post.fonts.contentHeading.h3Size}em`
+      fontSize: `${theme.main.fonts.contentHeading.h3Size}em`
     },
     "& p": {
       margin: "0 0 1.5em 0",
       fontWeight: 400
     },
     "& blockquote": {
-      border: `5px solid ${theme.post.colors.blockquoteFrame}`,
+      border: `5px solid ${theme.main.colors.blockquoteFrame}`,
       fontStyle: "italic",
       margin: "2.5em 0",
       padding: "1em 1.1em 1em 1.3em",
@@ -43,7 +43,7 @@ const styles = theme => ({
         margin: 0
       },
       "&::before, &::after": {
-        background: theme.post.colors.background,
+        background: theme.main.colors.background,
         content: `""`,
         height: "5px",
         left: "50%",
@@ -58,21 +58,28 @@ const styles = theme => ({
       }
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      fontSize: `${theme.post.fonts.content.sizeM}em`
+      fontSize: `${theme.main.fonts.content.sizeM}em`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      fontSize: `${theme.post.fonts.content.sizeL}em`
+      fontSize: `${theme.main.fonts.content.sizeL}em`
     }
   }
 });
 
-const Content = ({ classes, html }) => (
-  <div className={classes.content} dangerouslySetInnerHTML={{ __html: html }} />
-);
+const Content = props => {
+  const { classes, html, children } = props;
+
+  if (html) {
+    return <div className={classes.content} dangerouslySetInnerHTML={{ __html: html }} />;
+  } else {
+    return <div className={classes.content}>{children}</div>;
+  }
+};
 
 Content.propTypes = {
   classes: PropTypes.object.isRequired,
-  html: PropTypes.string.isRequired
+  html: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default injectSheet(styles)(Content);

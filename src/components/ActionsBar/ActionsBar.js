@@ -15,7 +15,7 @@ import FullscreenIcon from "material-ui-icons/Fullscreen";
 import FullscreenExitIcon from "material-ui-icons/FullscreenExit";
 import FormatSizeIcon from "material-ui-icons/FormatSize";
 
-import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
+import { setNavigatorPosition, setNavigatorShape, setScrollToTop } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
 
 const styles = theme => ({
@@ -27,21 +27,21 @@ const styles = theme => ({
     bottom: 0,
     display: "flex",
     flexDirection: "row",
-    padding: `0 ${theme.main.sizes.linesMargin}`,
+    padding: `0 ${theme.base.sizes.linesMargin}`,
     justifyContent: "space-between",
     height: `${theme.bars.sizes.actionsBar}px`,
     width: "100%",
     "&::before": {
       content: `""`,
       position: "absolute",
-      left: theme.main.sizes.linesMargin,
-      right: theme.main.sizes.linesMargin,
+      left: theme.base.sizes.linesMargin,
+      right: theme.base.sizes.linesMargin,
       height: 0,
       top: 0,
-      borderTop: `1px solid ${theme.main.colors.lines}`
+      borderTop: `1px solid ${theme.base.colors.lines}`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      padding: `0 calc(${theme.main.sizes.linesMargin} * 1.5)`
+      padding: `0 calc(${theme.base.sizes.linesMargin} * 1.5)`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       flexDirection: "column",
@@ -49,16 +49,16 @@ const styles = theme => ({
       right: 0,
       left: "auto",
       height: "100%",
-      padding: `${theme.main.sizes.linesMargin} 0`,
+      padding: `${theme.base.sizes.linesMargin} 0`,
       width: `${theme.bars.sizes.actionsBar}px`,
       "&::before": {
-        top: theme.main.sizes.linesMargin,
-        bottom: theme.main.sizes.linesMargin,
+        top: theme.base.sizes.linesMargin,
+        bottom: theme.base.sizes.linesMargin,
         left: 0,
         right: "auto",
         width: 0,
         height: "auto",
-        borderLeft: `1px solid ${theme.main.colors.lines}`
+        borderLeft: `1px solid ${theme.base.colors.lines}`
       }
     }
   },
@@ -96,6 +96,10 @@ class ActionsBar extends React.Component {
     }
   };
 
+  arrowUpOnClick = () => {
+    this.props.setScrollToTop(true);
+  };
+
   render() {
     const { classes, navigatorPosition, isWideScreen } = this.props;
 
@@ -131,12 +135,9 @@ class ActionsBar extends React.Component {
               {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
             </IconButton>
           )}
-          {navigatorPosition === "is-aside" && (
-            <IconButton aria-label="Back to top">
-              <ArrowUpwardIcon />
-            </IconButton>
-          )}
-          {screenfull.isFullscreen}
+          <IconButton aria-label="Back to top" onClick={this.arrowUpOnClick}>
+            <ArrowUpwardIcon />
+          </IconButton>
         </div>
       </div>
     );
@@ -147,24 +148,22 @@ ActionsBar.propTypes = {
   posts: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
-  navigatorShape: PropTypes.string.isRequired,
-  isWideScreen: PropTypes.bool.isRequired
+  isWideScreen: PropTypes.bool.isRequired,
+  setScrollToTop: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
     posts: state.posts,
     navigatorPosition: state.navigatorPosition,
-    navigatorShape: state.navigatorShape,
     isWideScreen: state.isWideScreen
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setNavigatorPosition: val => dispatch(setNavigatorPosition(val)),
-    setNavigatorShape: val => dispatch(setNavigatorShape(val))
-  };
+const mapDispatchToProps = {
+  setNavigatorPosition,
+  setNavigatorShape,
+  setScrollToTop
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(ActionsBar));

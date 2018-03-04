@@ -9,7 +9,7 @@ const styles = theme => ({
     background: props =>
       props.overrides && props.overrides.background
         ? props.overrides.background
-        : theme.main.colors.background,
+        : theme.base.colors.background,
     position: "absolute",
     left: props => (props.overrides && props.overrides.left ? props.overrides.left : 0),
     right: props => (props.overrides && props.overrides.right ? props.overrides.right : 0),
@@ -24,10 +24,10 @@ const styles = theme => ({
       position: "absolute",
       right: props => (props.afterRight ? 0 : ""),
       left: props => (props.afterLeft ? 0 : ""),
-      top: theme.main.sizes.linesMargin,
-      bottom: theme.main.sizes.linesMargin,
+      top: theme.base.sizes.linesMargin,
+      bottom: theme.base.sizes.linesMargin,
       width: 0,
-      borderRight: `1px solid ${theme.main.colors.lines}`
+      borderRight: `1px solid ${theme.base.colors.lines}`
     }
   },
   progress: {}

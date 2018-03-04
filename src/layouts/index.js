@@ -60,6 +60,7 @@ class Layout extends React.Component {
   render() {
     const { children } = this.props;
 
+    // TODO: dynamic management of tabindexes for keybord navigation
     return (
       <MuiThemeProvider theme={theme}>
         <div
@@ -84,6 +85,7 @@ class Layout extends React.Component {
     );
   }
 }
+
 Layout.propTypes = {
   children: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,

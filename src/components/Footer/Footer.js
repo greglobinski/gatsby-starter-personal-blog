@@ -6,8 +6,8 @@ import Footnote from "./Footnote";
 
 const styles = theme => ({
   footer: {
-    color: theme.post.colors.footer,
-    padding: "2rem 1.5rem",
+    color: theme.main.colors.footer,
+    padding: `1.5rem 1.5rem  calc(${theme.bars.sizes.actionsBar}px + 1.5rem) 1.5rem`,
     "& p": {
       margin: 0
     },
@@ -20,17 +20,20 @@ const styles = theme => ({
   }
 });
 
-const Footer = ({ classes, footnoteContent }) => {
+const Footer = props => {
+  const { classes, footnote } = props;
+  const { html } = footnote;
+
   return (
     <footer className={classes.footer}>
-      <Footnote content={footnoteContent} />
+      <Footnote content={html} />
     </footer>
   );
 };
 
 Footer.propTypes = {
   classes: PropTypes.object.isRequired,
-  footnoteContent: PropTypes.string.isRequired
+  footnote: PropTypes.object.isRequired
 };
 
 export default injectSheet(styles)(Footer);

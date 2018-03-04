@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import { Scrollbars } from "react-custom-scrollbars";
+import SpringScrollbars from "../SpringScrollbars";
 
 const styles = theme => ({
   main: {
@@ -16,7 +16,7 @@ const styles = theme => ({
     }
   },
   article: {
-    maxWidth: theme.post.sizes.maxWidth,
+    maxWidth: theme.main.sizes.maxWidth,
     margin: "0 auto",
     padding: `calc(1.5rem + ${theme.info.sizes.height}px) 1.8rem 1.5rem 1.5rem`,
     "& strong, & b": {
@@ -27,18 +27,18 @@ const styles = theme => ({
       fontWeight: 600,
       letterSpacing: "-.02em",
       textShadow: `
-         2px  2px ${theme.post.colors.background},
-        -2px  2px ${theme.post.colors.background},
-        -2px -2px ${theme.post.colors.background},
-        -2px  2px ${theme.post.colors.background},
-        -2px  0   ${theme.post.colors.background},
-         2px  0   ${theme.post.colors.background}
+         2px  2px ${theme.main.colors.background},
+        -2px  2px ${theme.main.colors.background},
+        -2px -2px ${theme.main.colors.background},
+        -2px  2px ${theme.main.colors.background},
+        -2px  0   ${theme.main.colors.background},
+         2px  0   ${theme.main.colors.background}
       `,
       display: "inline-block",
       textDecoration: "none",
       transition: "0.3s",
       "&:hover": {
-        color: theme.main.colors.linkHover
+        color: theme.base.colors.linkHover
       }
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
@@ -50,21 +50,19 @@ const styles = theme => ({
   }
 });
 
-const MainArticle = props => {
+const Main = props => {
   const { classes, children } = props;
 
   return (
     <main className={classes.main}>
-      <Scrollbars autoHide>
-        <article className={classes.article}>{children}</article>
-      </Scrollbars>
+      <SpringScrollbars>{children}</SpringScrollbars>
     </main>
   );
 };
 
-MainArticle.propTypes = {
+Main.propTypes = {
   classes: PropTypes.object.isRequired,
   children: PropTypes.any.isRequired
 };
 
-export default injectSheet(styles)(MainArticle);
+export default injectSheet(styles)(Main);

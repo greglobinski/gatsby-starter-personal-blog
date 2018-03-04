@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Link from "gatsby-link";
-import { Highlight } from "react-instantsearch/dom";
 
 const styles = theme => ({
   link: {
@@ -17,7 +16,7 @@ const styles = theme => ({
       position: "absolute",
       top: ".5em",
       left: ".1em",
-      color: theme.main.colors.accent
+      color: theme.base.colors.accent
     },
     "& span": {
       fontWeight: 300,

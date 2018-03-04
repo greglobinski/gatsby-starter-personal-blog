@@ -326,16 +326,29 @@ export default {
       "-webkit-text-size-adjust": "100%",
       "-moz-text-size-adjust": "none",
       "-ms-text-size-adjust": "100%",
-      fontFamily: theme.main.fonts.unstyledFamily,
-      background: theme.main.background,
+      fontFamily: theme.base.fonts.unstyledFamily,
+      background: theme.base.background,
       lineHeight: "1.15",
       textSizeAdjust: "100%"
     },
     "html.wf-active": {
-      fontFamily: theme.main.fonts.styledFamily
+      fontFamily: theme.base.fonts.styledFamily
     },
     "*, *:before, *:after": {
       boxSizing: "inherit"
+    },
+    noscript: {
+      background: "#d00",
+      color: "#fff",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      zIndex: 1000,
+      transform: "translate(-50%, -50%)",
+      padding: "1.5rem 2.5rem",
+      fontWeight: 400,
+      borderRadius: "2px",
+      boxShadow: "0 0 10px 52px rgba(255,255,255,.8)"
     },
     body: {
       margin: 0,

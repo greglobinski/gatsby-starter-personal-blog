@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+import Avatar from "material-ui/Avatar";
 
-import Avatar from "../common/Avatar";
+import avatar from "../../images/avatar.jpg";
 
 const styles = theme => ({
   author: {
@@ -13,8 +14,8 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center",
     "& a": {
-      borderBottom: `1px solid ${theme.main.colors.link}`,
-      color: theme.main.colors.link
+      borderBottom: `1px solid ${theme.base.colors.link}`,
+      color: theme.base.colors.link
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       flexDirection: "row",
@@ -23,7 +24,9 @@ const styles = theme => ({
   },
   avatar: {
     margin: "0 1em 1em",
+    borderRadius: "75% 65%",
     width: "50px",
+    height: "50px",
     flexShrink: 0,
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       margin: "0 1em 0"
@@ -37,20 +40,18 @@ const styles = theme => ({
   }
 });
 
-const Author = ({ classes, content }) => {
+const PostAuthor = ({ classes, content }) => {
   return (
     <div className={classes.author}>
-      <div className={classes.avatar}>
-        <Avatar />
-      </div>
+      <Avatar src={avatar} className={classes.avatar} alt="" /> {/* TODO: add author name to alt */}
       <div className={classes.box} dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   );
 };
 
-Author.propTypes = {
+PostAuthor.propTypes = {
   classes: PropTypes.object.isRequired,
   content: PropTypes.string.isRequired
 };
 
-export default injectSheet(styles)(Author);
+export default injectSheet(styles)(PostAuthor);

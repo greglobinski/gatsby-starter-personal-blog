@@ -18,15 +18,15 @@ const styles = theme => ({
     top: 0,
     left: 0,
     width: "100%",
-    height: "60px",
+    height: `${theme.bars.sizes.topBar}px`,
     "&::before": {
       content: `""`,
       position: "absolute",
-      left: theme.main.sizes.linesMargin,
-      right: theme.main.sizes.linesMargin,
+      left: theme.base.sizes.linesMargin,
+      right: theme.base.sizes.linesMargin,
       height: 0,
       bottom: 0,
-      borderTop: `1px solid ${theme.main.colors.lines}`
+      borderTop: `1px solid ${theme.base.colors.lines}`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       display: "none"
@@ -48,6 +48,7 @@ const styles = theme => ({
   },
   avatar: {
     width: "36px",
+    borderRadius: "65% 75%",
     height: "36px"
   }
 });

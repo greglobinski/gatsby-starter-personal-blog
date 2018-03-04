@@ -14,7 +14,7 @@ const styles = theme => ({
     },
     "& .ais-SearchBox__input": {
       border: "none",
-      fontFamily: theme.main.fonts.styledFamily,
+      fontFamily: theme.base.fonts.styledFamily,
       padding: ".2em",
       fontSize: "1.4em",
       width: "calc(100% - 100px)"
@@ -51,7 +51,7 @@ const styles = theme => ({
       },
       "& a": {
         "&:hover": {
-          color: theme.main.colors.accent
+          color: theme.base.colors.accent
         }
       },
       "&.ais-Pagination__itemFirst, &.ais-Pagination__itemPrevious, &.ais-Pagination__itemNext": {
