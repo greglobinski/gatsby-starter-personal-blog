@@ -1,8 +1,12 @@
 import React from "react";
 import injectSheet from "react-jss";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Avatar from "material-ui/Avatar";
 import Link from "gatsby-link";
+
+import { setNavigatorPosition } from "../../state/store";
+import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
 
 import avatar from "../../images/avatar.jpg";
 
@@ -49,21 +53,50 @@ const styles = theme => ({
 });
 
 class InfoBar extends React.Component {
+  homeLinkOnClick = featureNavigator.bind(this);
+  pageLinkOnClick = moveNavigatorAside.bind(this);
+
   render() {
-    const { classes } = this.props;
+    const { classes, pages, parts } = this.props;
+
+    const info = parts.find(el => el.node.frontmatter.title === "info");
+
+    const boxTitle = info ? info.node.frontmatter.boxTitle : "";
+    const boxTitleNote = info ? info.node.frontmatter.boxTitleNote : "";
 
     return (
       <aside className={classes.infoBar}>
         <Link to="/" className={classes.avatarLink} onClick={this.homeLinkOnClick}>
-          <Avatar alt="asdfa" src={avatar} className={classes.avatar} />
+          <Avatar alt={boxTitle} src={avatar} className={classes.avatar} />
         </Link>
+        <h3 className={classes.title}>
+          {boxTitle}
+          <small>{boxTitleNote}</small>
+        </h3>
       </aside>
     );
   }
 }
 
 InfoBar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  pages: PropTypes.array.isRequired,
+  parts: PropTypes.array.isRequired
 };
 
-export default injectSheet(styles)(InfoBar);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    pages: state.pages,
+    parts: state.parts,
+    navigatorPosition: state.navigatorPosition,
+    navigatorShape: state.navigatorShape
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setNavigatorPosition: val => dispatch(setNavigatorPosition(val))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(InfoBar));
