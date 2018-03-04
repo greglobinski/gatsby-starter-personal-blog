@@ -1,18 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+import { connect } from "react-redux";
+
+import { setFontSizeIncrease } from "../../state/store";
 
 const styles = theme => ({
   content: {
     color: theme.main.colors.content,
-    fontSize: `${theme.main.fonts.content.size}em`,
+    fontSize: props => `calc(${theme.main.fonts.content.size}em * ${props.fontSizeIncrease})`,
     lineHeight: theme.main.fonts.content.lineHeight,
     "& a": {
       borderBottom: `1px solid ${theme.base.colors.link}`,
       color: theme.base.colors.link
     },
+    "& .gatsby-highlight": {
+      margin: "2em 0"
+    },
+    "& .gatsby-resp-iframe-wrapper": {
+      margin: "2em 0"
+    },
     "& .gatsby-resp-image-link": {
-      margin: "2.5em -1.5rem",
+      margin: "2em -1.5rem",
       border: "none",
       [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
         margin: "2.5em -3.5rem"
@@ -32,6 +41,12 @@ const styles = theme => ({
     "& p": {
       margin: "0 0 1.5em 0",
       fontWeight: 400
+    },
+    "& ul": {
+      listStyle: "circle"
+    },
+    "& li": {
+      margin: "0 0 .5em 0"
     },
     "& blockquote": {
       border: `5px solid ${theme.main.colors.blockquoteFrame}`,
@@ -79,7 +94,19 @@ const Content = props => {
 Content.propTypes = {
   classes: PropTypes.object.isRequired,
   html: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  setFontSizeIncrease: PropTypes.func.isRequired,
+  fontSizeIncrease: PropTypes.number.isRequired
 };
 
-export default injectSheet(styles)(Content);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    fontSizeIncrease: state.fontSizeIncrease
+  };
+};
+
+const mapDispatchToProps = {
+  setFontSizeIncrease
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Content));

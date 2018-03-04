@@ -13,10 +13,15 @@ import FilterListIcon from "material-ui-icons/FilterList";
 import ArrowUpwardIcon from "material-ui-icons/ArrowUpward";
 import FullscreenIcon from "material-ui-icons/Fullscreen";
 import FullscreenExitIcon from "material-ui-icons/FullscreenExit";
-import FormatSizeIcon from "material-ui-icons/FormatSize";
 
-import { setNavigatorPosition, setNavigatorShape, setScrollToTop } from "../../state/store";
+import {
+  setNavigatorPosition,
+  setNavigatorShape,
+  setScrollToTop,
+  setFontSizeIncrease
+} from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
+import FontSetter from "./FontSetter";
 
 const styles = theme => ({
   actionsBar: {
@@ -100,6 +105,10 @@ class ActionsBar extends React.Component {
     this.props.setScrollToTop(true);
   };
 
+  fontSetterOnClick = val => {
+    this.props.setFontSizeIncrease(val);
+  };
+
   render() {
     const { classes, navigatorPosition, isWideScreen } = this.props;
 
@@ -125,11 +134,7 @@ class ActionsBar extends React.Component {
           </IconButton>
         </div>
         <div className={classes.group}>
-          {navigatorPosition === "is-aside" && (
-            <IconButton aria-label="Font size">
-              <FormatSizeIcon />
-            </IconButton>
-          )}
+          {navigatorPosition === "is-aside" && <FontSetter increaseFont={this.fontSetterOnClick} />}
           {screenfull.enabled && (
             <IconButton aria-label="Fullscreen" onClick={this.fullscreenOnClick}>
               {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
@@ -148,7 +153,8 @@ ActionsBar.propTypes = {
   classes: PropTypes.object.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
   isWideScreen: PropTypes.bool.isRequired,
-  setScrollToTop: PropTypes.func.isRequired
+  setScrollToTop: PropTypes.func.isRequired,
+  setFontSizeIncrease: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -161,7 +167,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = {
   setNavigatorPosition,
   setNavigatorShape,
-  setScrollToTop
+  setScrollToTop,
+  setFontSizeIncrease
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(ActionsBar));

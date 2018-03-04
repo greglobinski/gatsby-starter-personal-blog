@@ -10,6 +10,7 @@ const SET_NAVIGATOR_SHAPE = "SET_NAVIGATOR_SHAPE";
 const SET_NAVIGATOR_FILTER = "SET_NAVIGATOR_FILTER";
 const SET_IS_WIDE_SCREEN = "SET_IS_WIDE_SCREEN";
 const SET_SCROLL_TO_TOP = "SET_SCROLL_TO_TOP";
+const SET_FONT_SIZE_INCREASE = "SET_FONT_SIZE_INCREASE";
 
 /*
  * action creators
@@ -33,6 +34,10 @@ export function setIsWideScreen(val) {
 
 export function setScrollToTop(val) {
   return { type: SET_SCROLL_TO_TOP, val };
+}
+
+export function setFontSizeIncrease(val) {
+  return { type: SET_FONT_SIZE_INCREASE, val };
 }
 
 /*
@@ -70,6 +75,12 @@ const reducer = (state, action) => {
         scrollToTop: action.val
       };
 
+    case SET_FONT_SIZE_INCREASE:
+      return {
+        ...state,
+        fontSizeIncrease: action.val
+      };
+
     default:
       return state;
   }
@@ -80,7 +91,8 @@ const initialState = {
   navigatorShape: "open",
   navigatorFilter: "",
   isWideScreen: false,
-  scrollToTop: false
+  scrollToTop: false,
+  fontSizeIncrease: 1
 };
 
 const createStore = () =>

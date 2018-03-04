@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../components/Main/";
 require("core-js/fn/array/find");
+require("prismjs/themes/prism-okaidia.css");
 
 //import Seo from "../components/Other/Seo";
 import Post from "../components/Post/";
