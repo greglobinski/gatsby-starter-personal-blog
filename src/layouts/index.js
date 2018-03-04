@@ -14,7 +14,7 @@ import Loading from "../components/common/Loading/";
 import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
 import ActionsBar from "../components/ActionsBar/";
-import TopBar from "../components/TopBar/";
+import InfoBar from "../components/InfoBar/";
 
 import { isWideScreen, timeoutThrottlerHandler } from "../utils/helpers";
 
@@ -77,7 +77,7 @@ class Layout extends React.Component {
           {children()}
           <Navigator />
           <ActionsBar />
-
+          <InfoBar />
           <Seo />
           {this.props.isWideScreen && <InfoBox />}
         </div>
