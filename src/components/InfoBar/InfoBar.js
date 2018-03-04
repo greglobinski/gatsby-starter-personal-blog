@@ -58,19 +58,24 @@ class InfoBar extends React.Component {
   pageLinkOnClick = moveNavigatorAside.bind(this);
 
   render() {
-    const { classes } = this.props;
+    const { classes, pages, parts } = this.props;
+
+    const info = parts.find(el => el.node.frontmatter.title === "info");
+
+    const boxTitle = info ? info.node.frontmatter.boxTitle : "";
+    const boxTitleNote = info ? info.node.frontmatter.boxTitleNote : "";
 
     return (
       <aside className={classes.infoBar}>
         <Link to="/" className={classes.avatarLink} onClick={this.homeLinkOnClick}>
-          <Avatar alt="asdfadsf" src={avatar} className={classes.avatar} />
+          <Avatar alt={boxTitle} src={avatar} className={classes.avatar} />
         </Link>
         <h3 className={classes.title}>
-          greg lobinski
-          <small>personal blog</small>
+          {boxTitle}
+          <small>{boxTitleNote}</small>
         </h3>
         <TopMenu
-          pages={[]}
+          pages={pages}
           homeLinkOnClick={this.homeLinkOnClick}
           pageLinkOnClick={this.pageLinkOnClick}
         />
