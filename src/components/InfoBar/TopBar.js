@@ -4,6 +4,7 @@ import injectSheet from "react-jss";
 import { connect } from "react-redux";
 import Avatar from "material-ui/Avatar";
 import Link from "gatsby-link";
+require("core-js/fn/array/find");
 
 import { setNavigatorPosition } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
