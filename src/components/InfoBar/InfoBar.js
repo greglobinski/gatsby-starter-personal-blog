@@ -3,10 +3,13 @@ import injectSheet from "react-jss";
 import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import Link from "gatsby-link";
+import { connect } from "react-redux";
 
+import { setNavigatorPosition } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
 
 import avatar from "../../images/avatar.jpg";
+import TopMenu from "./TopMenu";
 
 const styles = theme => ({
   infoBar: {
@@ -66,6 +69,11 @@ class InfoBar extends React.Component {
           greg lobinski
           <small>personal blog</small>
         </h3>
+        <TopMenu
+          pages={[]}
+          homeLinkOnClick={this.homeLinkOnClick}
+          pageLinkOnClick={this.pageLinkOnClick}
+        />
       </aside>
     );
   }
@@ -75,4 +83,19 @@ InfoBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default injectSheet(styles)(InfoBar);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    pages: state.pages,
+    parts: state.parts,
+    navigatorPosition: state.navigatorPosition,
+    navigatorShape: state.navigatorShape
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setNavigatorPosition: val => dispatch(setNavigatorPosition(val))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(InfoBar));
