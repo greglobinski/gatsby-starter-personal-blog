@@ -65,7 +65,22 @@ class TopBar extends React.Component {
     const boxTitle = info ? info.node.frontmatter.boxTitle : "";
     const boxTitleNote = info ? info.node.frontmatter.boxTitleNote : "";
 
-    return <aside className={classes.topBar}>asdfasd</aside>;
+    return (
+      <aside className={classes.topBar}>
+        <Link to="/" className={classes.avatarLink} onClick={this.homeLinkOnClick}>
+          <Avatar alt={boxTitle} src={avatar} className={classes.avatar} />
+        </Link>
+        <h3 className={classes.title}>
+          {boxTitle}
+          <small>{boxTitleNote}</small>
+        </h3>
+        <TopMenu
+          pages={pages}
+          homeLinkOnClick={this.homeLinkOnClick}
+          pageLinkOnClick={this.pageLinkOnClick}
+        />
+      </aside>
+    );
   }
 }
 

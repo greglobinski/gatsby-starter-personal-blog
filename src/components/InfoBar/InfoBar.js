@@ -1,6 +1,10 @@
 import React from "react";
 import injectSheet from "react-jss";
 import PropTypes from "prop-types";
+import Avatar from "material-ui/Avatar";
+import Link from "gatsby-link";
+
+import avatar from "../../images/avatar.jpg";
 
 const styles = theme => ({
   infoBar: {
@@ -48,7 +52,13 @@ class InfoBar extends React.Component {
   render() {
     const { classes } = this.props;
 
-    return <aside className={classes.infoBar}>info bar 2</aside>;
+    return (
+      <aside className={classes.infoBar}>
+        <Link to="/" className={classes.avatarLink} onClick={this.homeLinkOnClick}>
+          <Avatar alt="asdfa" src={avatar} className={classes.avatar} />
+        </Link>
+      </aside>
+    );
   }
 }
 
