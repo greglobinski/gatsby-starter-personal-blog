@@ -5,7 +5,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
  * action types
  */
 
-const SAVE_DATA = "SAVE_DATA";
 const SET_NAVIGATOR_POSITION = "SET_NAVIGATOR_POSITION";
 const SET_NAVIGATOR_SHAPE = "SET_NAVIGATOR_SHAPE";
 const SET_NAVIGATOR_FILTER = "SET_NAVIGATOR_FILTER";
@@ -15,9 +14,6 @@ const SET_SCROLL_TO_TOP = "SET_SCROLL_TO_TOP";
 /*
  * action creators
  */
-export function saveData(data) {
-  return { type: SAVE_DATA, data };
-}
 
 export function setNavigatorPosition(val) {
   return { type: SET_NAVIGATOR_POSITION, val };
@@ -44,14 +40,6 @@ export function setScrollToTop(val) {
  */
 const reducer = (state, action) => {
   switch (action.type) {
-    case SAVE_DATA:
-      return {
-        ...state,
-        posts: action.data.posts,
-        pages: action.data.pages,
-        parts: action.data.parts
-      };
-
     case SET_NAVIGATOR_POSITION:
       return {
         ...state,
@@ -88,9 +76,6 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-  posts: [],
-  pages: [],
-  parts: [],
   navigatorPosition: "is-aside",
   navigatorShape: "open",
   navigatorFilter: "",

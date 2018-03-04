@@ -11,6 +11,9 @@ module.exports = {
   siteDescription: "PersonalBlog is a GatsbyJs starter.",
   // author
   authorName: "greg lobinski",
+  // info
+  infoTitle: "greg lobinski",
+  infoTitleNote: "personal blog",
   // manifest.json
   manifestName: "PersonalBlog - Gatsby starter",
   manifestShortName: "PersonalBlog",

@@ -4,6 +4,7 @@ import injectSheet from "react-jss";
 import Link from "gatsby-link";
 
 import avatar from "../../images/avatar.jpg";
+import config from "../../../content/meta/config";
 
 const styles = theme => ({
   header: {
@@ -83,10 +84,6 @@ const styles = theme => ({
       left: "50%",
       transform: "translate(-50%)",
       transition: "all .5s",
-      // ".navigatorInTransitionFrom &": {
-      //   left: "50%",
-      //   top: "70px"
-      // },
       ".is-aside.open &": {
         left: "60%",
         top: `${1.9 - theme.info.fonts.boxTitleSizeL}em`,
@@ -97,9 +94,7 @@ const styles = theme => ({
 });
 
 const InfoHeader = props => {
-  const { classes, info, avatarOnClick } = props;
-  const boxTitle = info.node.frontmatter.boxTitle;
-  const boxTitleNote = info.node.frontmatter.boxTitleNote;
+  const { classes, avatarOnClick } = props;
 
   return (
     <header className={classes.header}>
@@ -109,8 +104,8 @@ const InfoHeader = props => {
         </div>
       </Link>
       <h1 className={classes.title}>
-        {boxTitle.replace(/ /g, "\u00a0")}
-        <small>{boxTitleNote}</small>
+        {config.infoTitle.replace(/ /g, "\u00a0")}
+        <small>{config.infoTitleNote}</small>
       </h1>
     </header>
   );
@@ -118,7 +113,6 @@ const InfoHeader = props => {
 
 InfoHeader.propTypes = {
   classes: PropTypes.object.isRequired,
-  info: PropTypes.object.isRequired,
   avatarOnClick: PropTypes.func.isRequired
 };
 

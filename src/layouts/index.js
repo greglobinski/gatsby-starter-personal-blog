@@ -34,14 +34,6 @@ const InfoBox = asyncComponent(
 class Layout extends React.Component {
   timeouts = {};
 
-  componentWillMount() {
-    const posts = this.props.data.posts.edges;
-    const pages = this.props.data.pages.edges;
-    const parts = this.props.data.parts.edges;
-
-    this.props.saveData({ posts, pages, parts });
-  }
-
   componentDidMount() {
     this.props.setIsWideScreen(isWideScreen());
     if (typeof window !== "undefined") {
@@ -60,6 +52,10 @@ class Layout extends React.Component {
   render() {
     const { children } = this.props;
 
+    const posts = ((this.props || {}).data || {}).posts.edges;
+    const pages = ((this.props || {}).data || {}).pages.edges;
+    const parts = ((this.props || {}).data || {}).parts.edges;
+
     // TODO: dynamic management of tabindexes for keybord navigation
     return (
       <MuiThemeProvider theme={theme}>
@@ -75,11 +71,11 @@ class Layout extends React.Component {
           }}
         >
           {children()}
-          <Navigator />
+          <Navigator posts={posts} />
           <ActionsBar />
-          <InfoBar />
+          <InfoBar pages={pages} parts={parts} />
           <Seo />
-          {this.props.isWideScreen && <InfoBox />}
+          {this.props.isWideScreen && <InfoBox pages={pages} parts={parts} />}
         </div>
       </MuiThemeProvider>
     );
@@ -88,8 +84,6 @@ class Layout extends React.Component {
 
 Layout.propTypes = {
   children: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
-  saveData: PropTypes.func.isRequired,
   setIsWideScreen: PropTypes.func.isRequired,
   isWideScreen: PropTypes.bool.isRequired
 };
@@ -166,8 +160,6 @@ export const guery = graphql`
           html
           frontmatter {
             title
-            boxTitle
-            boxTitleNote
           }
         }
       }

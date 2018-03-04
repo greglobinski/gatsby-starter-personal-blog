@@ -63,7 +63,6 @@ class InfoBox extends React.Component {
 
   render() {
     const { classes, parts, pages, navigatorPosition, navigatorShape } = this.props;
-    // TODO: get info content from layout graphql query
     const info = parts.find(el => el.node.frontmatter.title === "info");
 
     return (
@@ -100,19 +99,15 @@ InfoBox.contextTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    parts: state.parts,
-    pages: state.pages,
     navigatorPosition: state.navigatorPosition,
     navigatorShape: state.navigatorShape,
     isWideScreen: state.isWideScreen
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setNavigatorPosition: val => dispatch(setNavigatorPosition(val)),
-    setNavigatorShape: val => dispatch(setNavigatorShape(val))
-  };
+const mapDispatchToProps = {
+  setNavigatorPosition,
+  setNavigatorShape
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(InfoBox));

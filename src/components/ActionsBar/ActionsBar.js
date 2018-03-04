@@ -145,7 +145,6 @@ class ActionsBar extends React.Component {
 }
 
 ActionsBar.propTypes = {
-  posts: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
   isWideScreen: PropTypes.bool.isRequired,
@@ -154,7 +153,6 @@ ActionsBar.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    posts: state.posts,
     navigatorPosition: state.navigatorPosition,
     isWideScreen: state.isWideScreen
   };

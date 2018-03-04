@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { setNavigatorPosition } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
 
+import config from "../../../content/meta/config";
 import avatar from "../../images/avatar.jpg";
 import TopMenu from "./TopMenu";
 
@@ -58,19 +59,19 @@ class InfoBar extends React.Component {
   pageLinkOnClick = moveNavigatorAside.bind(this);
 
   render() {
-    const { classes } = this.props;
+    const { classes, pages } = this.props;
 
     return (
       <aside className={classes.infoBar}>
         <Link to="/" className={classes.avatarLink} onClick={this.homeLinkOnClick}>
-          <Avatar alt="asdfasd" src={avatar} className={classes.avatar} />
+          <Avatar alt={config.infoTitle} src={avatar} className={classes.avatar} />
         </Link>
         <h3 className={classes.title}>
-          asdfads
-          <small>asdfa</small>
+          {config.infoTitle}
+          <small>{config.infoTitleNote}</small>
         </h3>
         <TopMenu
-          pages={[]}
+          pages={pages}
           homeLinkOnClick={this.homeLinkOnClick}
           pageLinkOnClick={this.pageLinkOnClick}
         />
@@ -80,7 +81,8 @@ class InfoBar extends React.Component {
 }
 
 InfoBar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  pages: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -90,10 +92,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setNavigatorPosition: val => dispatch(setNavigatorPosition(val))
-  };
+const mapDispatchToProps = {
+  setNavigatorPosition
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(InfoBar));

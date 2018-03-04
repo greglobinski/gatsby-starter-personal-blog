@@ -1,6 +1,5 @@
 ---
 title: footnote
-type: part
 ---
 
 * this is a demo site of the [gatsby-starter-personal-blog](https://github.com/greglobinski/gatsby-starter-personal-blog)

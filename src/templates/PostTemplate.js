@@ -60,10 +60,11 @@ class PostTemplate extends React.Component {
     const { slug } = this.props.pathContext;
     const post = ((this.props || {}).data || {}).post;
     const footnote = ((this.props || {}).data || {}).footnote;
+    const author = ((this.props || {}).data || {}).author;
 
     return (
       <Main>
-        <Post post={post} slug={slug} />
+        <Post post={post} slug={slug} author={author} />
 
         {/* <div
             id="fb-comments"
@@ -118,14 +119,13 @@ export const postQuery = graphql`
         }
       }
     }
+    author: markdownRemark(id: { regex: "/author/" }) {
+      id
+      html
+    }
     footnote: markdownRemark(id: { regex: "/footnote/" }) {
       id
       html
-      frontmatter {
-        title
-        boxTitle
-        boxTitleNote
-      }
     }
   }
 `;

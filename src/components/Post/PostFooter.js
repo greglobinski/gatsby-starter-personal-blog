@@ -25,21 +25,18 @@ const PostShare = asyncComponent(() =>
     .catch(error => {})
 );
 
-const PostFooter = ({ classes, parts, post, slug }) => {
-  const author = parts.find(el => el.node.frontmatter.title === "author");
-  const authorContent = author ? author.node.html : null;
-
+const PostFooter = ({ classes, author, post, slug }) => {
   return (
     <footer className={classes.footer}>
       <PostShare post={post} slug={slug} />
-      <PostAuthor content={authorContent} />
+      <PostAuthor author={author} />
     </footer>
   );
 };
 
 PostFooter.propTypes = {
   classes: PropTypes.object.isRequired,
-  parts: PropTypes.array.isRequired,
+  author: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired
 };

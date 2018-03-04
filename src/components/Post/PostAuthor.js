@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Avatar from "material-ui/Avatar";
 
+import config from "../../../content/meta/config";
 import avatar from "../../images/avatar.jpg";
 
 const styles = theme => ({
@@ -40,18 +41,20 @@ const styles = theme => ({
   }
 });
 
-const PostAuthor = ({ classes, content }) => {
+const PostAuthor = props => {
+  const { classes, author } = props;
+
   return (
     <div className={classes.author}>
-      <Avatar src={avatar} className={classes.avatar} alt="" /> {/* TODO: add author name to alt */}
-      <div className={classes.box} dangerouslySetInnerHTML={{ __html: content }} />
+      <Avatar src={avatar} className={classes.avatar} alt={config.authorName} />
+      <div className={classes.box} dangerouslySetInnerHTML={{ __html: author.html }} />
     </div>
   );
 };
 
 PostAuthor.propTypes = {
   classes: PropTypes.object.isRequired,
-  content: PropTypes.string.isRequired
+  author: PropTypes.object.isRequired
 };
 
 export default injectSheet(styles)(PostAuthor);

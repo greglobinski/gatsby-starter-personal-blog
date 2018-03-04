@@ -143,7 +143,6 @@ Navigator.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    posts: state.posts,
     navigatorPosition: state.navigatorPosition,
     navigatorShape: state.navigatorShape,
     isWideScreen: state.isWideScreen
