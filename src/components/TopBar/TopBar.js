@@ -68,17 +68,12 @@ class TopBar extends React.Component {
     return (
       <aside className={classes.topBar}>
         <Link to="/" className={classes.avatarLink} onClick={this.homeLinkOnClick}>
-          <Avatar alt={boxTitle} src={avatar} className={classes.avatar} />
+          adsfa
         </Link>
         <h3 className={classes.title}>
           {boxTitle}
           <small>{boxTitleNote}</small>
         </h3>
-        <TopMenu
-          pages={pages}
-          homeLinkOnClick={this.homeLinkOnClick}
-          pageLinkOnClick={this.pageLinkOnClick}
-        />
       </aside>
     );
   }
