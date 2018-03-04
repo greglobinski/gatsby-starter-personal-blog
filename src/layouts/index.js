@@ -76,6 +76,9 @@ class Layout extends React.Component {
         >
           {children()}
           <Navigator />
+          <ActionsBar />
+          <TopBar />
+          <Seo />
         </div>
       </MuiThemeProvider>
     );
