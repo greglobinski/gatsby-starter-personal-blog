@@ -7,7 +7,6 @@ import { setNavigatorPosition } from "../state/store";
 class Index extends React.Component {
   componentWillMount() {
     if (this.props.navigatorPosition !== "is-featured") {
-      console.log(this.props.navigatorPosition);
       this.props.setNavigatorPosition("is-featured");
     }
   }
