@@ -58,24 +58,19 @@ class InfoBar extends React.Component {
   pageLinkOnClick = moveNavigatorAside.bind(this);
 
   render() {
-    const { classes, pages, parts } = this.props;
-
-    const info = parts.find(el => el.node.frontmatter.title === "info");
-
-    const boxTitle = info ? info.node.frontmatter.boxTitle : "";
-    const boxTitleNote = info ? info.node.frontmatter.boxTitleNote : "";
+    const { classes } = this.props;
 
     return (
       <aside className={classes.infoBar}>
         <Link to="/" className={classes.avatarLink} onClick={this.homeLinkOnClick}>
-          <Avatar alt={boxTitle} src={avatar} className={classes.avatar} />
+          <Avatar alt="asdfasd" src={avatar} className={classes.avatar} />
         </Link>
         <h3 className={classes.title}>
-          {boxTitle}
-          <small>{boxTitleNote}</small>
+          asdfads
+          <small>asdfa</small>
         </h3>
         <TopMenu
-          pages={pages}
+          pages={[]}
           homeLinkOnClick={this.homeLinkOnClick}
           pageLinkOnClick={this.pageLinkOnClick}
         />
@@ -90,8 +85,6 @@ InfoBar.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    pages: state.pages,
-    parts: state.parts,
     navigatorPosition: state.navigatorPosition,
     navigatorShape: state.navigatorShape
   };
