@@ -42,35 +42,33 @@ exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadCompon
 };
 
 exports.onRenderBody = ({ setHeadComponents }) => {
-  return setHeadComponents([
-    <link
-      key={`webfontsloader-preload`}
-      rel="preload"
-      href="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
-      as="script"
-    />
-  ]);
+  return setHeadComponents([]);
 };
 
 exports.onRenderBody = ({ setPostBodyComponents }) => {
   return setPostBodyComponents([
     <div key="fb-root" id="fb-root" />,
+    <link
+      key={`webfontsloader-preload`}
+      href="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
+      as="script"
+    />,
     <script
       key={`webfontsloader-setup`}
       dangerouslySetInnerHTML={{
         __html: `
         WebFontConfig = {
           google: {
-      families: ["${theme.base.fonts.styledFamily}:${theme.base.fonts.styledFonts}"]
-    }
-   };
+            families: ["${theme.base.fonts.styledFamily}:${theme.base.fonts.styledFonts}"]
+          }
+        };
 
-   (function(d) {
-      var wf = d.createElement('script'), s = d.scripts[0];
-      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
-      wf.async = true;
-      s.parentNode.insertBefore(wf, s);
-   })(document);`
+        (function(d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);`
       }}
     />
     // <script
