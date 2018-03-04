@@ -143,7 +143,7 @@ const theme = createMuiTheme({
   },
 
   typography: {
-    fontFamily: `"Open Sans", sans-serif`,
+    fontFamily: `"Arial", sans-serif`,
     fontSize: 16
   },
   pallete: {
