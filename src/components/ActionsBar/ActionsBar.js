@@ -9,7 +9,6 @@ import screenfull from "screenfull";
 
 import HomeIcon from "material-ui-icons/Home";
 import SearchIcon from "material-ui-icons/Search";
-import FilterListIcon from "material-ui-icons/FilterList";
 import ArrowUpwardIcon from "material-ui-icons/ArrowUpward";
 import FullscreenIcon from "material-ui-icons/Fullscreen";
 import FullscreenExitIcon from "material-ui-icons/FullscreenExit";
@@ -18,10 +17,12 @@ import {
   setNavigatorPosition,
   setNavigatorShape,
   setScrollToTop,
-  setFontSizeIncrease
+  setFontSizeIncrease,
+  setCategoryFilter
 } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
 import FontSetter from "./FontSetter";
+import CategoryFilter from "./CategoryFilter";
 
 const styles = theme => ({
   actionsBar: {
@@ -107,10 +108,18 @@ class ActionsBar extends React.Component {
 
   fontSetterOnClick = val => {
     this.props.setFontSizeIncrease(val);
+
+    if (typeof localStorage !== "undefined") {
+      localStorage.setItem("font-size-increase", val);
+    }
+  };
+
+  categoryFilterOnClick = val => {
+    this.props.setCategoryFilter(val);
   };
 
   render() {
-    const { classes, navigatorPosition, isWideScreen } = this.props;
+    const { classes, navigatorPosition, isWideScreen, categories } = this.props;
 
     return (
       <div className={classes.actionsBar}>
@@ -119,9 +128,7 @@ class ActionsBar extends React.Component {
             <HomeIcon />
           </IconButton>
           {(isWideScreen || navigatorPosition !== "is-aside") && (
-            <IconButton aria-label="Filter">
-              <FilterListIcon />
-            </IconButton>
+            <CategoryFilter categories={categories} filterCategory={this.categoryFilterOnClick} />
           )}
           <IconButton
             aria-label="Search"
@@ -154,13 +161,17 @@ ActionsBar.propTypes = {
   navigatorPosition: PropTypes.string.isRequired,
   isWideScreen: PropTypes.bool.isRequired,
   setScrollToTop: PropTypes.func.isRequired,
-  setFontSizeIncrease: PropTypes.func.isRequired
+  setFontSizeIncrease: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
+  setCategoryFilter: PropTypes.func.isRequired,
+  categoryFilter: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
     navigatorPosition: state.navigatorPosition,
-    isWideScreen: state.isWideScreen
+    isWideScreen: state.isWideScreen,
+    categoryFilter: state.categoryFilter
   };
 };
 
@@ -168,7 +179,8 @@ const mapDispatchToProps = {
   setNavigatorPosition,
   setNavigatorShape,
   setScrollToTop,
-  setFontSizeIncrease
+  setFontSizeIncrease,
+  setCategoryFilter
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(ActionsBar));

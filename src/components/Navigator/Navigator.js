@@ -6,8 +6,7 @@ import { forceCheck } from "react-lazyload";
 
 import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
 import { moveNavigatorAside } from "./../../utils/shared";
-
-import Posts from "./Posts";
+import List from "./List";
 
 const styles = theme => ({
   navigator: {
@@ -109,7 +108,7 @@ class Navigator extends React.Component {
   };
 
   render() {
-    const { classes, posts, navigatorPosition, navigatorShape } = this.props;
+    const { classes, posts, navigatorPosition, navigatorShape, categoryFilter } = this.props;
 
     return (
       <nav
@@ -118,12 +117,13 @@ class Navigator extends React.Component {
         } `}
       >
         {this.props.posts.length && (
-          <Posts
+          <List
             posts={posts}
             navigatorPosition={navigatorPosition}
             navigatorShape={navigatorShape}
             linkOnClick={this.linkOnClick}
             openOnClick={this.openOnClick}
+            categoryFilter={categoryFilter}
           />
         )}
       </nav>
@@ -138,14 +138,16 @@ Navigator.propTypes = {
   navigatorShape: PropTypes.string.isRequired,
   setNavigatorPosition: PropTypes.func.isRequired,
   setNavigatorShape: PropTypes.func.isRequired,
-  isWideScreen: PropTypes.bool.isRequired
+  isWideScreen: PropTypes.bool.isRequired,
+  categoryFilter: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
     navigatorPosition: state.navigatorPosition,
     navigatorShape: state.navigatorShape,
-    isWideScreen: state.isWideScreen
+    isWideScreen: state.isWideScreen,
+    categoryFilter: state.categoryFilter
   };
 };
 

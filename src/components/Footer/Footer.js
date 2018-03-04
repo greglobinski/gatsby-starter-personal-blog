@@ -12,10 +12,10 @@ const styles = theme => ({
       margin: 0
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      padding: `2rem 2.5rem`
+      padding: `2rem 2.5rem  calc(${theme.bars.sizes.actionsBar}px + 2rem) 2.5rem`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      padding: "2rem 3rem"
+      padding: `2rem 3rem 2rem 3rem`
     }
   }
 });

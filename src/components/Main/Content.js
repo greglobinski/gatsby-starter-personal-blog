@@ -43,7 +43,11 @@ const styles = theme => ({
       fontWeight: 400
     },
     "& ul": {
-      listStyle: "circle"
+      listStyle: "circle",
+      padding: "0 0 0 1.3em",
+      [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
+        padding: "0 0 0 2em"
+      }
     },
     "& li": {
       margin: "0 0 .5em 0"

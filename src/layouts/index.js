@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import theme from "../styles/theme";
 import globals from "../styles/globals";
 
-import { saveData, setIsWideScreen } from "../state/store";
+import { setFontSizeIncrease, setIsWideScreen } from "../state/store";
 
 import asyncComponent from "../components/common/AsyncComponent/";
 import Loading from "../components/common/Loading/";
@@ -33,6 +33,7 @@ const InfoBox = asyncComponent(
 
 class Layout extends React.Component {
   timeouts = {};
+  categories = [];
 
   componentDidMount() {
     this.props.setIsWideScreen(isWideScreen());
@@ -40,6 +41,31 @@ class Layout extends React.Component {
       window.addEventListener("resize", this.resizeThrottler, false);
     }
   }
+
+  componentWillMount() {
+    if (typeof localStorage !== "undefined") {
+      const inLocal = +localStorage.getItem("font-size-increase");
+
+      const inStore = this.props.fontSizeIncrease;
+
+      if (inLocal && inLocal !== inStore && inLocal >= 1 && inLocal <= 1.5) {
+        this.props.setFontSizeIncrease(inLocal);
+      }
+    }
+
+    this.getCategories();
+  }
+
+  getCategories = () => {
+    this.categories = this.props.data.posts.edges.reduce((list, edge, i) => {
+      const category = edge.node.frontmatter.category;
+      if (category && !~list.indexOf(category)) {
+        return list.concat(edge.node.frontmatter.category);
+      } else {
+        return list;
+      }
+    }, []);
+  };
 
   resizeThrottler = () => {
     return timeoutThrottlerHandler(this.timeouts, "resize", 500, this.resizeHandler);
@@ -72,7 +98,7 @@ class Layout extends React.Component {
         >
           {children()}
           <Navigator posts={posts} />
-          <ActionsBar />
+          <ActionsBar categories={this.categories} />
           <InfoBar pages={pages} parts={parts} />
           <Seo />
           {this.props.isWideScreen && <InfoBox pages={pages} parts={parts} />}
@@ -83,23 +109,25 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
+  data: PropTypes.object.isRequired,
   children: PropTypes.func.isRequired,
   setIsWideScreen: PropTypes.func.isRequired,
-  isWideScreen: PropTypes.bool.isRequired
+  isWideScreen: PropTypes.bool.isRequired,
+  fontSizeIncrease: PropTypes.number.isRequired,
+  setFontSizeIncrease: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
     pages: state.pages,
-    isWideScreen: state.isWideScreen
+    isWideScreen: state.isWideScreen,
+    fontSizeIncrease: state.fontSizeIncrease
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    saveData: data => dispatch(saveData(data)),
-    setIsWideScreen: val => dispatch(setIsWideScreen(val))
-  };
+const mapDispatchToProps = {
+  setIsWideScreen,
+  setFontSizeIncrease
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(globals)(Layout));

@@ -8,7 +8,7 @@ import ClickAwayListener from "material-ui/utils/ClickAwayListener";
 import Grow from "material-ui/transitions/Grow";
 import Paper from "material-ui/Paper";
 import classNames from "classnames";
-import FormatSizeIcon from "material-ui-icons/FormatSize";
+import FilterListIcon from "material-ui-icons/FilterList";
 
 const styles = theme => ({
   fontSizeSetter: {
@@ -29,7 +29,7 @@ const styles = theme => ({
   }
 });
 
-class FontSetter extends React.Component {
+class CategoryFilter extends React.Component {
   state = {
     anchorEl: null,
     open: false
@@ -53,15 +53,14 @@ class FontSetter extends React.Component {
     });
   };
 
-  handleSetting = e => {
-    const val = e.target.innerText.replace("%", "");
-    const factor = +val / 100;
-    this.props.increaseFont(factor);
+  handleFiltering = e => {
+    const category = e.target.innerText;
+    this.props.filterCategory(category);
     this.handleClose();
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, categories } = this.props;
     const { anchorEl, open } = this.state;
 
     return (
@@ -69,12 +68,12 @@ class FontSetter extends React.Component {
         <Manager>
           <Target>
             <IconButton
-              aria-label="Increase font size"
+              aria-label="Filter by category"
               aria-owns={anchorEl ? "long-menu" : null}
               aria-haspopup="true"
               onClick={this.handleClick}
             >
-              <FormatSizeIcon />
+              <FilterListIcon />
             </IconButton>
           </Target>
           <Popper
@@ -86,9 +85,14 @@ class FontSetter extends React.Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: "0 0 0" }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.handleSetting}>150%</MenuItem>
-                    <MenuItem onClick={this.handleSetting}>125%</MenuItem>
-                    <MenuItem onClick={this.handleSetting}>100%</MenuItem>
+                    <MenuItem key="all" onClick={this.handleFiltering}>
+                      all posts
+                    </MenuItem>
+                    {categories.map(category => (
+                      <MenuItem key={category} onClick={this.handleFiltering}>
+                        {category}
+                      </MenuItem>
+                    ))}
                   </MenuList>
                 </Paper>
               </Grow>
@@ -100,9 +104,10 @@ class FontSetter extends React.Component {
   }
 }
 
-FontSetter.propTypes = {
+CategoryFilter.propTypes = {
   classes: PropTypes.object.isRequired,
-  increaseFont: PropTypes.func.isRequired
+  categories: PropTypes.array.isRequired,
+  filterCategory: PropTypes.func.isRequired
 };
 
-export default injectSheet(styles)(FontSetter);
+export default injectSheet(styles)(CategoryFilter);

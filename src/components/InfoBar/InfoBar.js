@@ -19,7 +19,7 @@ const styles = theme => ({
     top: 0,
     left: 0,
     width: "100%",
-    height: `${theme.bars.sizes.topBar}px`,
+    height: `${theme.bars.sizes.infoBar}px`,
     "&::before": {
       content: `""`,
       position: "absolute",
