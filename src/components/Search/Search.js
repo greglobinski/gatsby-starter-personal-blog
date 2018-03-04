@@ -14,7 +14,7 @@ const styles = theme => ({
     },
     "& .ais-SearchBox__input": {
       border: "none",
-      fontFamily: theme.base.fonts.styledFamily,
+      //fontFamily: theme.base.fonts.styledFamily, FIXME:
       padding: ".2em",
       fontSize: "1.4em",
       width: "calc(100% - 100px)"
