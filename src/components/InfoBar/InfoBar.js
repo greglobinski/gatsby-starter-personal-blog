@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Avatar from "material-ui/Avatar";
 import Link from "gatsby-link";
 import { connect } from "react-redux";
-require("core-js/fn/array/find");
 
 import { setNavigatorPosition } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
@@ -81,9 +80,7 @@ class InfoBar extends React.Component {
 }
 
 InfoBar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  pages: PropTypes.array.isRequired,
-  parts: PropTypes.array.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
