@@ -74,11 +74,6 @@ class TopBar extends React.Component {
           {boxTitle}
           <small>{boxTitleNote}</small>
         </h3>
-        <TopMenu
-          pages={pages}
-          homeLinkOnClick={this.homeLinkOnClick}
-          pageLinkOnClick={this.pageLinkOnClick}
-        />
       </aside>
     );
   }
