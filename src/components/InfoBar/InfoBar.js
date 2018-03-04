@@ -9,7 +9,7 @@ import { setNavigatorPosition } from "../../state/store";
 import { featureNavigator, moveNavigatorAside } from "./../../utils/shared";
 
 import config from "../../../content/meta/config";
-import avatar from "../../images/avatar.jpg";
+import avatar from "../../images/jpg/avatar.jpg";
 import TopMenu from "./TopMenu";
 
 const styles = theme => ({
@@ -50,6 +50,7 @@ const styles = theme => ({
   avatar: {
     width: "36px",
     borderRadius: "65% 75%",
+    border: "1px solid #ddd",
     height: "36px"
   }
 });

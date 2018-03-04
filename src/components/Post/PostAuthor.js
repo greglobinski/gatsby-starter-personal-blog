@@ -4,7 +4,7 @@ import injectSheet from "react-jss";
 import Avatar from "material-ui/Avatar";
 
 import config from "../../../content/meta/config";
-import avatar from "../../images/avatar.jpg";
+import avatar from "../../images/jpg/avatar.jpg";
 
 const styles = theme => ({
   author: {
@@ -26,8 +26,9 @@ const styles = theme => ({
   avatar: {
     margin: "0 1em 1em",
     borderRadius: "75% 65%",
-    width: "50px",
-    height: "50px",
+    width: "60px",
+    height: "60px",
+    border: "1px solid #ddd",
     flexShrink: 0,
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       margin: "0 1em 0"

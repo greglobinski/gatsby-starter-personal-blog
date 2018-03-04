@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Link from "gatsby-link";
 
-import avatar from "../../images/avatar.jpg";
+import avatar from "../../images/jpg/avatar.jpg";
 import config from "../../../content/meta/config";
 
 const styles = theme => ({
@@ -41,6 +41,7 @@ const styles = theme => ({
     width: "36px",
     height: "36px",
     borderRadius: "65% 75%",
+    border: "1px solid #ddd",
     transition: "all .3s",
     transitionTimingFunction: "ease",
     display: "inline-block",
