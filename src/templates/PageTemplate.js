@@ -7,13 +7,10 @@ import Footer from "../components/Footer/";
 
 class PageTemplate extends React.Component {
   render() {
-    const page = ((this.props || {}).data || {}).page;
-    const footnote = ((this.props || {}).data || {}).footnote;
-
     return (
       <Main>
-        <Page page={page} />
-        <Footer footnote={footnote} />
+        <Page page={this.props.data.page} />
+        <Footer footnote={this.props.data.footnote} />
       </Main>
     );
   }

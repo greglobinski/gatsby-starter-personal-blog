@@ -8,11 +8,12 @@ import PostFooter from "./PostFooter";
 
 const Post = props => {
   const { post, author, slug } = props;
-  const { html } = post;
+  const frontmatter = (post || {}).frontmatter;
+  const html = (post || {}).html;
 
   return (
     <Article>
-      <PostHeader {...post.frontmatter} />
+      <PostHeader {...frontmatter} />
       <Content html={html} />
       <PostFooter author={author} post={post} slug={slug} />
     </Article>

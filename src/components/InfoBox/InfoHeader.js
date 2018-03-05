@@ -97,7 +97,11 @@ const styles = theme => ({
   expand: {
     position: "absolute",
     top: "30px",
-    right: "-25px"
+    right: "-25px",
+    display: "none",
+    ".is-aside.open &": {
+      display: "block"
+    }
   }
 });
 

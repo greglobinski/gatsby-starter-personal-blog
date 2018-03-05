@@ -10,15 +10,14 @@ import Footer from "../components/Footer/";
 
 class PostTemplate extends React.Component {
   render() {
-    const { slug } = this.props.pathContext;
-    const post = ((this.props || {}).data || {}).post;
-    const footnote = ((this.props || {}).data || {}).footnote;
-    const author = ((this.props || {}).data || {}).author;
-
     return (
       <Main>
-        <Post post={post} slug={slug} author={author} />
-        <Footer footnote={footnote} />
+        <Post
+          post={this.props.data.post}
+          slug={this.props.pathContext.slug}
+          author={this.props.data.author}
+        />
+        <Footer footnote={this.props.data.footnote} />
       </Main>
     );
   }
