@@ -73,7 +73,7 @@ class PostShare extends React.Component {
             quote={`${title} - ${excerpt}`}
             aria-label="Facebook share"
           >
-            <FacebookIcon round={false} size={iconSize} />
+            <FacebookIcon round size={iconSize} />
             <FacebookShareCount url={url}>
               {count => <div className="share-count">{filter(count)}</div>}
             </FacebookShareCount>

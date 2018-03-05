@@ -26,6 +26,9 @@ const styles = theme => ({
   },
   popperClose: {
     pointerEvents: "none"
+  },
+  popper: {
+    zIndex: 1
   }
 });
 
@@ -80,7 +83,7 @@ class CategoryFilter extends React.Component {
           <Popper
             placement="bottom-end"
             eventsEnabled={open}
-            className={classNames({ [classes.popperClose]: !open })}
+            className={`${classNames({ [classes.popperClose]: !open })} ${classes.popper}`}
           >
             <ClickAwayListener onClickAway={this.handleClose}>
               <Grow in={open} id="cat-menu-list" style={{ transformOrigin: "0 0 0" }}>

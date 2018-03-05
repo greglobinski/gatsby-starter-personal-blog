@@ -141,7 +141,11 @@ const theme = createMuiTheme({
     M: 600,
     L: 1024
   },
-
+  palette: {
+    primary: {
+      main: "#709425"
+    }
+  },
   typography: {
     fontFamily: `Arial, sans-serif`,
     fontSize: 16
