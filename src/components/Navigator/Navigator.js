@@ -4,20 +4,20 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { forceCheck } from "react-lazyload";
 
-import { setNavigatorPosition, setNavigatorShape } from "../../state/store";
+import { setNavigatorPosition, setNavigatorShape, setCategoryFilter } from "../../state/store";
 import { moveNavigatorAside } from "./../../utils/shared";
 import List from "./List";
 
 const styles = theme => ({
   navigator: {
-    willChange: "left, top, width",
+    transform: "translate3d(0, 0, 0)",
+    willChange: "left, top, bottom, width",
     background: theme.navigator.colors.background,
     position: "absolute",
     top: 0,
     left: 0,
     height: "100vh",
     transitionTimingFunction: "ease",
-    transform: "translate3d(0, 0, 0)",
     transition: "left .9s",
     width: "100%",
     [`@media (max-width: ${theme.mediaQueryTresholds.L - 1}px)`]: {
@@ -107,6 +107,10 @@ class Navigator extends React.Component {
     setTimeout(forceCheck, 600);
   };
 
+  removefilterOnClick = e => {
+    this.props.setCategoryFilter("all posts");
+  };
+
   render() {
     const { classes, posts, navigatorPosition, navigatorShape, categoryFilter } = this.props;
 
@@ -124,6 +128,7 @@ class Navigator extends React.Component {
             linkOnClick={this.linkOnClick}
             openOnClick={this.openOnClick}
             categoryFilter={categoryFilter}
+            removeFilter={this.removefilterOnClick}
           />
         )}
       </nav>
@@ -139,7 +144,8 @@ Navigator.propTypes = {
   setNavigatorPosition: PropTypes.func.isRequired,
   setNavigatorShape: PropTypes.func.isRequired,
   isWideScreen: PropTypes.bool.isRequired,
-  categoryFilter: PropTypes.string.isRequired
+  categoryFilter: PropTypes.string.isRequired,
+  setCategoryFilter: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -153,7 +159,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = {
   setNavigatorPosition,
-  setNavigatorShape
+  setNavigatorShape,
+  setCategoryFilter
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Navigator));

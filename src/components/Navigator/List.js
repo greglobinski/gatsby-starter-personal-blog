@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import { forceCheck } from "react-lazyload";
 
-import PostsHeader from "./PostsHeader";
+import ListHeader from "./ListHeader";
 import SpringScrollbars from "../SpringScrollbars";
 import ListItem from "./ListItem";
 
@@ -28,7 +28,7 @@ const styles = theme => ({
       padding: `2rem  calc(1rem + 17px) calc(2rem + 17px) 2rem`,
       left: `${theme.info.sizes.width}px`,
       ".moving-featured &, .is-aside &": {
-        padding: "1rem .8rem 1rem .5rem"
+        padding: "1rem .5rem 1rem .5rem"
       }
     }
   },
@@ -50,13 +50,26 @@ class List extends React.Component {
   }
 
   render() {
-    const { classes, posts, linkOnClick, openOnClick, categoryFilter } = this.props;
+    const {
+      classes,
+      posts,
+      linkOnClick,
+      openOnClick,
+      categoryFilter,
+      navigatorShape,
+      removeFilter
+    } = this.props;
 
     return (
       <div className={classes.posts}>
         <SpringScrollbars forceCheckOnScroll={true} isNavigator={true}>
           <div className={classes.inner}>
-            <PostsHeader openOnClick={openOnClick} />
+            <ListHeader
+              openOnClick={openOnClick}
+              categoryFilter={categoryFilter}
+              navigatorShape={navigatorShape}
+              removeFilter={removeFilter}
+            />
             <ul className={classes.list}>
               {posts &&
                 posts.map((post, i) => (
@@ -82,7 +95,8 @@ List.propTypes = {
   openOnClick: PropTypes.func.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
   navigatorShape: PropTypes.string.isRequired,
-  categoryFilter: PropTypes.string.isRequired
+  categoryFilter: PropTypes.string.isRequired,
+  removeFilter: PropTypes.func.isRequired
 };
 
 export default injectSheet(styles)(List);

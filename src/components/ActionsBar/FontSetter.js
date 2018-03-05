@@ -83,7 +83,7 @@ class FontSetter extends React.Component {
             className={classNames({ [classes.popperClose]: !open })}
           >
             <ClickAwayListener onClickAway={this.handleClose}>
-              <Grow in={open} id="menu-list" style={{ transformOrigin: "0 0 0" }}>
+              <Grow in={open} id="font-menu-list" style={{ transformOrigin: "0 0 0" }}>
                 <Paper>
                   <MenuList role="menu">
                     <MenuItem onClick={this.handleSetting}>150%</MenuItem>

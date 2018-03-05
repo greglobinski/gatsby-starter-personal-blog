@@ -7,9 +7,7 @@ import LazyLoad from "react-lazyload";
 const styles = theme => ({
   listItem: {
     margin: "0 0 .7em 0",
-    "&.hidden": {
-      display: "none"
-    },
+    transition: "height 1s",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
       margin: "0 0 1.5rem 0"
     },
@@ -125,11 +123,13 @@ class ListItem extends React.Component {
     if (prevProps.categoryFilter !== this.props.categoryFilter) {
       const category = this.props.post.node.frontmatter.category;
       const categoryFilter = this.props.categoryFilter;
-      console.log(category !== categoryFilter);
+
       if (categoryFilter === "all posts" && this.state.hidden) {
         this.setState({ hidden: false });
       } else if (category !== categoryFilter) {
         this.setState({ hidden: true });
+      } else if (category === categoryFilter) {
+        this.setState({ hidden: false });
       }
     }
   }
@@ -139,9 +139,8 @@ class ListItem extends React.Component {
 
     return (
       <li
-        className={`${classes.listItem} ${post.node.frontmatter.category} ${
-          this.state.hidden ? "hidden" : ""
-        }`}
+        className={`${classes.listItem} ${post.node.frontmatter.category}`}
+        style={{ display: `${this.state.hidden ? "none" : "block"}` }}
         key={post.node.fields.slug}
       >
         <Link

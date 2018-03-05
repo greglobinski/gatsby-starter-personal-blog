@@ -91,12 +91,6 @@ InfoBox.propTypes = {
   isWideScreen: PropTypes.bool.isRequired
 };
 
-InfoBox.contextTypes = {
-  router: PropTypes.shape({
-    history: PropTypes.object.isRequired
-  })
-};
-
 const mapStateToProps = (state, ownProps) => {
   return {
     navigatorPosition: state.navigatorPosition,
