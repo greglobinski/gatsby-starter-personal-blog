@@ -13,7 +13,7 @@ class PostComments extends React.Component {
 
     if (typeof FB !== "undefined") {
       //eslint-disable-next-line no-undef
-      FB.XFBML.parse();
+      //FB.XFBML.parse();
     }
   }
 
