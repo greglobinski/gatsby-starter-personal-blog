@@ -61,6 +61,10 @@ class InfoBox extends React.Component {
   avatarOnClick = featureNavigator.bind(this);
   menulinkOnClick = moveNavigatorAside.bind(this);
 
+  expandOnClick = e => {
+    this.props.setNavigatorShape("closed");
+  };
+
   render() {
     const { classes, parts, pages, navigatorPosition, navigatorShape } = this.props;
     const info = parts.find(el => el.node.frontmatter.title === "info");
@@ -70,7 +74,13 @@ class InfoBox extends React.Component {
         className={`${classes.infoBox} ${navigatorPosition ? navigatorPosition : ""} 
         ${navigatorShape ? navigatorShape : ""}`}
       >
-        {info && <InfoHeader info={info} avatarOnClick={this.avatarOnClick} />}
+        {info && (
+          <InfoHeader
+            info={info}
+            avatarOnClick={this.avatarOnClick}
+            expandOnClick={this.expandOnClick}
+          />
+        )}
         <div className={classes.wrapper}>
           {info && <InfoText info={info} />}
           <SocialIcons />
@@ -88,7 +98,8 @@ InfoBox.propTypes = {
   pages: PropTypes.array.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
   navigatorShape: PropTypes.string.isRequired,
-  isWideScreen: PropTypes.bool.isRequired
+  isWideScreen: PropTypes.bool.isRequired,
+  setNavigatorShape: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {

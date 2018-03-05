@@ -102,7 +102,7 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
             name: `commons`,
             chunks: [`app`, ...components],
             minChunks: (module, count) => {
-              const vendorModuleList = [`material-ui`, `lodash`];
+              const vendorModuleList = []; // [`material-ui`, `lodash`];
               const isFramework = _.some(
                 vendorModuleList.map(vendor => {
                   const regex = new RegExp(`[\\\\/]node_modules[\\\\/]${vendor}[\\\\/].*`, `i`);

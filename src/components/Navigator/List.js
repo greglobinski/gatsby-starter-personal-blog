@@ -54,7 +54,7 @@ class List extends React.Component {
       classes,
       posts,
       linkOnClick,
-      openOnClick,
+      expandOnClick,
       categoryFilter,
       navigatorShape,
       removeFilter
@@ -65,7 +65,7 @@ class List extends React.Component {
         <SpringScrollbars forceCheckOnScroll={true} isNavigator={true}>
           <div className={classes.inner}>
             <ListHeader
-              openOnClick={openOnClick}
+              expandOnClick={expandOnClick}
               categoryFilter={categoryFilter}
               navigatorShape={navigatorShape}
               removeFilter={removeFilter}
@@ -92,7 +92,7 @@ List.propTypes = {
   classes: PropTypes.object.isRequired,
   posts: PropTypes.array.isRequired,
   linkOnClick: PropTypes.func.isRequired,
-  openOnClick: PropTypes.func.isRequired,
+  expandOnClick: PropTypes.func.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
   navigatorShape: PropTypes.string.isRequired,
   categoryFilter: PropTypes.string.isRequired,

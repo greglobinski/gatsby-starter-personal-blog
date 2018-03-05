@@ -75,6 +75,11 @@ const styles = theme => ({
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
       flexDirection: "column"
     }
+  },
+  tooltip: {
+    fontSize: ".9em",
+    padding: ".3em .6em",
+    whiteSpace: "nowrap"
   }
 });
 
@@ -124,7 +129,7 @@ class ActionsBar extends React.Component {
     return (
       <div className={classes.actionsBar}>
         <div className={classes.group}>
-          <IconButton aria-label="Back to list" onClick={this.homeOnClick}>
+          <IconButton aria-label="Back to list" onClick={this.homeOnClick} title="Back to the list">
             <HomeIcon />
           </IconButton>
           {(isWideScreen || navigatorPosition !== "is-aside") && (
@@ -136,6 +141,7 @@ class ActionsBar extends React.Component {
             component={Link}
             data-shape="closed"
             to="/search/"
+            title="Search"
           >
             <SearchIcon />
           </IconButton>
@@ -143,11 +149,15 @@ class ActionsBar extends React.Component {
         <div className={classes.group}>
           {navigatorPosition === "is-aside" && <FontSetter increaseFont={this.fontSetterOnClick} />}
           {screenfull.enabled && (
-            <IconButton aria-label="Fullscreen" onClick={this.fullscreenOnClick}>
+            <IconButton
+              aria-label="Fullscreen"
+              onClick={this.fullscreenOnClick}
+              title="Fullscreen mode"
+            >
               {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
             </IconButton>
           )}
-          <IconButton aria-label="Back to top" onClick={this.arrowUpOnClick}>
+          <IconButton aria-label="Back to top" onClick={this.arrowUpOnClick} title="Scroll to top">
             <ArrowUpwardIcon />
           </IconButton>
         </div>

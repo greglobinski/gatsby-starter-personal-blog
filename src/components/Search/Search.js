@@ -10,21 +10,22 @@ const styles = theme => ({
     marginTop: "-1em",
     "& .ais-SearchBox__wrapper": {
       position: "relative",
-      borderBottom: "1px solid #aaa"
+      borderBottom: "1px solid #aaa",
+      display: "flex",
+      justifyContent: "space-between"
     },
     "& .ais-SearchBox__input": {
       border: "none",
-      //fontFamily: theme.base.fonts.styledFamily, FIXME:
+      fontFamily: theme.base.fonts.styledFamily,
       padding: ".2em",
       fontSize: "1.4em",
-      width: "calc(100% - 100px)"
+      flexGrow: 1
     },
     "& .ais-SearchBox__submit, & .ais-SearchBox__reset": {
       background: "none",
       border: "none",
       fill: "#666",
-      float: "right",
-      margin: ".25em 0 0 .25em"
+      flexGrow: 0
     },
     "& .ais-Stats__root": {
       margin: ".5em 0 2em .3em",
@@ -43,10 +44,10 @@ const styles = theme => ({
         color: "#666",
         fontSize: "1.2em",
         display: "block",
-        padding: ".5em .5em",
+        padding: ".5em .5em 2em",
         [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
           fontSize: "1.3em",
-          padding: ".5em .7em"
+          padding: ".5em .7em 0"
         }
       },
       "& a": {

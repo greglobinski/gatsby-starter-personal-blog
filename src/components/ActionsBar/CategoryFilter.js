@@ -72,6 +72,7 @@ class CategoryFilter extends React.Component {
               aria-owns={anchorEl ? "long-menu" : null}
               aria-haspopup="true"
               onClick={this.handleClick}
+              title="Filter the list by category"
             >
               <FilterListIcon />
             </IconButton>

@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import IconButton from "material-ui/IconButton";
-import CloseIcon from "material-ui-icons/Close";
 
+import CloseIcon from "material-ui-icons/Close";
 import ExpandLessIcon from "material-ui-icons/ExpandLess";
 
 const styles = theme => ({
@@ -15,7 +15,6 @@ const styles = theme => ({
       justifyContent: "space-between",
       alignItems: "center",
       position: "absolute",
-      cursor: "pointer",
       top: 0,
       left: 0,
       width: "100%",
@@ -36,6 +35,9 @@ const styles = theme => ({
         fontWeight: 300,
         letterSpacing: ".2em"
       }
+    },
+    expand: {
+      position: "relative"
     }
   },
   filter: {
@@ -68,7 +70,7 @@ const styles = theme => ({
       }
     }
   },
-  button: {
+  clear: {
     position: "absolute",
     top: 0,
     right: 0
@@ -76,14 +78,21 @@ const styles = theme => ({
 });
 
 const ListHeader = props => {
-  const { classes, openOnClick, categoryFilter, navigatorShape, removeFilter } = props;
+  const { classes, expandOnClick, categoryFilter, navigatorShape, removeFilter } = props;
 
   return (
     <header>
       {navigatorShape === "closed" && (
-        <div className={classes.closed} onClick={openOnClick}>
+        <div className={classes.closed} onClick={expandOnClick}>
           <h3>List of posts</h3>
-          <ExpandLessIcon />
+          <IconButton
+            aria-label="Expand the list"
+            className={classes.expand}
+            onClick={expandOnClick}
+            title="Expand the list"
+          >
+            <ExpandLessIcon />
+          </IconButton>
         </div>
       )}
       {navigatorShape === "open" &&
@@ -92,8 +101,9 @@ const ListHeader = props => {
             <small>Active category filter:</small> <strong>{categoryFilter}</strong>
             <IconButton
               aria-label="Remove filtering"
-              className={classes.button}
+              className={classes.clear}
               onClick={removeFilter}
+              title="Clear filtering"
             >
               <CloseIcon />
             </IconButton>
@@ -105,7 +115,7 @@ const ListHeader = props => {
 
 ListHeader.propTypes = {
   classes: PropTypes.object.isRequired,
-  openOnClick: PropTypes.func.isRequired,
+  expandOnClick: PropTypes.func.isRequired,
   categoryFilter: PropTypes.string.isRequired,
   navigatorShape: PropTypes.string.isRequired,
   removeFilter: PropTypes.func.isRequired

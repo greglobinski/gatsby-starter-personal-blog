@@ -18,23 +18,24 @@ const styles = theme => ({
     letterSpacing: "-0.04em",
     fontWeight: theme.main.fonts.title.weight,
     lineHeight: theme.main.fonts.title.lineHeight,
-    margin: "0",
+    margin: "0 0 0.4em",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      fontSize: `${theme.main.fonts.title.size * theme.main.fonts.title.xSizeM}em`
+      fontSize: `${theme.main.fonts.title.sizeM}em`
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      fontSize: `${theme.main.fonts.title.size * theme.main.fonts.title.xSizeL}em`
+      fontSize: `${theme.main.fonts.title.sizeL}em`,
+      letterSpacing: "-0.05em"
     }
   },
   mark: {
-    width: "110px",
+    width: "130px",
     display: "block",
-    margin: "0 0 0 20px",
+    margin: "0 0 0 10px",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {
-      width: "160px"
+      width: "170px"
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {
-      width: "180px"
+      width: "190px"
     }
   }
 });

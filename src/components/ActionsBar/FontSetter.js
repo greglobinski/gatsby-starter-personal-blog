@@ -73,6 +73,7 @@ class FontSetter extends React.Component {
               aria-owns={anchorEl ? "long-menu" : null}
               aria-haspopup="true"
               onClick={this.handleClick}
+              title="Change font size"
             >
               <FormatSizeIcon />
             </IconButton>

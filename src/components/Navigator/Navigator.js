@@ -102,7 +102,7 @@ const styles = theme => ({
 class Navigator extends React.Component {
   linkOnClick = moveNavigatorAside.bind(this);
 
-  openOnClick = e => {
+  expandOnClick = e => {
     this.props.setNavigatorShape("open");
     setTimeout(forceCheck, 600);
   };
@@ -126,7 +126,7 @@ class Navigator extends React.Component {
             navigatorPosition={navigatorPosition}
             navigatorShape={navigatorShape}
             linkOnClick={this.linkOnClick}
-            openOnClick={this.openOnClick}
+            expandOnClick={this.expandOnClick}
             categoryFilter={categoryFilter}
             removeFilter={this.removefilterOnClick}
           />
@@ -145,7 +145,7 @@ Navigator.propTypes = {
   setNavigatorShape: PropTypes.func.isRequired,
   isWideScreen: PropTypes.bool.isRequired,
   categoryFilter: PropTypes.string.isRequired,
-  setCategoryFilter: PropTypes.string.isRequired
+  setCategoryFilter: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {

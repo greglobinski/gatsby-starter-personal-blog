@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Link from "gatsby-link";
+import IconButton from "material-ui/IconButton";
+
+import ExpandMoreIcon from "material-ui-icons/ExpandMore";
 
 import avatar from "../../images/jpg/avatar.jpg";
 import config from "../../../content/meta/config";
@@ -9,8 +12,7 @@ import config from "../../../content/meta/config";
 const styles = theme => ({
   header: {
     lineHeight: 1,
-    position: "relative",
-    background: "blue"
+    position: "relative"
   },
   avatarLink: {
     willChange: "left, top",
@@ -91,11 +93,16 @@ const styles = theme => ({
         textAlign: "left"
       }
     }
+  },
+  expand: {
+    position: "absolute",
+    top: "30px",
+    right: "-25px"
   }
 });
 
 const InfoHeader = props => {
-  const { classes, avatarOnClick } = props;
+  const { classes, avatarOnClick, expandOnClick } = props;
 
   return (
     <header className={classes.header}>
@@ -108,13 +115,22 @@ const InfoHeader = props => {
         {config.infoTitle.replace(/ /g, "\u00a0")}
         <small>{config.infoTitleNote}</small>
       </h1>
+      <IconButton
+        aria-label="Expand the box"
+        className={classes.expand}
+        onClick={expandOnClick}
+        title="Expand the box"
+      >
+        <ExpandMoreIcon />
+      </IconButton>
     </header>
   );
 };
 
 InfoHeader.propTypes = {
   classes: PropTypes.object.isRequired,
-  avatarOnClick: PropTypes.func.isRequired
+  avatarOnClick: PropTypes.func.isRequired,
+  expandOnClick: PropTypes.func.isRequired
 };
 
 export default injectSheet(styles)(InfoHeader);
