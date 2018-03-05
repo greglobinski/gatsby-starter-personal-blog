@@ -6,7 +6,11 @@ require("core-js/fn/array/find");
 import config from "../../../content/meta/config";
 
 const styles = theme => ({
-  footer: {}
+  postComments: {
+    margin: "3em 0 0",
+    padding: "3em 0 0",
+    borderTop: "1px solid #ddd"
+  }
 });
 
 class PostComments extends React.Component {
@@ -21,9 +25,8 @@ class PostComments extends React.Component {
     const { classes, post, slug } = this.props;
 
     return (
-      <div id="post-comments">
+      <div id="post-comments" className={classes.postComments}>
         <div id="fb-root" />
-        <span className="fb-comments-count" data-href={`${config.siteUrl}${slug}`} />
         <div
           id="fb-comments"
           className="fb-comments"

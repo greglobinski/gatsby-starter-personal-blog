@@ -83,7 +83,7 @@ const ListHeader = props => {
   return (
     <header>
       {navigatorShape === "closed" && (
-        <div className={classes.closed} onClick={expandOnClick}>
+        <div className={classes.closed}>
           <h3>List of posts</h3>
           <IconButton
             aria-label="Expand the list"
