@@ -13,26 +13,44 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "lint-errors": "eslint src/**/*.{js,jsx} --quiet",
     "lint": "eslint src/**/*.{js,jsx}",
-    "favIcon16": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/favicon-16x16.png resize 16",
-    "favIcon32": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/favicon-32x32.png resize 32",
-    "favIcon96": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/favicon-96x96.png resize 96",
-    "icon512": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-512x512.png resize 512",
-    "icon384": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-384x384.png resize 384",
-    "icon256": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-256x256.png resize 256",
-    "icon192": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-192x192.png resize 192",
-    "icon144": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-144x144.png resize 144",
+    "favIcon16":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/favicon-16x16.png resize 16",
+    "favIcon32":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/favicon-32x32.png resize 32",
+    "favIcon96":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/favicon-96x96.png resize 96",
+    "icon512":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-512x512.png resize 512",
+    "icon384":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-384x384.png resize 384",
+    "icon256":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-256x256.png resize 256",
+    "icon192":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-192x192.png resize 192",
+    "icon144":
+      "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-144x144.png resize 144",
     "icon96": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-96x96.png resize 96",
     "icon48": "sharp -i ./src/images/app-icons/icon.png -o ./static/icons/icon-48x48.png resize 48",
-    "appleIcon180": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-180x180.png resize 180",
-    "appleIcon152": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-152x152.png resize 152",
-    "appleIcon144": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-144x144.png resize 144",
-    "appleIcon120": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-120x120.png resize 120",
-    "appleIcon114": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-114x114.png resize 114",
-    "appleIcon76": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-76x76.png resize 76",
-    "appleIcon72": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-72x72.png resize 72",
-    "appleIcon60": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-60x60.png resize 60",
-    "appleIcon57": "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-57x57.png resize 57",
-    "generate-app-icons": "yarn favIcon16 && yarn favIcon32 && yarn favIcon96 && yarn icon512 && yarn icon384 && yarn icon256 && yarn icon192 && yarn icon144 && yarn icon96 && yarn icon48 && yarn appleIcon180 && yarn appleIcon152 && yarn appleIcon144 && yarn appleIcon120 && yarn appleIcon114 && yarn appleIcon76 && yarn appleIcon72 && yarn appleIcon60 && yarn appleIcon57"
+    "appleIcon180":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-180x180.png resize 180",
+    "appleIcon152":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-152x152.png resize 152",
+    "appleIcon144":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-144x144.png resize 144",
+    "appleIcon120":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-120x120.png resize 120",
+    "appleIcon114":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-114x114.png resize 114",
+    "appleIcon76":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-76x76.png resize 76",
+    "appleIcon72":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-72x72.png resize 72",
+    "appleIcon60":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-60x60.png resize 60",
+    "appleIcon57":
+      "sharp -i ./src/images/app-icons/apple-icon.png -o ./static/icons/apple-icon-57x57.png resize 57",
+    "generate-app-icons":
+      "yarn favIcon16 && yarn favIcon32 && yarn favIcon96 && yarn icon512 && yarn icon384 && yarn icon256 && yarn icon192 && yarn icon144 && yarn icon96 && yarn icon48 && yarn appleIcon180 && yarn appleIcon152 && yarn appleIcon144 && yarn appleIcon120 && yarn appleIcon114 && yarn appleIcon76 && yarn appleIcon72 && yarn appleIcon60 && yarn appleIcon57"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
@@ -54,7 +72,7 @@
   },
   "dependencies": {
     "color": "^3.0.0",
-    "gatsby": "1.9.210",
+    "gatsby": "1.9.224",
     "gatsby-image": "^1.0.35",
     "gatsby-link": "^1.6.36",
     "gatsby-plugin-algolia": "^0.0.3",
@@ -71,12 +89,12 @@
     "gatsby-plugin-sitemap": "^1.2.13",
     "gatsby-remark-copy-linked-files": "^1.5.26",
     "gatsby-remark-external-links": "^0.0.4",
-    "gatsby-remark-images": "^1.5.43",
+    "gatsby-remark-images": "^1.5.56",
     "gatsby-remark-prismjs": "^1.2.14",
     "gatsby-remark-responsive-iframe": "^1.4.16",
     "gatsby-remark-smartypants": "^1.4.10",
     "gatsby-source-filesystem": "^1.5.14",
-    "gatsby-transformer-remark": "^1.7.30",
+    "gatsby-transformer-remark": "^1.7.35",
     "gatsby-transformer-sharp": "^1.6.16",
     "material-ui": "1.0.0-beta.36",
     "material-ui-icons": "^1.0.0-beta.17",
