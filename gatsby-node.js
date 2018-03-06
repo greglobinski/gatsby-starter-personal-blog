@@ -57,6 +57,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
         // Create posts and pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
           const slug = edge.node.fields.slug;
+          console.log(slug);
           const isPost = /posts/.test(edge.node.id);
 
           createPage({

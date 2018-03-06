@@ -78,11 +78,8 @@ class Layout extends React.Component {
   render() {
     const { children } = this.props;
 
-    const posts = ((this.props || {}).data || {}).posts.edges;
-    const pages = ((this.props || {}).data || {}).pages.edges;
-    const parts = ((this.props || {}).data || {}).parts.edges;
+    console.log("sdfadsf", this.props.data.posts);
 
-    // TODO: dynamic management of tabindexes for keybord navigation
     return (
       <MuiThemeProvider theme={theme}>
         <div
@@ -97,11 +94,13 @@ class Layout extends React.Component {
           }}
         >
           {children()}
-          <Navigator posts={posts} />
+          <Navigator posts={this.props.data.posts} />
           <ActionsBar categories={this.categories} />
-          <InfoBar pages={pages} parts={parts} />
+          <InfoBar pages={this.props.data.pages} parts={this.props.data.parts} />
           <Seo />
-          {this.props.isWideScreen && <InfoBox pages={pages} parts={parts} />}
+          {this.props.isWideScreen && (
+            <InfoBox pages={this.props.data.pages} parts={this.props.data.parts} />
+          )}
         </div>
       </MuiThemeProvider>
     );
