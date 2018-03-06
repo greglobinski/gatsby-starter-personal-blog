@@ -14,7 +14,7 @@ It uses two packages in beta stage: [gatsby-plugin-algolia](https://github.com/a
 
 The starter uses external services for some functions: contact form, comments, searching, analytics. To use them you have to secure some access data. No worries, all services are free or have generous free tiers big enough for a personal blog.
 
-The starter needs an `.env` file like this:
+The starter needs an `.env` file like this in the root folder
 
 ```
 GOOGLE_ANALYTICS_ID=...
@@ -27,6 +27,6 @@ FB_APP_ID=...
 
 The contact form does not need any settings it should work out of the box if you deploy the website to [Netlify](https://www.netlify.com/)
 
-### Educational project
+### An educational project
 
 This is an educational project. I'm going to write a series of articles describing what, how and why I did. I'm aiming at helping beginners to understand how the code works. So stay tuned. To be in touch follow me at [@greglobinski](https://twitter.com/greglobinski)
