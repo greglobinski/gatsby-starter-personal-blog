@@ -1,7 +1,6 @@
 ---
 title: I may not have gone where I intended to go
 subTitle: But I think I have ended up where I needed to be
-date: "2015-05-01T22:12:03.284Z"
 category: "testimonies"
 cover: photo-1507915600431-5292809c5ab7-cover.jpg
 ---

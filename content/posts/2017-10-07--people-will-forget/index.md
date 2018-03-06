@@ -1,7 +1,6 @@
 ---
 title: People will forget what you said, people will forget what you did
 subTitle: But people will never forget how you made them feel.
-date: "2015-05-06T23:46:37.121Z"
 category: "sayings"
 cover: photo-1489900464632-5f5907edda24-cover.jpg
 ---

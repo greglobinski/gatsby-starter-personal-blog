@@ -76,11 +76,7 @@ class Layout extends React.Component {
   };
 
   render() {
-    const { children } = this.props;
-
-    const posts = ((this.props || {}).data || {}).posts.edges;
-    const pages = ((this.props || {}).data || {}).pages.edges;
-    const parts = ((this.props || {}).data || {}).parts.edges;
+    const { children, data } = this.props;
 
     // TODO: dynamic management of tabindexes for keybord navigation
     return (
@@ -97,11 +93,11 @@ class Layout extends React.Component {
           }}
         >
           {children()}
-          <Navigator posts={posts} />
+          <Navigator posts={data.posts.edges} />
           <ActionsBar categories={this.categories} />
-          <InfoBar pages={pages} parts={parts} />
+          <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
           <Seo />
-          {this.props.isWideScreen && <InfoBox pages={pages} parts={parts} />}
+          {this.props.isWideScreen && <InfoBox pages={data.pages.edges} parts={data.parts.edges} />}
         </div>
       </MuiThemeProvider>
     );
@@ -147,8 +143,6 @@ export const guery = graphql`
             prefix
           }
           frontmatter {
-            path
-            date(formatString: "DD MMMM, YYYY")
             title
             subTitle
             category

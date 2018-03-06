@@ -10,14 +10,12 @@ import Footer from "../components/Footer/";
 
 class PostTemplate extends React.Component {
   render() {
+    const { data, pathContext } = this.props;
+
     return (
       <Main>
-        <Post
-          post={this.props.data.post}
-          slug={this.props.pathContext.slug}
-          author={this.props.data.author}
-        />
-        <Footer footnote={this.props.data.footnote} />
+        <Post post={data.post} slug={pathContext.slug} author={data.author} />
+        <Footer footnote={data.footnote} />
       </Main>
     );
   }
@@ -38,11 +36,11 @@ export const postQuery = graphql`
       html
       fields {
         slug
+        prefix
       }
       frontmatter {
         title
         subTitle
-        date(formatString: "MMMM DD, YYYY")
         cover {
           childImageSharp {
             resize(width: 300) {

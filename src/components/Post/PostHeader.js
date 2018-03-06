@@ -40,13 +40,24 @@ const styles = theme => ({
   }
 });
 
-const PostHeader = ({ classes, title, subTitle, date }) => (
-  <header className={classes.header}>
-    <h1 className={classes.title}>{title}</h1>
-    <h2 className={classes.subTitle}>{subTitle}</h2>
-    <div className={classes.meta}>{date}</div>
-  </header>
-);
+const PostHeader = props => {
+  const { classes, title, subTitle, date } = props;
+
+  function myDate(dateString) {
+    const dateObj = new Date(dateString);
+    const dateToShow = dateObj.toDateString();
+
+    return dateToShow;
+  }
+
+  return (
+    <header className={classes.header}>
+      <h1 className={classes.title}>{title}</h1>
+      <h2 className={classes.subTitle}>{subTitle}</h2>
+      <div className={classes.meta}>{myDate(date)}</div>
+    </header>
+  );
+};
 
 PostHeader.propTypes = {
   classes: PropTypes.object.isRequired,

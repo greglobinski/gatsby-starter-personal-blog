@@ -1,6 +1,5 @@
 ---
 title: I have not failed. I've just found 10,000 ways that won't work
-date: "2015-05-01T22:12:03.284Z"
 category: "testimonies"
 cover: photo-1463852247062-1bbca38f7805-cover.jpg
 ---

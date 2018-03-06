@@ -1,6 +1,5 @@
 ---
 title: I am so clever that sometimes I don't understand a single word of what I am saying
-date: "2015-05-01T22:12:03.284Z"
 category: "testimonies"
 cover: photo-1507124484497-b7f446e65519-cover.jpg
 ---

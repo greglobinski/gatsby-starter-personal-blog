@@ -9,11 +9,14 @@ import PostFooter from "./PostFooter";
 const Post = props => {
   const { post, author, slug } = props;
   const frontmatter = (post || {}).frontmatter;
+  const title = ((post || {}).frontmatter || {}).title;
+  const subTitle = ((post || {}).frontmatter || {}).subTitle;
+  const date = ((post || {}).fields || {}).prefix;
   const html = (post || {}).html;
 
   return (
     <Article>
-      <PostHeader {...frontmatter} />
+      <PostHeader title={title} subTitle={subTitle} date={date} />
       <Content html={html} />
       <PostFooter author={author} post={post} slug={slug} />
     </Article>
