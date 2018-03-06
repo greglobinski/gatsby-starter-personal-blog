@@ -82,16 +82,19 @@ const Search = props => {
 
   return (
     <div className={classes.search}>
-      <InstantSearch
-        appId={algolia.appId}
-        apiKey={algolia.searchOnlyApiKey}
-        indexName={algolia.indexName}
-      >
-        <SearchBox translations={{ placeholder: "Search" }} />
-        <Stats />
-        <Hits hitComponent={Hit} />
-        <Pagination />
-      </InstantSearch>
+      {algolia &&
+        algolia.appId && (
+          <InstantSearch
+            appId={algolia.appId}
+            apiKey={algolia.searchOnlyApiKey}
+            indexName={algolia.indexName}
+          >
+            <SearchBox translations={{ placeholder: "Search" }} />
+            <Stats />
+            <Hits hitComponent={Hit} />
+            <Pagination />
+          </InstantSearch>
+        )}
     </div>
   );
 };

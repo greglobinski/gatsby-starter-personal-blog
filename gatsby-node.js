@@ -1,5 +1,5 @@
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const webpack = require("webpack");
+//const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const _ = require("lodash");
 const Promise = require("bluebird");
 const path = require("path");
@@ -73,25 +73,6 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 };
 
 exports.modifyWebpackConfig = ({ config, stage }) => {
-  // config.removeLoader('url-loader');
-  // config.loader('url-loader', {
-  //   test: /\.(jpg|jpeg|png|gif|mp4|webm|wav|mp3|m4a|aac|oga)(\?.*)?$/,
-  //   loader: 'url',
-  //   query: {
-  //     limit: 10000,
-  //     name: 'static/[name].[hash:8].[ext]',
-  //   },
-  // });
-
-  // config.loader('svgr', {
-  //   test: /\.svg$/,
-  //   include:  new RegExp('svg-icons'),
-  //   loaders: [
-  //     'babel-loader',
-  //     `svgr/webpack`,
-  //   ],
-  // });
-
   switch (stage) {
     case "build-javascript":
       {
@@ -113,15 +94,15 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
             }
           }
         ]);
-        config.plugin("BundleAnalyzerPlugin", BundleAnalyzerPlugin, [
-          {
-            analyzerMode: "static",
-            reportFilename: "./report/treemap.html",
-            openAnalyzer: true,
-            logLevel: "error",
-            defaultSizes: "gzip"
-          }
-        ]);
+        // config.plugin("BundleAnalyzerPlugin", BundleAnalyzerPlugin, [
+        //   {
+        //     analyzerMode: "static",
+        //     reportFilename: "./report/treemap.html",
+        //     openAnalyzer: true,
+        //     logLevel: "error",
+        //     defaultSizes: "gzip"
+        //   }
+        // ]);
       }
       break;
   }
