@@ -8,38 +8,45 @@ import Hit from "./Hit";
 const styles = theme => ({
   search: {
     marginTop: "-1em",
-    "& .ais-SearchBox__wrapper": {
+    "& .ais-SearchBox": {
+      width: "100%"
+    },
+    "& .ais-SearchBox-form": {
       position: "relative",
       borderBottom: "1px solid #aaa",
       display: "flex",
       justifyContent: "space-between"
     },
-    "& .ais-SearchBox__input": {
+    "& .ais-SearchBox-input": {
       border: "none",
       fontFamily: theme.base.fonts.styledFamily,
       padding: ".2em",
       fontSize: "1.4em",
       flexGrow: 1
     },
-    "& .ais-SearchBox__submit, & .ais-SearchBox__reset": {
+    "& .ais-SearchBox-submit, & .ais-SearchBox-reset": {
       background: "none",
       border: "none",
       fill: "#666",
       flexGrow: 0
     },
-    "& .ais-Stats__root": {
+    "& .ais-Stats": {
       margin: ".5em 0 2em .3em",
       fontSize: ".9em",
       color: "#999",
       display: "block"
     },
-    "& .ais-Pagination__root": {
+    "& .ais-Hits-list": {
+      listStyle: "none",
+      padding: 0
+    },
+    "& .ais-Pagination-list": {
       display: "flex",
       listStyle: "none",
       justifyContent: "center",
       padding: 0
     },
-    "& .ais-Pagination__item": {
+    "& .ais-Pagination-item": {
       "& a, & span": {
         color: "#666",
         fontSize: "1.2em",
@@ -55,7 +62,7 @@ const styles = theme => ({
           color: theme.base.colors.accent
         }
       },
-      "&.ais-Pagination__itemFirst, &.ais-Pagination__itemPrevious, &.ais-Pagination__itemNext": {
+      "&.ais-Pagination-item--firstPage, &.ais-Pagination-item--previousPage, &.ais-Pagination-item--nextPage": {
         "& a, & span": {
           padding: ".4em .5em .6em",
           [`@media (min-width: ${theme.mediaQueryTresholds.L}px)`]: {

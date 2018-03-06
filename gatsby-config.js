@@ -4,8 +4,8 @@ const config = require("./content/meta/config");
 const query = `{
   allMarkdownRemark(filter: { id: { regex: "//posts|pages//" } }) {
     edges {
-      node {        
-        objectID: fileAbsolutePath
+      node {
+        objectID: id
         fields {
           slug
         }
