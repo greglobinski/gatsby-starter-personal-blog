@@ -57,7 +57,7 @@ class CategoryFilter extends React.Component {
   };
 
   handleFiltering = e => {
-    const category = e.target.innerText;
+    const category = e.target.innerText.trim();
     this.props.filterCategory(category);
     this.handleClose();
   };
