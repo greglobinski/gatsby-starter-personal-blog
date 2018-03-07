@@ -56,7 +56,7 @@ const StackIcons = props => {
     { name: "react", url: "https://reactjs.org/", comp: ReactIcon },
     { name: "graphql", url: "http://graphql.org/", comp: GraphqlIcon },
     { name: "jss", url: "http://cssinjs.org/", comp: JssIcon },
-    { name: "material-ui", url: "https://reactjs.org", comp: MaterialUiIcon },
+    { name: "material-ui", url: "https://material-ui-next.com/", comp: MaterialUiIcon },
     { name: "redux", url: "https://redux.js.org/", comp: ReduxIcon },
     { name: "algolia", url: "https://www.algolia.com/", comp: AlgoliaIcon },
     { name: "webpack", url: "https://webpack.js.org/", comp: WebpackIcon },
