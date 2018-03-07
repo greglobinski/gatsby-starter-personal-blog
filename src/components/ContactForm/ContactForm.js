@@ -135,7 +135,7 @@ class ContactForm extends React.Component {
           type="submit"
           className={classes.submit}
         >
-          Primary
+          Send
         </Button>
       </ValidatorForm>
     );
