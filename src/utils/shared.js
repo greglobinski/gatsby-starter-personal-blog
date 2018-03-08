@@ -2,7 +2,7 @@ import { forceCheck } from "react-lazyload";
 // import { navigateTo } from 'gatsby-link';
 
 export function featureNavigator(e) {
-  e.preventDefault();
+  e && e.preventDefault();
 
   if (this.props.navigatorPosition === "is-aside") {
     if (this.props.isWideScreen) {
@@ -31,8 +31,8 @@ export function featureNavigator(e) {
 }
 
 export function moveNavigatorAside(e) {
-  const target = e.currentTarget;
-  const dataShape = target.getAttribute("data-shape");
+  const target = e ? e.currentTarget : null;
+  const dataShape = target ? target.getAttribute("data-shape") : null;
   const navigatorShape = dataShape ? dataShape : "open";
 
   if (this.props.navigatorPosition === "is-featured") {

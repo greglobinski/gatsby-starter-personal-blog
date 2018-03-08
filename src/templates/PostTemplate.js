@@ -5,15 +5,17 @@ import { connect } from "react-redux";
 require("core-js/fn/array/find");
 require("prismjs/themes/prism-okaidia.css");
 
-//import Seo from "../components/Other/Seo";
-import { setNavigatorPosition } from "../state/store";
+import { setNavigatorPosition, setNavigatorShape } from "../state/store";
+import { moveNavigatorAside } from "../utils/shared";
 import Post from "../components/Post/";
 import Footer from "../components/Footer/";
 
 class PostTemplate extends React.Component {
-  componentWillMount() {
+  moveNavigatorAside = moveNavigatorAside.bind(this);
+
+  componentDidMount() {
     if (this.props.navigatorPosition === "is-featured") {
-      this.props.setNavigatorPosition("is-aside");
+      this.moveNavigatorAside();
     }
   }
 
@@ -33,17 +35,20 @@ PostTemplate.propTypes = {
   data: PropTypes.object.isRequired,
   pathContext: PropTypes.object.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
-  setNavigatorPosition: PropTypes.func.isRequired
+  setNavigatorPosition: PropTypes.func.isRequired,
+  isWideScreen: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    navigatorPosition: state.navigatorPosition
+    navigatorPosition: state.navigatorPosition,
+    isWideScreen: state.isWideScreen
   };
 };
 
 const mapDispatchToProps = {
-  setNavigatorPosition
+  setNavigatorPosition,
+  setNavigatorShape
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostTemplate);
