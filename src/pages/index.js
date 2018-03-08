@@ -14,14 +14,6 @@ class Index extends React.Component {
     }
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      if (this.props.navigatorPosition !== "is-featured") {
-        this.props.setNavigatorPosition("is-featured");
-      }
-    }, 1000);
-  }
-
   render() {
     return <div />;
   }

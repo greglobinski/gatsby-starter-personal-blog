@@ -40,12 +40,16 @@ export function moveNavigatorAside(e) {
       this.props.setNavigatorPosition("moving-aside");
 
       setTimeout(() => {
-        this.props.setNavigatorPosition("resizing-aside");
-        this.props.setNavigatorShape(navigatorShape);
-        setTimeout(() => {
-          this.props.setNavigatorPosition("is-aside");
-          setTimeout(forceCheck, 600);
-        });
+        if (typeof window !== `undefined`) {
+          if (window.location.pathname !== "/") {
+            this.props.setNavigatorPosition("resizing-aside");
+            this.props.setNavigatorShape(navigatorShape);
+            setTimeout(() => {
+              this.props.setNavigatorPosition("is-aside");
+              setTimeout(forceCheck, 600);
+            });
+          }
+        }
       }, 1000);
     } else {
       setTimeout(() => {
