@@ -1,11 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
+import { setNavigatorPosition } from "../state/store";
 import Main from "../components/Main/";
 import Page from "../components/Page/";
 import Footer from "../components/Footer/";
 
 class PageTemplate extends React.Component {
+  componentWillMount() {
+    if (this.props.navigatorPosition === "is-featured") {
+      this.props.setNavigatorPosition("is-aside");
+    }
+  }
+
   render() {
     const { data } = this.props;
 
@@ -19,10 +27,22 @@ class PageTemplate extends React.Component {
 }
 
 PageTemplate.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  navigatorPosition: PropTypes.string.isRequired,
+  setNavigatorPosition: PropTypes.func.isRequired
 };
 
-export default PageTemplate;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    navigatorPosition: state.navigatorPosition
+  };
+};
+
+const mapDispatchToProps = {
+  setNavigatorPosition
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageTemplate);
 
 //eslint-disable-next-line no-undef
 export const pageQuery = graphql`

@@ -1,14 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Main from "../components/Main/";
+import { connect } from "react-redux";
 require("core-js/fn/array/find");
 require("prismjs/themes/prism-okaidia.css");
 
 //import Seo from "../components/Other/Seo";
+import { setNavigatorPosition } from "../state/store";
 import Post from "../components/Post/";
 import Footer from "../components/Footer/";
 
 class PostTemplate extends React.Component {
+  componentWillMount() {
+    if (this.props.navigatorPosition === "is-featured") {
+      this.props.setNavigatorPosition("is-aside");
+    }
+  }
+
   render() {
     const { data, pathContext } = this.props;
 
@@ -23,10 +31,22 @@ class PostTemplate extends React.Component {
 
 PostTemplate.propTypes = {
   data: PropTypes.object.isRequired,
-  pathContext: PropTypes.object.isRequired
+  pathContext: PropTypes.object.isRequired,
+  navigatorPosition: PropTypes.string.isRequired,
+  setNavigatorPosition: PropTypes.func.isRequired
 };
 
-export default PostTemplate;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    navigatorPosition: state.navigatorPosition
+  };
+};
+
+const mapDispatchToProps = {
+  setNavigatorPosition
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostTemplate);
 
 //eslint-disable-next-line no-undef
 export const postQuery = graphql`
