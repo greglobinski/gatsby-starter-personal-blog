@@ -3,12 +3,13 @@ const colors = require("../../src/styles/colors");
 module.exports = {
   pathPrefix: "",
   appName: "PersonalBlog",
-  siteTitle: "PersonalBlog - a blog GatsbyJs starter",
   homeTitle: "Personal blog",
-  siteUrl: "https://silly-mcclintock-36e6bf.netlify.com",
+  siteTitle: "PersonalBlog - a blog GatsbyJS starter",
+  siteDescription: "PersonalBlog is a GatsbyJs starter.",
+  siteUrl: "https://gatsby-starter-personal-blog.greglobinski.com",
   siteImage: "preview.jpg",
   siteLanguage: "en",
-  siteDescription: "PersonalBlog is a GatsbyJs starter.",
+  siteRss: "/rss.xml",
   // author
   authorName: "greg lobinski",
   // info

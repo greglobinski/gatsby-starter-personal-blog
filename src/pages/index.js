@@ -14,6 +14,14 @@ class Index extends React.Component {
     }
   }
 
+  componentDidMount() {
+    setTimeout(() => {
+      if (this.props.navigatorPosition !== "is-featured") {
+        this.props.setNavigatorPosition("is-featured");
+      }
+    }, 1000);
+  }
+
   render() {
     return <div />;
   }
@@ -22,9 +30,7 @@ class Index extends React.Component {
 Index.propTypes = {
   navigatorPosition: PropTypes.string.isRequired,
   setNavigatorPosition: PropTypes.func.isRequired,
-  isWideScreen: PropTypes.bool.isRequired,
-  indexEntry: PropTypes.bool.isRequired,
-  setIndexEntry: PropTypes.func.isRequired
+  isWideScreen: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
