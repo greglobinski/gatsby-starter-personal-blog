@@ -4,6 +4,7 @@
   "author": "Greg Lobinski <greglobinski@gmail.com>",
   "repository": "https://github.com/greglobinski/gatsby-starter-personal-blog",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
     "develop-host": "gatsby develop --host 192.168.0.112",
