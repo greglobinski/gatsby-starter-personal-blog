@@ -11,7 +11,6 @@ import { setFontSizeIncrease, setIsWideScreen } from "../state/store";
 
 import asyncComponent from "../components/common/AsyncComponent/";
 import Loading from "../components/common/Loading/";
-import Seo from "../components/common/Seo";
 import Navigator from "../components/Navigator/";
 import ActionsBar from "../components/ActionsBar/";
 import InfoBar from "../components/InfoBar/";
@@ -96,7 +95,6 @@ class Layout extends React.Component {
           <Navigator posts={data.posts.edges} />
           <ActionsBar categories={this.categories} />
           <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
-          <Seo />
           {this.props.isWideScreen && <InfoBox pages={data.pages.edges} parts={data.parts.edges} />}
         </div>
       </MuiThemeProvider>

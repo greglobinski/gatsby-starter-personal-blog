@@ -9,6 +9,7 @@ import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { moveNavigatorAside } from "../utils/shared";
 import Post from "../components/Post/";
 import Footer from "../components/Footer/";
+import Seo from "../components/Seo";
 
 class PostTemplate extends React.Component {
   moveNavigatorAside = moveNavigatorAside.bind(this);
@@ -21,11 +22,13 @@ class PostTemplate extends React.Component {
 
   render() {
     const { data, pathContext } = this.props;
+    const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
 
     return (
       <Main>
         <Post post={data.post} slug={pathContext.slug} author={data.author} />
         <Footer footnote={data.footnote} />
+        <Seo data={data.post} facebook={facebook} />
       </Main>
     );
   }
@@ -82,6 +85,13 @@ export const postQuery = graphql`
     footnote: markdownRemark(id: { regex: "/footnote/" }) {
       id
       html
+    }
+    site {
+      siteMetadata {
+        facebook {
+          appId
+        }
+      }
     }
   }
 `;

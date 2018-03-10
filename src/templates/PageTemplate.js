@@ -7,6 +7,7 @@ import { moveNavigatorAside } from "../utils/shared";
 import Main from "../components/Main/";
 import Page from "../components/Page/";
 import Footer from "../components/Footer/";
+import Seo from "../components/Seo";
 
 class PageTemplate extends React.Component {
   moveNavigatorAside = moveNavigatorAside.bind(this);
@@ -19,11 +20,13 @@ class PageTemplate extends React.Component {
 
   render() {
     const { data } = this.props;
+    const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
 
     return (
       <Main>
         <Page page={data.page} />
         <Footer footnote={data.footnote} />
+        <Seo data={data.post} facebook={facebook} />
       </Main>
     );
   }
@@ -63,6 +66,13 @@ export const pageQuery = graphql`
     footnote: markdownRemark(id: { regex: "/footnote/" }) {
       id
       html
+    }
+    site {
+      siteMetadata {
+        facebook {
+          appId
+        }
+      }
     }
   }
 `;
