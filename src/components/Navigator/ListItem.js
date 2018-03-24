@@ -124,7 +124,7 @@ class ListItem extends React.Component {
       const category = this.props.post.node.frontmatter.category;
       const categoryFilter = this.props.categoryFilter;
 
-      if (categoryFilter === "all posts" && this.state.hidden) {
+      if (categoryFilter === "all posts") {
         this.setState({ hidden: false });
       } else if (category !== categoryFilter) {
         this.setState({ hidden: true });
