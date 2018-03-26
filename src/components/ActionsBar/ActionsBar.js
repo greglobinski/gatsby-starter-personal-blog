@@ -124,7 +124,7 @@ class ActionsBar extends React.Component {
   };
 
   render() {
-    const { classes, navigatorPosition, isWideScreen, categories } = this.props;
+    const { classes, navigatorPosition, navigatorShape, isWideScreen, categories } = this.props;
 
     return (
       <div className={classes.actionsBar}>
@@ -132,7 +132,7 @@ class ActionsBar extends React.Component {
           <IconButton aria-label="Back to list" onClick={this.homeOnClick} title="Back to the list">
             <HomeIcon />
           </IconButton>
-          {(isWideScreen || navigatorPosition !== "is-aside") && (
+          {((isWideScreen && navigatorShape === "open") || navigatorPosition !== "is-aside") && (
             <CategoryFilter categories={categories} filterCategory={this.categoryFilterOnClick} />
           )}
           <IconButton
@@ -169,6 +169,7 @@ class ActionsBar extends React.Component {
 ActionsBar.propTypes = {
   classes: PropTypes.object.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
+  navigatorShape: PropTypes.string.isRequired,
   isWideScreen: PropTypes.bool.isRequired,
   setScrollToTop: PropTypes.func.isRequired,
   setFontSizeIncrease: PropTypes.func.isRequired,
@@ -180,6 +181,7 @@ ActionsBar.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   return {
     navigatorPosition: state.navigatorPosition,
+    navigatorShape: state.navigatorShape,
     isWideScreen: state.isWideScreen,
     categoryFilter: state.categoryFilter
   };
