@@ -12,6 +12,7 @@ export function featureNavigator(e) {
         this.props.setNavigatorPosition("resizing-featured");
         setTimeout(() => {
           this.props.setNavigatorPosition("is-featured");
+          this.props.setNavigatorShape("open");
 
           // uncomment following lines if you want to count featuring Navigator as a visit
           // to index page ('/'), you have to also uncomment import { navigateTo }...
