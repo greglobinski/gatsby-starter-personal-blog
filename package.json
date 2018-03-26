@@ -3,7 +3,7 @@
   "description": "A Gatsby starter for a personal blog",
   "author": "Greg Lobinski <greglobinski@gmail.com>",
   "repository": "https://github.com/greglobinski/gatsby-starter-personal-blog",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
