@@ -9,17 +9,6 @@ import ExpandLessIcon from "material-ui-icons/ExpandLess";
 const styles = theme => ({
   closed: {
     display: "none",
-    zIndex: 99,
-    background: theme.base.colors.background,
-    "&::after": {
-      content: `""`,
-      position: "absolute",
-      top: 0,
-      left: theme.base.sizes.linesMargin,
-      right: theme.base.sizes.linesMargin,
-      height: 0,
-      borderTop: `1px solid ${theme.base.colors.lines}`
-    },
     ".is-aside.closed &, .moving-featured.closed &": {
       display: "flex",
       flexDirection: "row",
@@ -106,7 +95,8 @@ const ListHeader = props => {
           </IconButton>
         </div>
       )}
-      {categoryFilter !== "all posts" && (
+      {navigatorShape === "open" &&
+        categoryFilter !== "all posts" && (
           <div className={classes.filter}>
             <small>Active category filter:</small> <strong>{categoryFilter}</strong>
             <IconButton
