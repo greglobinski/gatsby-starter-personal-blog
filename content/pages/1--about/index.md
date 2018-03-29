@@ -34,7 +34,7 @@ The starter is a ready to use, easy to customize 'like theme' starter. It has ev
 
 ## Instructions
 
-For step by step instructions go to [Greg for Gatsby](https://forgatsby.greglobinski.com/gatsby-starter-personal-blog/)
+For detailed instructions go to [Greg for Gatsby](https://forgatsby.greglobinski.com/gatsby-starter-personal-blog/).
 
 ## About me
 
