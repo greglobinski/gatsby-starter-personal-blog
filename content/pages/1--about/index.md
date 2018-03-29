@@ -32,6 +32,10 @@ The starter is a ready to use, easy to customize 'like theme' starter. It has ev
 * Webpack `BundleAnalyzerPlugin`
 * Contact **form validation** (react-material-ui-form-validator)
 
+## Instructions
+
+For step by step instructions go to [Greg for Gatsby](https://forgatsby.greglobinski.com/gatsby-starter-personal-blog/)
+
 ## About me
 
 My name is **Greg**. I am a front-end web developer. I love working with [GatsbyJs](https://www.gatsbyjs.org/). I love the UX it delivers out of the box for the end users and DX it provides to me as a developer. I decided to share the love by contributing in this way, sharing my code as starters. I hope somebody find that useful.

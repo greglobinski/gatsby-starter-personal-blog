@@ -1,9 +1,8 @@
 const colors = require("../../src/styles/colors");
 
 module.exports = {
-  homeTitle: "Personal blog",
-  siteTitle: "PersonalBlog - a blog starter for GatsbyJS",
-  shortSiteTitle: "PersonalBlog GatsbyJS Starter",
+  siteTitle: "PersonalBlog - a blog starter for GatsbyJS", // <title>
+  shortSiteTitle: "PersonalBlog GatsbyJS Starter", // <title> ending for posts and pages
   siteDescription: "PersonalBlog is a GatsbyJS starter.",
   siteUrl: "https://gatsby-starter-personal-blog.greglobinski.com",
   pathPrefix: "",
