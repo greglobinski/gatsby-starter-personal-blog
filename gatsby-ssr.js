@@ -48,11 +48,6 @@ exports.onRenderBody = ({ setHeadComponents }) => {
 exports.onRenderBody = ({ setPostBodyComponents }) => {
   return setPostBodyComponents([
     <div key="fb-root" id="fb-root" />,
-    <link
-      key={`webfontsloader-load`}
-      href="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"
-      as="script"
-    />,
     <script
       key={`webfontsloader-setup`}
       dangerouslySetInnerHTML={{
