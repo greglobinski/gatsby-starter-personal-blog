@@ -1,5 +1,5 @@
 module.exports = {
-  bg: "#ffffff",
+  background: "#ffffff",
   white: "#ffffff",
   accent: "#709425",
   bright: "#ffffff",

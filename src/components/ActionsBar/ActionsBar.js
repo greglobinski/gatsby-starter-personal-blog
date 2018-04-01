@@ -76,10 +76,8 @@ const styles = theme => ({
       flexDirection: "column"
     }
   },
-  tooltip: {
-    fontSize: ".9em",
-    padding: ".3em .6em",
-    whiteSpace: "nowrap"
+  button: {
+    color: theme.bars.colors.icon
   }
 });
 
@@ -129,7 +127,12 @@ class ActionsBar extends React.Component {
     return (
       <div className={classes.actionsBar}>
         <div className={classes.group}>
-          <IconButton aria-label="Back to list" onClick={this.homeOnClick} title="Back to the list">
+          <IconButton
+            aria-label="Back to list"
+            onClick={this.homeOnClick}
+            title="Back to the list"
+            className={classes.button}
+          >
             <HomeIcon />
           </IconButton>
           {((isWideScreen && navigatorShape === "open") || navigatorPosition !== "is-aside") && (
@@ -142,8 +145,9 @@ class ActionsBar extends React.Component {
             data-shape="closed"
             to="/search/"
             title="Search"
+            className={classes.button}
           >
-            <SearchIcon />
+            <SearchIcon className={classes.button} />
           </IconButton>
         </div>
         <div className={classes.group}>
@@ -153,12 +157,13 @@ class ActionsBar extends React.Component {
               aria-label="Fullscreen"
               onClick={this.fullscreenOnClick}
               title="Fullscreen mode"
+              className={classes.button}
             >
               {this.state.fullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
             </IconButton>
           )}
           <IconButton aria-label="Back to top" onClick={this.arrowUpOnClick} title="Scroll to top">
-            <ArrowUpwardIcon />
+            <ArrowUpwardIcon className={classes.button} />
           </IconButton>
         </div>
       </div>

@@ -327,7 +327,7 @@ export default {
       "-moz-text-size-adjust": "none",
       "-ms-text-size-adjust": "100%",
       fontFamily: theme.base.fonts.unstyledFamily,
-      background: theme.base.background,
+      background: theme.base.colors.background,
       lineHeight: "1.15",
       textSizeAdjust: "100%"
     },

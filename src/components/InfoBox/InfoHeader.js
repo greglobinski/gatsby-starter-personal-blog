@@ -99,6 +99,7 @@ const styles = theme => ({
     top: "30px",
     right: "-25px",
     display: "none",
+    color: theme.info.colors.text,
     ".is-aside.open &": {
       display: "block"
     }

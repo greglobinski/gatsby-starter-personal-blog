@@ -6,7 +6,7 @@ const colors = require("./colors");
 const theme = createMuiTheme({
   base: {
     colors: {
-      background: colors.white,
+      background: colors.background,
       text: colors.dark,
       link: colors.accent,
       linkHover: Color(colors.accent)

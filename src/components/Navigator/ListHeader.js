@@ -35,10 +35,10 @@ const styles = theme => ({
         fontWeight: 300,
         letterSpacing: ".2em"
       }
-    },
-    expand: {
-      position: "relative"
     }
+  },
+  expand: {
+    color: theme.navigator.colors.postsHeader
   },
   filter: {
     margin: `0 calc(-.5rem + ${theme.base.sizes.linesMargin}) 1em calc(-.5rem + ${

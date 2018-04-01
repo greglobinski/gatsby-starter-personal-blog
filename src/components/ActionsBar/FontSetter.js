@@ -14,15 +14,8 @@ const styles = theme => ({
   fontSizeSetter: {
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {}
   },
-  buttonRoot: {
-    "&:hover": {
-      background: "rgba(0, 0, 0, 0.04)"
-    }
-  },
-  buttonLabel: {
-    textTransform: "none",
-    fontSize: "1.4em",
-    color: "#777"
+  open: {
+    color: theme.bars.colors.icon
   },
   popperClose: {
     pointerEvents: "none"
@@ -74,6 +67,7 @@ class FontSetter extends React.Component {
               aria-haspopup="true"
               onClick={this.handleClick}
               title="Change font size"
+              className={classes.open}
             >
               <FormatSizeIcon />
             </IconButton>
