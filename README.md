@@ -29,4 +29,4 @@ The contact form does not need any settings it should work out of the box if you
 
 ### An educational project
 
-This is an educational project. I'm going to write a series of articles describing what, how and why I did. I'm aiming at helping beginners to understand how the code works. So stay tuned. To be in touch follow me at [@greglobinski](https://twitter.com/greglobinski)
+This is an educational project. I'm going to write a series of articles describing what, how and why I did. I'm aiming at helping beginners to understand how the code works. If you are interested visit [Greg for Gatsby](https://forgatsby.greglobinski.com/gatsby-starter-personal-blog/). To be in touch follow me at [@greglobinski](https://twitter.com/greglobinski)
