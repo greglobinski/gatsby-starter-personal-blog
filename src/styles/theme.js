@@ -27,7 +27,7 @@ const theme = createMuiTheme({
   info: {
     colors: {
       text: colors.gray,
-      background: colors.white,
+      background: colors.background,
       socialIcons: colors.lightGray,
       socialIconsHover: colors.accent,
       menuLink: colors.gray,
@@ -45,7 +45,7 @@ const theme = createMuiTheme({
   },
   navigator: {
     colors: {
-      background: colors.white,
+      background: colors.background,
       postsListItemLink: colors.gray,
       postsListItemLinkHover: colors.accent,
       postsHeader: colors.gray
@@ -60,7 +60,7 @@ const theme = createMuiTheme({
   },
   main: {
     colors: {
-      background: colors.white,
+      background: colors.background,
       title: colors.gray,
       subTitle: colors.gray,
       meta: colors.gray,
@@ -131,7 +131,8 @@ const theme = createMuiTheme({
   },
   bars: {
     colors: {
-      background: colors.white
+      background: colors.background,
+      icon: colors.bright
     },
     sizes: {
       actionsBar: 60,
@@ -144,7 +145,7 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: "#709425"
+      main: colors.accent
     }
   },
   typography: {
