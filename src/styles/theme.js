@@ -131,7 +131,7 @@ const theme = createMuiTheme({
   bars: {
     colors: {
       background: colors.background,
-      icon: colors.bright,
+      icon: colors.gray,
       text: colors.gray
     },
     sizes: {
