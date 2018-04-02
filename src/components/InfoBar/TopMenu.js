@@ -16,15 +16,8 @@ const styles = theme => ({
     margin: "5px 10px 0 0",
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {}
   },
-  buttonRoot: {
-    "&:hover": {
-      background: "rgba(0, 0, 0, 0.04)"
-    }
-  },
-  buttonLabel: {
-    textTransform: "none",
-    fontSize: "1.4em",
-    color: "#777"
+  open: {
+    color: theme.bars.colors.icon
   },
   popperClose: {
     pointerEvents: "none"
@@ -68,6 +61,7 @@ class TopMenu extends React.Component {
               aria-owns={anchorEl ? "long-menu" : null}
               aria-haspopup="true"
               onClick={this.handleClick}
+              className={classes.open}
             >
               <MoreVertIcon />
             </IconButton>
