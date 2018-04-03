@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 
-import AlgoliaIcon from "../../images/svg-icons/algolia-full.svg";
+import { ReactComponent as AlgoliaIcon } from "../../images/svg-icons/algolia-full.svg";
 
 const styles = theme => ({
   header: {
