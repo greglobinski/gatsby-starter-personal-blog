@@ -4896,9 +4896,9 @@ gatsby-plugin-feed@^1.3.20:
     pify "^3.0.0"
     rss "^1.2.2"
 
-gatsby-plugin-google-analytics@^1.0.27:
-  version "1.0.27"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-1.0.27.tgz#d040baffb3f74eeb236d4b6ce7020925c921ab1c"
+gatsby-plugin-google-analytics@^1.0.28:
+  version "1.0.28"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-1.0.28.tgz#b5070e53bd39331b34bb9d8cf1cf24c680b4c60a"
   dependencies:
     babel-runtime "^6.26.0"
 
@@ -5038,9 +5038,9 @@ gatsby-remark-smartypants@^1.4.10:
     retext-smartypants "^2.0.0"
     unist-util-visit "^1.1.1"
 
-gatsby-source-filesystem@^1.5.27:
-  version "1.5.27"
-  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-1.5.27.tgz#0063e9e4c87f9172a1a08296d1c4c27d03f97d01"
+gatsby-source-filesystem@^1.5.28:
+  version "1.5.28"
+  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-1.5.28.tgz#4fe2452e425d5e39233f6892983291e3282cac6c"
   dependencies:
     babel-cli "^6.26.0"
     babel-runtime "^6.26.0"
