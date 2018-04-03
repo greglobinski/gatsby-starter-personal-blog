@@ -26,7 +26,7 @@ class PostTemplate extends React.Component {
 
     return (
       <Main>
-        <Post post={data.post} slug={pathContext.slug} author={data.author} />
+        <Post post={data.post} slug={pathContext.slug} author={data.author} facebook={facebook} />
         <Footer footnote={data.footnote} />
         <Seo data={data.post} facebook={facebook} />
       </Main>
