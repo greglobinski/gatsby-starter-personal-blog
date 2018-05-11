@@ -8,7 +8,6 @@ import PostFooter from "./PostFooter";
 
 const Post = props => {
   const { post, author, slug, facebook } = props;
-  const frontmatter = (post || {}).frontmatter;
   const title = ((post || {}).frontmatter || {}).title;
   const subTitle = ((post || {}).frontmatter || {}).subTitle;
   const date = ((post || {}).fields || {}).prefix;
