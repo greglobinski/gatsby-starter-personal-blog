@@ -1,6 +1,7 @@
 # PersonalBlog starter for Gatsby
 
 [DEMO website](https://gatsby-starter-personal-blog.greglobinski.com/)
+___
 
 More details soon. For now a couple of annotations.
 
