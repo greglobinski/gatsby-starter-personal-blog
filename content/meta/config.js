@@ -21,6 +21,8 @@ module.exports = {
   manifestBackgroundColor: colors.background,
   manifestThemeColor: colors.background,
   manifestDisplay: "standalone",
+  // contact
+  contactEmail: "john@doe.com",
   // social
   authorSocialLinks: [
     { name: "github", url: "https://github.com/greglobinski" },
