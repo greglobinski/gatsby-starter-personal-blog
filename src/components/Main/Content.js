@@ -20,10 +20,8 @@ const styles = theme => ({
     "& .gatsby-resp-iframe-wrapper": {
       margin: "2em 0"
     },
-    "& code.language-text": {
-      background: "#f3f3f3",
+    "& code:not(pre)": {
       textShadow: "none",
-      color: "#333",
       padding: ".1em .3em .2em",
       borderRadius: ".1em"
     },
