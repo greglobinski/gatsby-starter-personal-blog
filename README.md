@@ -3,6 +3,7 @@
 # PersonalBlog starter for Gatsby
 
 [DEMO website](https://gatsby-starter-personal-blog.greglobinski.com/)
+___
 
 More details soon. For now a couple of annotations.
 
@@ -18,7 +19,7 @@ The starter uses external services for some functions: contact form, comments, s
 
 The starter needs an `.env` file like this in the root folder
 
-```
+```text
 GOOGLE_ANALYTICS_ID=...
 ALGOLIA_APP_ID=...
 ALGOLIA_SEARCH_ONLY_API_KEY=...

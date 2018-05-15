@@ -18,9 +18,11 @@ module.exports = {
   manifestName: "PersonalBlog - a blog starter for GatsbyJS",
   manifestShortName: "PersonalBlog", // max 12 characters
   manifestStartUrl: "/",
-  manifestBackgroundColor: colors.bg,
-  manifestThemeColor: colors.bg,
+  manifestBackgroundColor: colors.background,
+  manifestThemeColor: colors.background,
   manifestDisplay: "standalone",
+  // contact
+  contactEmail: "john@doe.com",
   // social
   authorSocialLinks: [
     { name: "github", url: "https://github.com/greglobinski" },
