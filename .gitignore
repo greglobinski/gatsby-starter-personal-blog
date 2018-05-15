@@ -59,7 +59,7 @@ typings/
 
 .cache/
 .DS_Store
-public
+/public
 yarn-error.log
 
 # editors
