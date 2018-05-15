@@ -1,23 +1,91 @@
+# PersonalLanding
+
+A GatsbyJS personal blog starter. <br /><br />
+
+[![GitHub tag](https://img.shields.io/github/tag/greglobinski/gatsby-starter-personal-blog.svg)](https://github.com/greglobinski/gatsby-starter-personal-blog)
+[![GitHub issues](https://img.shields.io/github/issues/greglobinski/gatsby-starter-personal-blog.svg)](https://github.com/greglobinski/gatsby-starter-personal-blog/issues)
+[![GitHub stars](https://img.shields.io/github/stars/greglobinski/gatsby-starter-personal-blog.svg)](https://github.com/greglobinski/gatsby-starter-personal-blog/stargazers)
+[![GitHub license](https://img.shields.io/github/license/greglobinski/gatsby-starter-personal-blog.svg)](https://github.com/greglobinski/gatsby-starter-personal-blog/blob/master/LICENSE)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![GitHub contributors](https://img.shields.io/github/contributors/greglobinski/gatsby-starter-personal-blog.svg)
 
-# PersonalBlog starter for Gatsby
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/greglobinski/gatsby-starter-personal-blog.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fgreglobinski%2Fgatsby-starter-personal-blog)
 
-[DEMO website](https://gatsby-starter-personal-blog.greglobinski.com/)
-___
+  <br />
 
-More details soon. For now a couple of annotations.
+![](static/screens/screen.png) <br />
 
-The starter is ready to play with. You should to know at least two things.
+  <br />
 
-### Packages in beta
+See the starter in action » [demo website](https://gatsby-starter-personal-blog.greglobinski.com/) <br />
+For more information visit » [dev.greglobinski.com/gatsby-starter-personal-blog](https://dev.greglobinski.com/gatsby-starter-personal-blog/)
 
-It uses two packages in beta stage: [gatsby-plugin-algolia](https://github.com/algolia/gatsby-plugin-algolia) and [material-ui-next](https://material-ui-next.com/)
+## Description
 
-### External services
+A ready to use, easy to customize [GatsbyJS](https://github.com/gatsbyjs/gatsby) personal blog starter with 'like app' layout transitions.
 
-The starter uses external services for some functions: contact form, comments, searching, analytics. To use them you have to secure some access data. No worries, all services are free or have generous free tiers big enough for a personal blog.
+## Features:
 
-The starter needs an `.env` file like this in the root folder
+* Customizable
+* Easy editable content in Markdown files (posts, pages and parts)
+* Easily restyled through theme object
+* Styling with JSS
+* Comments (Facebook)
+* Post categories
+* Post list filtering
+* Full text searching (Algolia)
+* Contact form (Netlify form handling)
+* Material UI (@next)
+* RSS feed
+* Full screen mode
+* User adjustable articles’ body copy font size
+* Social sharing (Twitter, Facebook, Google, LinkedIn)
+* PWA (manifes.json, offline support, favicons)
+* Google Analytics
+* Favicons generator (node script)
+* Components leazy loading with AsyncComponent (social sharing, info box)
+* ESLint (google config)
+* Prettier code styling
+* Custom webpack CommonsChunkPlugin settings
+* Webpack BundleAnalyzerPlugin
+
+## Prerequisites
+
+If you do not have Gatsby Cli installed yet, do it first.
+
+```text
+npm install --global gatsby-cli
+```
+
+More information on [GatsbyJS.org](https://www.gatsbyjs.org/tutorial/part-one)
+
+## Getting started
+
+Install the starter using Gatsby Cli `gatsby new` command.
+
+```text
+gatsby new [NEW_SITE_DIRECTORY_FOR_YOUR_BLOG] https://github.com/greglobinski/gatsby-starter-simple-landing.git
+```
+
+Go into the newly created directory and run
+
+```text
+gatsby develop
+```
+
+to hot-serve your website on http://localhost:8000 or
+
+```text
+gatsby build
+```
+
+to create static site ready to host (/public).
+
+##### External services
+
+The starter uses external services for some functions: comments, searching, analytics. To use them you have to secure some access data. All services are free to use or have generous free tiers big enough for a personal blog.
+
+Create an `.env` file like below in the root folder. Change `...` placeholders with real data.
 
 ```text
 GOOGLE_ANALYTICS_ID=...
@@ -28,11 +96,16 @@ ALGOLIA_INDEX_NAME=...
 FB_APP_ID=...
 ```
 
-The contact form does not need any settings it should work out of the box if you deploy the website to [Netlify](https://www.netlify.com/)
+##### Packages in beta stage
 
-### An educational project
+The starter uses two third party packages still in beta stage: [gatsby-plugin-algolia](https://github.com/algolia/gatsby-plugin-algolia) and [material-ui-next](https://material-ui-next.com/)
 
-This is an educational project. I'm going to write a series of articles describing what, how and why I did. I'm aiming at helping beginners to understand how the code works. If you are interested visit [Greg for Gatsby](https://forgatsby.greglobinski.com/gatsby-starter-personal-blog/). To be in touch follow me at [@greglobinski](https://twitter.com/greglobinski)
+### Instructions & tutorials
+
+* [How to install, setup and add new content to the personalBlog starter](https://dev.greglobinski.com/install-personal-blog-starter/)
+* [How to customize the personalBlog starter's appearance](https://dev.greglobinski.com/customize-personal-blog-starter/)
+* [Setup Algolia account for your GatsbyJS blog](https://dev.greglobinski.com/setup-algolia-account/)
+* [more](https://dev.greglobinski.com/install-personal-blog-starter/)
 
 ## Authors
 

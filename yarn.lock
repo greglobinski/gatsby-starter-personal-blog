@@ -9738,7 +9738,7 @@ react-loadable-visibility@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/react-loadable-visibility/-/react-loadable-visibility-2.4.2.tgz#c83daf9a5abb41248bc20f60a3c5cbbbeef901ce"
 
-react-material-ui-form-validator@^2.0.0-beta.4:
+react-material-ui-form-validator@2.0.0-beta.4:
   version "2.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/react-material-ui-form-validator/-/react-material-ui-form-validator-2.0.0-beta.4.tgz#53928c6c0118f864c69bfcc4863086ece0c9e0f0"
   dependencies:
