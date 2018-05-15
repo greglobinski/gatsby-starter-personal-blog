@@ -75,7 +75,7 @@
     "react-redux": "^5.0.6",
     "react-share": "^2.1.1",
     "rebound": "^0.1.0",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "screenfull": "^3.3.2"
   }
