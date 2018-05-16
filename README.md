@@ -102,7 +102,7 @@ The starter uses two third party packages still in beta stage: [gatsby-plugin-al
 * [How to install, setup and add new content to the personalBlog starter](https://dev.greglobinski.com/install-personal-blog-starter/)
 * [How to customize the personalBlog starter's appearance](https://dev.greglobinski.com/customize-personal-blog-starter/)
 * [Setup Algolia account for your GatsbyJS blog](https://dev.greglobinski.com/setup-algolia-account/)
-* [more](https://dev.greglobinski.com/install-personal-blog-starter/)
+* More articles soon at [Front-end web development with Greg](https://dev.greglobinski.com/install-personal-blog-starter/)
 
 ## Authors
 
