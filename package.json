@@ -59,6 +59,7 @@
     "gatsby-source-filesystem": "^1.5.35",
     "gatsby-transformer-remark": "^1.7.41",
     "gatsby-transformer-sharp": "^1.6.24",
+    "hoek": "4.2.1",
     "instantsearch.css": "^7.1.0",
     "material-ui": "1.0.0-beta.36",
     "material-ui-icons": "^1.0.0-beta.17",
