@@ -1,6 +1,6 @@
 # PersonalBlog
 
-A GatsbyJS personal blog starter. <br /><br />
+A [GatsbyJS](https://www.gatsbyjs.org/) personal blog starter. <br /><br />
 
 [![GitHub tag](https://img.shields.io/github/tag/greglobinski/gatsby-starter-personal-blog.svg)](https://github.com/greglobinski/gatsby-starter-personal-blog)
 [![GitHub stars](https://img.shields.io/github/stars/greglobinski/gatsby-starter-personal-blog.svg)](https://github.com/greglobinski/gatsby-starter-personal-blog/stargazers)
@@ -61,7 +61,7 @@ More information on [GatsbyJS.org](https://www.gatsbyjs.org/tutorial/part-one)
 Install the starter using Gatsby Cli `gatsby new` command.
 
 ```text
-gatsby new [NEW_SITE_DIRECTORY_FOR_YOUR_BLOG] https://github.com/greglobinski/gatsby-starter-simple-landing.git
+gatsby new [NEW_SITE_DIRECTORY_FOR_YOUR_BLOG] https://github.com/greglobinski/gatsby-starter-personal-blog.git
 ```
 
 Go into the newly created directory and run
