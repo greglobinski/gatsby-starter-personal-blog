@@ -11,7 +11,7 @@ A GatsbyJS personal blog starter. <br /><br />
 
   <br />
 
-![](static/screens/screen.png) <br />
+![](static/screens/gatsby-starter-personal-blog.gif) <br />
 
   <br />
 
