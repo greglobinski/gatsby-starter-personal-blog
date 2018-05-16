@@ -1,5 +1,6 @@
 ---
 title: Setup Algolia account for your GatsbyJS blog
+subTitle: Free Community Plan
 cover: photo-1507915600431-5292809c5ab7-cover.jpg
 ---
 
