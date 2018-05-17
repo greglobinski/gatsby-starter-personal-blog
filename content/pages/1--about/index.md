@@ -25,7 +25,7 @@ The starter is a ready to use, easy to customize 'like theme' starter. It has ev
 ### Advanced features:
 
 * Easy customizable base **styles** via `theme` object (fonts, colors, sizes)
-* **Components** leazy loading (social sharing, comments)
+* **Components** lazy loading (social sharing, comments)
 * **ESLint** (google config)
 * **Prettier** code styling
 * Custom webpack `CommonsChunkPlugin` settings
