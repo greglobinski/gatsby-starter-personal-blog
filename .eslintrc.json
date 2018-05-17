@@ -38,7 +38,8 @@
     "no-unused-vars": "warn",
     "prefer-destructuring": "off",
     "prettier/prettier": ["error"],
-    "react/jsx-uses-vars": "error"
+    "react/jsx-uses-vars": "error",
+    "react/no-deprecated": "off"
   },
   "overrides": [
     {
