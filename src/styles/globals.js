@@ -366,7 +366,6 @@ export default {
       background: "transparent",
       textDecorationSkip: "objects",
       fontWeight: "bold",
-      display: "inline-block",
       textDecoration: "none",
       transition: "0.3s"
     },
