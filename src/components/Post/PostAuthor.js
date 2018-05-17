@@ -15,7 +15,6 @@ const styles = theme => ({
     flexDirection: "column",
     alignItems: "center",
     "& a": {
-      borderBottom: `1px solid ${theme.base.colors.link}`,
       color: theme.base.colors.link
     },
     [`@media (min-width: ${theme.mediaQueryTresholds.M}px)`]: {

@@ -11,7 +11,6 @@ const styles = theme => ({
     fontSize: props => `calc(${theme.main.fonts.content.size}em * ${props.fontSizeIncrease})`,
     lineHeight: theme.main.fonts.content.lineHeight,
     "& a": {
-      borderBottom: `1px solid ${theme.base.colors.link}`,
       color: theme.base.colors.link
     },
     "& .gatsby-highlight": {
