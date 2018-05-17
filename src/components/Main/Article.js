@@ -14,16 +14,7 @@ const styles = theme => ({
     "& a": {
       fontWeight: "bold",
       letterSpacing: "-.02em",
-      textShadow: `
-           2px  2px ${theme.main.colors.background},
-          -2px  2px ${theme.main.colors.background},
-          -2px -2px ${theme.main.colors.background},
-          -2px  2px ${theme.main.colors.background},
-          -2px  0   ${theme.main.colors.background},
-           2px  0   ${theme.main.colors.background}
-        `,
-      display: "inline-block",
-      textDecoration: "none",
+      textDecoration: "underline",
       transition: "0.3s",
       "&:hover": {
         color: theme.base.colors.linkHover
