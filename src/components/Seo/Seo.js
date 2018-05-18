@@ -7,7 +7,7 @@ const Seo = props => {
   const { data, facebook } = props;
   const postTitle = ((data || {}).frontmatter || {}).title;
   const postDescription = ((data || {}).frontmatter || {}).description;
-  const postCover = ((data || {}).frontmatter || {}).cover;
+  const postCover = ((data || {}).frontmatter || {}).cover.childImageSharp.resize.src;
   const postSlug = ((data || {}).fields || {}).slug;
 
   const title = postTitle ? `${postTitle} - ${config.shortSiteTitle}` : config.siteTitle;
