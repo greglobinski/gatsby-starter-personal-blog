@@ -198,9 +198,9 @@ module.exports = {
                     node {
                       excerpt
                       html
-                      fields { 
+                      fields {
                         slug
-                        prefix 
+                        prefix
                       }
                       frontmatter {
                         title

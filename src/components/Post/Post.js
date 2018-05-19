@@ -20,12 +20,16 @@ const Post = props => {
   const title = ((post || {}).frontmatter || {}).title;
   const subTitle = ((post || {}).frontmatter || {}).subTitle;
   const date = ((post || {}).fields || {}).prefix;
+  const html = (post || {}).html;
   const htmlAst = (post || {}).htmlAst;
+
+  //console.log(htmlAst);
 
   return (
     <Article>
       <PostHeader title={title} subTitle={subTitle} date={date} />
-      <Content>{renderAst(post.htmlAst)}</Content>
+      {/* <Content html={html} /> */}
+      <Content>{renderAst(htmlAst)}</Content>
       <PostFooter author={author} post={post} slug={slug} facebook={facebook} />
     </Article>
   );
