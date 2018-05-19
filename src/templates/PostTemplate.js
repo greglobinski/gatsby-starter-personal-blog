@@ -61,7 +61,7 @@ export const postQuery = graphql`
   query PostBySlug($slug: String!) {
     post: markdownRemark(fields: { slug: { eq: $slug } }) {
       id
-      html
+      htmlAst
       fields {
         slug
         prefix

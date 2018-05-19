@@ -6,18 +6,26 @@ import PostHeader from "./PostHeader";
 import Content from "../Main/Content";
 import PostFooter from "./PostFooter";
 
+import rehypeReact from "rehype-react";
+import Counter from "../Counter";
+
+const renderAst = new rehypeReact({
+  createElement: React.createElement,
+  components: { "interactive-counter": Counter }
+}).Compiler;
+
 const Post = props => {
   const { post, author, slug, facebook } = props;
   const frontmatter = (post || {}).frontmatter;
   const title = ((post || {}).frontmatter || {}).title;
   const subTitle = ((post || {}).frontmatter || {}).subTitle;
   const date = ((post || {}).fields || {}).prefix;
-  const html = (post || {}).html;
+  const htmlAst = (post || {}).htmlAst;
 
   return (
     <Article>
       <PostHeader title={title} subTitle={subTitle} date={date} />
-      <Content html={html} />
+      <Content>{renderAst(post.htmlAst)}</Content>
       <PostFooter author={author} post={post} slug={slug} facebook={facebook} />
     </Article>
   );
