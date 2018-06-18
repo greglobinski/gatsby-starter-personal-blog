@@ -1,7 +1,7 @@
 import React from "react";
 import injectSheet from "react-jss";
 import PropTypes from "prop-types";
-import Avatar from "material-ui/Avatar";
+import Avatar from "@material-ui/core/Avatar";
 import Link from "gatsby-link";
 import { connect } from "react-redux";
 
@@ -98,4 +98,7 @@ const mapDispatchToProps = {
   setNavigatorPosition
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(InfoBar));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectSheet(styles)(InfoBar));

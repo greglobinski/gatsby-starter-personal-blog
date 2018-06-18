@@ -1,6 +1,6 @@
 import React from "react";
 import injectSheet from "react-jss";
-import { MuiThemeProvider } from "material-ui/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -124,7 +124,10 @@ const mapDispatchToProps = {
   setFontSizeIncrease
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(globals)(Layout));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectSheet(globals)(Layout));
 
 //eslint-disable-next-line no-undef
 export const guery = graphql`

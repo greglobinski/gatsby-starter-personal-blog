@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Link from "gatsby-link";
-import IconButton from "material-ui/IconButton";
+import IconButton from "@material-ui/core/IconButton";
 
-import ExpandMoreIcon from "material-ui-icons/ExpandMore";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import avatar from "../../images/jpg/avatar.jpg";
 import config from "../../../content/meta/config";

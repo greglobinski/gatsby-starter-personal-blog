@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import IconButton from "material-ui/IconButton";
+import IconButton from "@material-ui/core/IconButton";
 
 import Link from "gatsby-link";
 import { connect } from "react-redux";
 import screenfull from "screenfull";
 
-import HomeIcon from "material-ui-icons/Home";
-import SearchIcon from "material-ui-icons/Search";
-import ArrowUpwardIcon from "material-ui-icons/ArrowUpward";
-import FullscreenIcon from "material-ui-icons/Fullscreen";
-import FullscreenExitIcon from "material-ui-icons/FullscreenExit";
+import HomeIcon from "@material-ui/icons/Home";
+import SearchIcon from "@material-ui/icons/Search";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
+import FullscreenIcon from "@material-ui/icons/Fullscreen";
+import FullscreenExitIcon from "@material-ui/icons/FullscreenExit";
 
 import {
   setNavigatorPosition,
@@ -200,4 +200,7 @@ const mapDispatchToProps = {
   setCategoryFilter
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(ActionsBar));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectSheet(styles)(ActionsBar));

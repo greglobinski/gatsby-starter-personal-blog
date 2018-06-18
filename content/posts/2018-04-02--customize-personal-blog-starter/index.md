@@ -6,8 +6,6 @@ cover: photo-1463852247062-1bbca38f7805-cover.jpg
 
 The [starter](/gatsby-starter-personal-blog/) uses a theme object so base customization is really easy.
 
-<interactive-counter initialvalue="10"></interactive-counter>
-
 Find the `theme.js` file.
 
 ```text

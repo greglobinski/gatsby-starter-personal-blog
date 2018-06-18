@@ -1,6 +1,6 @@
 import React from "react";
 import { JssProvider, SheetsRegistry } from "react-jss";
-import { MuiThemeProvider, createGenerateClassName } from "material-ui/styles";
+import { MuiThemeProvider, createGenerateClassName } from "@material-ui/core/styles";
 import { renderToString } from "react-dom/server";
 import { Provider } from "react-redux";
 require("dotenv").config();

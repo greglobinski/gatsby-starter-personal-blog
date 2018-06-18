@@ -1,14 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import { MenuItem, MenuList } from "material-ui/Menu";
-import IconButton from "material-ui/IconButton";
+import PropTypes from "prop-types";
+import React from "react";
+
+//import { MenuItem, MenuList } from "@material-ui/core/Menu";
 import { Manager, Target, Popper } from "react-popper";
-import ClickAwayListener from "material-ui/utils/ClickAwayListener";
-import Grow from "material-ui/transitions/Grow";
-import Paper from "material-ui/Paper";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
 import classNames from "classnames";
-import FormatSizeIcon from "material-ui-icons/FormatSize";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import IconButton from "@material-ui/core/IconButton";
+import FormatSizeIcon from "@material-ui/icons/FormatSize";
 
 const styles = theme => ({
   fontSizeSetter: {
