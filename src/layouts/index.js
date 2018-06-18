@@ -4,6 +4,8 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import withRoot from "../withRoot";
+
 import theme from "../styles/theme";
 import globals from "../styles/globals";
 
@@ -80,15 +82,13 @@ class Layout extends React.Component {
 
     // TODO: dynamic management of tabindexes for keybord navigation
     return (
-      <MuiThemeProvider theme={theme}>
-        <LayoutWrapper>
-          {children()}
-          <Navigator posts={data.posts.edges} />
-          <ActionsBar categories={this.categories} />
-          <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
-          {this.props.isWideScreen && <InfoBox pages={data.pages.edges} parts={data.parts.edges} />}
-        </LayoutWrapper>
-      </MuiThemeProvider>
+      <LayoutWrapper>
+        {children()}
+        <Navigator posts={data.posts.edges} />
+        <ActionsBar categories={this.categories} />
+        <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
+        {this.props.isWideScreen && <InfoBox pages={data.pages.edges} parts={data.parts.edges} />}
+      </LayoutWrapper>
     );
   }
 }
@@ -118,7 +118,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(injectSheet(globals)(Layout));
+)(withRoot(injectSheet(globals)(Layout)));
 
 //eslint-disable-next-line no-undef
 export const guery = graphql`
