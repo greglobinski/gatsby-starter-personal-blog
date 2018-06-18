@@ -25,28 +25,28 @@ A ready to use, easy to customize [GatsbyJS](https://github.com/gatsbyjs/gatsby)
 
 ## Features:
 
-* Customizable
-* Easy editable content in Markdown files (posts, pages and parts)
-* Easily restyled through theme object
-* Styling with JSS
-* Comments (Facebook)
-* Post categories
-* Post list filtering
-* Full text searching (Algolia)
-* Contact form (Netlify form handling)
-* Material UI (@next)
-* RSS feed
-* Full screen mode
-* User adjustable articles’ body copy font size
-* Social sharing (Twitter, Facebook, Google, LinkedIn)
-* PWA (manifes.json, offline support, favicons)
-* Google Analytics
-* Favicons generator (node script)
-* Components lazy loading with AsyncComponent (social sharing, info box)
-* ESLint (google config)
-* Prettier code styling
-* Custom webpack CommonsChunkPlugin settings
-* Webpack BundleAnalyzerPlugin
+- Customizable
+- Easy editable content in Markdown files (posts, pages and parts)
+- Easily restyled through theme object
+- Styling with JSS
+- Comments (Facebook)
+- Post categories
+- Post list filtering
+- Full text searching (Algolia)
+- Contact form (Netlify form handling)
+- Material UI (@next)
+- RSS feed
+- Full screen mode
+- User adjustable articles’ body copy font size
+- Social sharing (Twitter, Facebook, Google, LinkedIn)
+- PWA (manifes.json, offline support, favicons)
+- Google Analytics
+- Favicons generator (node script)
+- Components lazy loading with AsyncComponent (social sharing, info box)
+- ESLint (google config)
+- Prettier code styling
+- Custom webpack CommonsChunkPlugin settings
+- Webpack BundleAnalyzerPlugin
 
 ## Prerequisites
 
@@ -95,30 +95,26 @@ ALGOLIA_INDEX_NAME=...
 FB_APP_ID=...
 ```
 
-##### Packages in beta stage
-
-The starter uses two third party packages still in beta stage: [gatsby-plugin-algolia](https://github.com/algolia/gatsby-plugin-algolia) and [material-ui-next](https://material-ui-next.com/)
-
 ### Instructions & tutorials
 
-* [How to install, setup and add new content to a Blog starter](https://dev.greglobinski.com/install-blog-starter/)
-* [How to customize the PersonalBlog starter's appearance](https://dev.greglobinski.com/customize-personal-blog-starter/)
-* [Setup Algolia account for your GatsbyJS blog](https://dev.greglobinski.com/setup-algolia-account/)
-* More articles soon at [Front-end web development with Greg](https://dev.greglobinski.com/install-personal-blog-starter/)
+- [How to install, setup and add new content to a Blog starter](https://dev.greglobinski.com/install-blog-starter/)
+- [How to customize the PersonalBlog starter's appearance](https://dev.greglobinski.com/customize-personal-blog-starter/)
+- [Setup Algolia account for your GatsbyJS blog](https://dev.greglobinski.com/setup-algolia-account/)
+- More articles soon at [Front-end web development with Greg](https://dev.greglobinski.com/install-personal-blog-starter/)
 
 ## Authors
 
-* Greg Lobinski [@greglobinski](https://github.com/greglobinski)
+- Greg Lobinski [@greglobinski](https://github.com/greglobinski)
 
 See also the list of [contributors](https://github.com/greglobinski/gatsby-starter-personal-blog/graphs/contributors) who participated in this project.
 
 ## Contributing
 
-* Fork the repo
-* Create your feature branch (git checkout -b feature/fooBar)
-* Commit your changes (git commit -am 'Add some fooBar')
-* Push to the branch (git push origin feature/fooBar)
-* Create a new Pull Request
+- Fork the repo
+- Create your feature branch (git checkout -b feature/fooBar)
+- Commit your changes (git commit -am 'Add some fooBar')
+- Push to the branch (git push origin feature/fooBar)
+- Create a new Pull Request
 
 ## Licence
 
