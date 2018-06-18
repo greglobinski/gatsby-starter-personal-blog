@@ -2,16 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 
-import { ReactComponent as AlgoliaIcon } from "../../images/svg-icons/algolia.svg";
-import { ReactComponent as ReactIcon } from "../../images/svg-icons/react.svg";
-import { ReactComponent as GraphqlIcon } from "../../images/svg-icons/graphql.svg";
-import { ReactComponent as JssIcon } from "../../images/svg-icons/jss.svg";
-import { ReactComponent as MaterialUiIcon } from "../../images/svg-icons/material-ui.svg";
-import { ReactComponent as ReduxIcon } from "../../images/svg-icons/redux.svg";
-import { ReactComponent as GatsbyIcon } from "../../images/svg-icons/gatsby.svg";
-import { ReactComponent as WebpackIcon } from "../../images/svg-icons/webpack.svg";
-import { ReactComponent as BabelIcon } from "../../images/svg-icons/babel.svg";
-import { ReactComponent as NetlifyIcon } from "../../images/svg-icons/netlify.svg";
+import AlgoliaIcon from "!svg-react-loader!../../images/svg-icons/algolia.svg?name=AlgoliaIcon";
+import ReactIcon from "!svg-react-loader!../../images/svg-icons/react.svg?name=ReactIcon";
+import GraphqlIcon from "!svg-react-loader!../../images/svg-icons/graphql.svg?name=GraphqlIcon";
+import JssIcon from "!svg-react-loader!../../images/svg-icons/jss.svg?name=JssIcon";
+import MaterialUiIcon from "!svg-react-loader!../../images/svg-icons/material-ui.svg?name=MaterialUiIcon";
+import ReduxIcon from "!svg-react-loader!../../images/svg-icons/redux.svg?name=ReduxIcon";
+import GatsbyIcon from "!svg-react-loader!../../images/svg-icons/gatsby.svg?name=GatsbyIcon";
+import WebpackIcon from "!svg-react-loader!../../images/svg-icons/webpack.svg?name=WebpackIcon";
+import BabelIcon from "!svg-react-loader!../../images/svg-icons/babel.svg?name=BabelIcon";
+import NetlifyIcon from "!svg-react-loader!../../images/svg-icons/netlify.svg?name=NetlifyIcon";
 
 const styles = theme => ({
   stack: {
