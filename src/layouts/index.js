@@ -14,6 +14,7 @@ import Loading from "../components/common/Loading/";
 import Navigator from "../components/Navigator/";
 import ActionsBar from "../components/ActionsBar/";
 import InfoBar from "../components/InfoBar/";
+import LayoutWrapper from "../components/LayoutWrapper/";
 
 import { isWideScreen, timeoutThrottlerHandler } from "../utils/helpers";
 
@@ -80,23 +81,13 @@ class Layout extends React.Component {
     // TODO: dynamic management of tabindexes for keybord navigation
     return (
       <MuiThemeProvider theme={theme}>
-        <div
-          style={{
-            padding: "1px",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            overflow: "hidden"
-          }}
-        >
+        <LayoutWrapper>
           {children()}
           <Navigator posts={data.posts.edges} />
           <ActionsBar categories={this.categories} />
           <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
           {this.props.isWideScreen && <InfoBox pages={data.pages.edges} parts={data.parts.edges} />}
-        </div>
+        </LayoutWrapper>
       </MuiThemeProvider>
     );
   }
