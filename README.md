@@ -102,6 +102,10 @@ FB_APP_ID=...
 - [Setup Algolia account for your GatsbyJS blog](https://dev.greglobinski.com/setup-algolia-account/)
 - More articles soon at [Front-end web development with Greg](https://dev.greglobinski.com/install-personal-blog-starter/)
 
+## Windows users
+
+You should take a look at this: [Gatsby on Windows](https://www.gatsbyjs.org/docs/gatsby-on-windows/)
+
 ## Authors
 
 - Greg Lobinski [@greglobinski](https://github.com/greglobinski)
