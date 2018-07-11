@@ -44,8 +44,11 @@ const PostHeader = props => {
   const { classes, title, subTitle, date } = props;
 
   function myDate(dateString) {
-    const dateObj = new Date(dateString);
-    const dateToShow = dateObj.toDateString();
+    const dateObj = new Date(dateString).toUTCString();
+    const dateToShow = dateObj
+      .split(" ")
+      .slice(0, 4)
+      .join(" ");
 
     return dateToShow;
   }
