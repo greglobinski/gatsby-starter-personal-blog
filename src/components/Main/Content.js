@@ -19,11 +19,6 @@ const styles = theme => ({
     "& .gatsby-resp-iframe-wrapper": {
       margin: "2em 0"
     },
-    "& code:not(pre)": {
-      textShadow: "none",
-      padding: ".1em .3em .2em",
-      borderRadius: ".1em"
-    },
     "& .gatsby-resp-image-link": {
       margin: "2em -1.5rem",
       border: "none",
