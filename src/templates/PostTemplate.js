@@ -22,27 +22,15 @@ class PostTemplate extends React.Component {
   }
 
   render() {
-    const { pathContext } = this.props;
+    const { data, pathContext } = this.props;
+    const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
 
     return (
-      <StaticQuery
-        query={postQuery}
-        render={data => {
-          const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
-          return (
-            <Main>
-              <Post
-                post={data.post}
-                slug={pathContext.slug}
-                author={data.author}
-                facebook={facebook}
-              />
-              <Footer footnote={data.footnote} />
-              <Seo data={data.post} facebook={facebook} />
-            </Main>
-          );
-        }}
-      />
+      <Main>
+        <Post post={data.post} slug={pathContext.slug} author={data.author} facebook={facebook} />
+        <Footer footnote={data.footnote} />
+        <Seo data={data.post} facebook={facebook} />
+      </Main>
     );
   }
 }
