@@ -9,7 +9,8 @@ import getPageContext from "./src/getPageContext";
 import createStore from "./src/state/store";
 import theme from "./src/styles/theme";
 
-exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) => {
+export default {
+  replaceRenderer({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) {
   const pageContext = getPageContext();
   const store = createStore();
 
@@ -36,13 +37,11 @@ exports.replaceRenderer = ({ bodyComponent, replaceBodyHTMLString, setHeadCompon
       dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
     />
   ]);
-};
-
-exports.onRenderBody = ({ setHeadComponents }) => {
+},
+onRenderBody ({ setHeadComponents }) {
   return setHeadComponents([]);
-};
-
-exports.onRenderBody = ({ setPostBodyComponents }) => {
+},
+onRenderBody ({ setPostBodyComponents }) {
   return setPostBodyComponents([
     <script
       key={`webfontsloader-setup`}
@@ -63,4 +62,5 @@ exports.onRenderBody = ({ setPostBodyComponents }) => {
       }}
     />
   ]);
-};
+}
+}
