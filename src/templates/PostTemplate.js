@@ -10,6 +10,7 @@ import { moveNavigatorAside } from "../utils/shared";
 import Post from "../components/Post/";
 import Footer from "../components/Footer/";
 import Seo from "../components/Seo";
+import { StaticQuery, graphql } from "gatsby";
 
 class PostTemplate extends React.Component {
   moveNavigatorAside = moveNavigatorAside.bind(this);
@@ -21,15 +22,27 @@ class PostTemplate extends React.Component {
   }
 
   render() {
-    const { data, pathContext } = this.props;
-    const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
+    const { pathContext } = this.props;
 
     return (
-      <Main>
-        <Post post={data.post} slug={pathContext.slug} author={data.author} facebook={facebook} />
-        <Footer footnote={data.footnote} />
-        <Seo data={data.post} facebook={facebook} />
-      </Main>
+      <StaticQuery
+        query={postQuery}
+        render={data => {
+          const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
+          return (
+            <Main>
+              <Post
+                post={data.post}
+                slug={pathContext.slug}
+                author={data.author}
+                facebook={facebook}
+              />
+              <Footer footnote={data.footnote} />
+              <Seo data={data.post} facebook={facebook} />
+            </Main>
+          );
+        }}
+      />
     );
   }
 }
@@ -54,7 +67,10 @@ const mapDispatchToProps = {
   setNavigatorShape
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostTemplate);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PostTemplate);
 
 //eslint-disable-next-line no-undef
 export const postQuery = graphql`

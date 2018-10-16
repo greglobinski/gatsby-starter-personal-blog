@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import IconButton from "@material-ui/core/IconButton";
 
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 import { connect } from "react-redux";
 import screenfull from "screenfull";
 

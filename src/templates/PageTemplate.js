@@ -8,6 +8,7 @@ import Main from "../components/Main/";
 import Page from "../components/Page/";
 import Footer from "../components/Footer/";
 import Seo from "../components/Seo";
+import { StaticQuery, graphql } from "gatsby";
 
 class PageTemplate extends React.Component {
   moveNavigatorAside = moveNavigatorAside.bind(this);

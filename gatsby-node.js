@@ -6,7 +6,7 @@ const path = require("path");
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const { store } = require(`./node_modules/gatsby/dist/redux`);
 
-export default {
+module.exports = {
   onCreateNode({ node, getNode, boundActionCreators }) {
     const { createNodeField } = boundActionCreators;
     if (node.internal.type === `MarkdownRemark`) {
@@ -54,9 +54,13 @@ export default {
             console.log(result.errors);
             reject(result.errors);
           }
+          const { data } = result || {};
+          const { allMarkdownRemark } = data || {};
+          const { edges } = allMarkdownRemark || [];
+          if (!edges || !edges.length <= 0) return reject(new Error("Invalid query/data."));
 
           // Create posts and pages.
-          _.each(result.data.allMarkdownRemark.edges, edge => {
+          edges.forEach(edge => {
             const slug = edge.node.fields.slug;
             const isPost = /posts/.test(edge.node.id);
 
@@ -74,31 +78,48 @@ export default {
   },
 
   onCreateWebpackConfig({ stage, rules, loaders, plugins, actions }) {
-    let components = store.getState().pages.map(page => page.componentChunkName);
-    components = _.uniq(components);
-    plugins.unshift([
-      "CommonsChunkPlugin",
-      webpack.optimize.CommonsChunkPlugin,
-      [
-        {
-          name: `commons`,
-          chunks: [`app`, ...components],
-          minChunks: (module, count) => {
-            const vendorModuleList = []; // [`material-ui`, `lodash`];
-            const isFramework = _.some(
-              vendorModuleList.map(vendor => {
-                const regex = new RegExp(`[\\\\/]node_modules[\\\\/]${vendor}[\\\\/].*`, `i`);
-                return regex.test(module.resource);
-              })
-            );
-            return isFramework || count > 1;
-          }
-        }
-      ]
-    ]);
+    // console.log("store.getState() keys", _.keysIn(store.getState()));
+    // console.log("store.getState()", Array.from(store.getState().pages.keys()));
+    // console.log("store.getState()", store.getState().pages);
+
+    // let components = store.getState().pages.map(page => page.componentChunkName);
+    // let components = Array.from(store.getState().pages.values()).map(
+    //   page => page.componentChunkName
+    // );
+    // components = _.uniq(components);
+    // plugins.unshift([
+    //   "CommonsChunkPlugin",
+    //   webpack.optimize.CommonsChunkPlugin,
+    //   [
+    //     {
+    //       name: `commons`,
+    //       chunks: [`app`, ...components],
+    //       minChunks: (module, count) => {
+    //         const vendorModuleList = []; // [`material-ui`, `lodash`];
+    //         const isFramework = _.some(
+    //           vendorModuleList.map(vendor => {
+    //             const regex = new RegExp(`[\\\\/]node_modules[\\\\/]${vendor}[\\\\/].*`, `i`);
+    //             return regex.test(module.resource);
+    //           })
+    //         );
+    //         return isFramework || count > 1;
+    //       }
+    //     }
+    //   ]
+    // ]);
 
     actions.setWebpackConfig({
-      plugins
+      optimization: {
+        splitChunks: {
+          cacheGroups: {
+            commons: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendor",
+              chunks: "all"
+            }
+          }
+        }
+      }
     });
   },
 

@@ -1,6 +1,6 @@
 import React from "react";
 import injectSheet from "react-jss";
-import { MuiThemeProvider } from "@material-ui/core/styles";
+// import { MuiThemeProvider } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -19,6 +19,68 @@ import InfoBar from "../components/InfoBar/";
 import LayoutWrapper from "../components/LayoutWrapper/";
 
 import { isWideScreen, timeoutThrottlerHandler } from "../utils/helpers";
+
+import { StaticQuery, graphql } from "gatsby";
+
+const query = graphql`
+  query LayoutQuery {
+    posts: allMarkdownRemark(
+      filter: { id: { regex: "//posts//" } }
+      sort: { fields: [fields___prefix], order: DESC }
+    ) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+            prefix
+          }
+          frontmatter {
+            title
+            subTitle
+            category
+            cover {
+              children {
+                ... on ImageSharp {
+                  resolutions(width: 90, height: 90) {
+                    ...GatsbyImageSharpResolutions_withWebp_noBase64
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    pages: allMarkdownRemark(
+      filter: { id: { regex: "//pages//" }, fields: { prefix: { regex: "/^\\d+$/" } } }
+      sort: { fields: [fields___prefix], order: ASC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+            prefix
+          }
+          frontmatter {
+            title
+            menuTitle
+          }
+        }
+      }
+    }
+    parts: allMarkdownRemark(filter: { id: { regex: "//parts//" } }) {
+      edges {
+        node {
+          html
+          frontmatter {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
 
 const InfoBox = asyncComponent(
   () =>
@@ -84,17 +146,24 @@ class Layout extends React.Component {
   };
 
   render() {
-    const { children, data } = this.props;
+    const { children } = this.props;
 
     // TODO: dynamic management of tabindexes for keybord navigation
     return (
-      <LayoutWrapper>
-        {children}
-        <Navigator posts={data.posts.edges} />
-        <ActionsBar categories={this.categories} />
-        <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
-        {this.props.isWideScreen && <InfoBox pages={data.pages.edges} parts={data.parts.edges} />}
-      </LayoutWrapper>
+      <StaticQuery
+        query={query}
+        render={data => (
+          <LayoutWrapper>
+            {children}
+            <Navigator posts={data.posts.edges} />
+            <ActionsBar categories={this.categories} />
+            <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
+            {this.props.isWideScreen && (
+              <InfoBox pages={data.pages.edges} parts={data.parts.edges} />
+            )}
+          </LayoutWrapper>
+        )}
+      />
     );
   }
 }
@@ -125,64 +194,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(withRoot(injectSheet(globals)(Layout)));
-
-//eslint-disable-next-line no-undef
-export const guery = graphql`
-  query LayoutQuery {
-    posts: allMarkdownRemark(
-      filter: { id: { regex: "//posts//" } }
-      sort: { fields: [fields___prefix], order: DESC }
-    ) {
-      edges {
-        node {
-          excerpt
-          fields {
-            slug
-            prefix
-          }
-          frontmatter {
-            title
-            subTitle
-            category
-            cover {
-              children {
-                ... on ImageSharp {
-                  resolutions(width: 90, height: 90) {
-                    ...GatsbyImageSharpResolutions_withWebp_noBase64
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    pages: allMarkdownRemark(
-      filter: { id: { regex: "//pages//" }, fields: { prefix: { regex: "/^\\d+$/" } } }
-      sort: { fields: [fields___prefix], order: ASC }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-            prefix
-          }
-          frontmatter {
-            title
-            menuTitle
-          }
-        }
-      }
-    }
-    parts: allMarkdownRemark(filter: { id: { regex: "//parts//" } }) {
-      edges {
-        node {
-          html
-          frontmatter {
-            title
-          }
-        }
-      }
-    }
-  }
-`;

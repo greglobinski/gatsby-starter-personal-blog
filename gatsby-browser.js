@@ -28,4 +28,4 @@ export default {
 
     return ConnectedRouterWrapper;
   }
-}
+};

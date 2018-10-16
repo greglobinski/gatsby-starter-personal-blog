@@ -6,6 +6,7 @@ import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { featureNavigator } from "../utils/shared";
 import Seo from "../components/Seo";
 import Layout from "../components/layout";
+import { StaticQuery, graphql } from "gatsby";
 
 class Index extends React.Component {
   featureNavigator = featureNavigator.bind(this);
@@ -17,15 +18,20 @@ class Index extends React.Component {
   }
 
   render() {
-    const { data } = this.props;
-    const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
-
     return (
-      <Layout location={this.props.location}>
-        <div>
-          <Seo facebook={facebook} />
-        </div>
-      </Layout>
+      <StaticQuery
+        query={query}
+        render={data => {
+          const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
+          return (
+            <Layout location={this.props.location}>
+              <div>
+                <Seo facebook={facebook} />
+              </div>
+            </Layout>
+          );
+        }}
+      />
     );
   }
 }
@@ -55,8 +61,7 @@ export default connect(
   mapDispatchToProps
 )(Index);
 
-//eslint-disable-next-line no-undef
-export const pageQuery = graphql`
+export const query = graphql`
   query IndexQuery {
     site {
       siteMetadata {

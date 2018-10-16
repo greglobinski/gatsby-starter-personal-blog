@@ -11,42 +11,42 @@ import theme from "./src/styles/theme";
 
 export default {
   replaceRenderer({ bodyComponent, replaceBodyHTMLString, setHeadComponents }) {
-  const pageContext = getPageContext();
-  const store = createStore();
+    const pageContext = getPageContext();
+    const store = createStore();
 
-  replaceBodyHTMLString(
-    renderToString(
-      <Provider store={store}>
-        <JssProvider
-          registry={pageContext.sheetsRegistry}
-          generateClassName={pageContext.generateClassName}
-        >
-          {React.cloneElement(bodyComponent, {
-            pageContext
-          })}
-        </JssProvider>
-      </Provider>
-    )
-  );
+    replaceBodyHTMLString(
+      renderToString(
+        <Provider store={store}>
+          <JssProvider
+            registry={pageContext.sheetsRegistry}
+            generateClassName={pageContext.generateClassName}
+          >
+            {React.cloneElement(bodyComponent, {
+              pageContext
+            })}
+          </JssProvider>
+        </Provider>
+      )
+    );
 
-  setHeadComponents([
-    <style
-      type="text/css"
-      id="server-side-jss"
-      key="server-side-jss"
-      dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
-    />
-  ]);
-},
-onRenderBody ({ setHeadComponents }) {
-  return setHeadComponents([]);
-},
-onRenderBody ({ setPostBodyComponents }) {
-  return setPostBodyComponents([
-    <script
-      key={`webfontsloader-setup`}
-      dangerouslySetInnerHTML={{
-        __html: `
+    setHeadComponents([
+      <style
+        type="text/css"
+        id="server-side-jss"
+        key="server-side-jss"
+        dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
+      />
+    ]);
+  },
+  // onRenderBody({ setHeadComponents }) {
+  //   return setHeadComponents([]);
+  // },
+  onRenderBody({ setPostBodyComponents }) {
+    return setPostBodyComponents([
+      <script
+        key={`webfontsloader-setup`}
+        dangerouslySetInnerHTML={{
+          __html: `
         WebFontConfig = {
           google: {
             families: ["${theme.base.fonts.styledFamily}:${theme.base.fonts.styledFonts}"]
@@ -59,8 +59,8 @@ onRenderBody ({ setPostBodyComponents }) {
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
         })(document);`
-      }}
-    />
-  ]);
-}
-}
+        }}
+      />
+    ]);
+  }
+};
