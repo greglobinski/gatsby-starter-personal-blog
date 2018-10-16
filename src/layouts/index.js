@@ -59,14 +59,20 @@ class Layout extends React.Component {
   }
 
   getCategories = () => {
-    this.categories = this.props.data.posts.edges.reduce((list, edge, i) => {
-      const category = edge.node.frontmatter.category;
-      if (category && !~list.indexOf(category)) {
-        return list.concat(edge.node.frontmatter.category);
-      } else {
-        return list;
-      }
-    }, []);
+    const { data } = this.props || {};
+    const { posts } = data || {};
+    const { edges } = posts || { edges: [] };
+
+    this.categories =
+      edges &&
+      edges.reduce((list, edge, i) => {
+        const category = edge.node.frontmatter.category;
+        if (category && !~list.indexOf(category)) {
+          return list.concat(edge.node.frontmatter.category);
+        } else {
+          return list;
+        }
+      }, []);
   };
 
   resizeThrottler = () => {
