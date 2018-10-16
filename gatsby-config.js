@@ -46,7 +46,6 @@ module.exports = {
     }
   },
   plugins: [
-    `gatsby-plugin-react-next`,
     {
       resolve: `gatsby-plugin-algolia`,
       options: {

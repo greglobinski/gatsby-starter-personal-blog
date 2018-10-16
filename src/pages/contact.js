@@ -9,26 +9,30 @@ import PageHeader from "../components/Page/PageHeader";
 import Content from "../components/Main/Content";
 import Form from "../components/ContactForm";
 import config from "../../content/meta/config";
+import Layout from "../components/layout";
 
 const styles = theme => ({});
 
-const Contact = () => {
+const Contact = ({ location }) => {
   return (
-    <Main>
-      <Article>
-        <PageHeader title="Contact" />
-        <Content>
-          Feel free to contact me by email: <Obfuscate email={config.contactEmail} /> or use the
-          form below.
-        </Content>
-        <Form />
-      </Article>
-    </Main>
+    <Layout location={location}>
+      <Main>
+        <Article>
+          <PageHeader title="Contact" />
+          <Content>
+            Feel free to contact me by email: <Obfuscate email={config.contactEmail} /> or use the
+            form below.
+          </Content>
+          <Form />
+        </Article>
+      </Main>
+    </Layout>
   );
 };
 
 Contact.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  location: PropTypes.object
 };
 
 export default injectSheet(styles)(Contact);

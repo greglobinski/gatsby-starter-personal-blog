@@ -89,7 +89,7 @@ class Layout extends React.Component {
     // TODO: dynamic management of tabindexes for keybord navigation
     return (
       <LayoutWrapper>
-        {children()}
+        {children}
         <Navigator posts={data.posts.edges} />
         <ActionsBar categories={this.categories} />
         <InfoBar pages={data.pages.edges} parts={data.parts.edges} />
