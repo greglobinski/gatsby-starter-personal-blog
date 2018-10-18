@@ -89,7 +89,12 @@ class TopMenu extends React.Component {
                       const { fields, frontmatter } = page.node;
 
                       return (
-                        <Link key={fields.slug} to={fields.slug} style={{ display: "block" }}>
+                        <Link
+                          aria-label={frontmatter.title}
+                          key={fields.slug}
+                          to={fields.slug}
+                          style={{ display: "block" }}
+                        >
                           <MenuItem
                             onClick={e => {
                               this.props.pageLinkOnClick(e);
@@ -101,7 +106,7 @@ class TopMenu extends React.Component {
                         </Link>
                       );
                     })}
-                    <Link to="/contact/" style={{ display: "block" }}>
+                    <Link aria-label="Contact" to="/contact/" style={{ display: "block" }}>
                       <MenuItem
                         onClick={e => {
                           this.props.pageLinkOnClick(e);
