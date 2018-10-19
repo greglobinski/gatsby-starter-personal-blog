@@ -1,5 +1,6 @@
 import React from "react";
-import { Router } from "react-router-dom";
+// import { Router } from "react-router-dom";
+import { Router, navigate } from "@reach/router";
 import { Provider } from "react-redux";
 import PropTypes from "prop-types";
 
