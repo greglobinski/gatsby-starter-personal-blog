@@ -22,12 +22,12 @@ class PostTemplate extends React.Component {
   }
 
   render() {
-    const { data, pathContext } = this.props;
+    const { data, pageContext } = this.props;
     const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
 
     return (
       <Main>
-        <Post post={data.post} slug={pathContext.slug} author={data.author} facebook={facebook} />
+        <Post post={data.post} slug={pageContext.slug} author={data.author} facebook={facebook} />
         <Footer footnote={data.footnote} />
         <Seo data={data.post} facebook={facebook} />
       </Main>
@@ -37,7 +37,7 @@ class PostTemplate extends React.Component {
 
 PostTemplate.propTypes = {
   data: PropTypes.object.isRequired,
-  pathContext: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
   navigatorPosition: PropTypes.string.isRequired,
   setNavigatorPosition: PropTypes.func.isRequired,
   isWideScreen: PropTypes.bool.isRequired
@@ -61,7 +61,7 @@ export default connect(
 )(PostTemplate);
 
 //eslint-disable-next-line no-undef
-export const postQuery = graphql`
+export const query = graphql`
   query PostBySlug($slug: String!) {
     post: markdownRemark(fields: { slug: { eq: $slug } }) {
       id
