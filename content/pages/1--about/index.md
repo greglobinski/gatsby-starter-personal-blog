@@ -17,7 +17,7 @@ The starter is a ready to use, easy to customize 'like theme' starter. It has ev
 * Full text **searching** (Algolia)
 * **Contact** form (Netlify form handling)
 * **RSS** feed
-* **PWA** (manifes.json, offline support, favicons)
+* **PWA** (manifest.json, offline support, favicons)
 * Google **Analytics**
 * **Favicons** generator (node script)
 * **Material UI** (@next)
