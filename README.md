@@ -39,7 +39,7 @@ A ready to use, easy to customize [GatsbyJS](https://github.com/gatsbyjs/gatsby)
 - Full screen mode
 - User adjustable articles’ body copy font size
 - Social sharing (Twitter, Facebook, Google, LinkedIn)
-- PWA (manifes.json, offline support, favicons)
+- PWA (manifest.json, offline support, favicons)
 - Google Analytics
 - Favicons generator (node script)
 - Components lazy loading with AsyncComponent (social sharing, info box)
