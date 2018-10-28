@@ -86,6 +86,7 @@
     "rebound": "^0.1.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.5",
-    "screenfull": "^3.3.2"
+    "screenfull": "^3.3.2",
+    "typeface-open-sans": "^0.0.54"
   }
 }

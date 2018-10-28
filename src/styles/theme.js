@@ -18,7 +18,6 @@ const theme = createMuiTheme({
       linesMargin: "20px"
     },
     fonts: {
-      unstyledFamily: `Arial`,
       styledFamily: "Open Sans",
       styledFonts: "300,400,600"
     }

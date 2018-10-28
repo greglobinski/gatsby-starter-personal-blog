@@ -20,6 +20,8 @@ import withRoot from "../withRoot";
 import theme from "../styles/theme";
 import globals from "../styles/globals";
 
+require("typeface-open-sans");
+
 // const InfoBox = asyncComponent(
 //   () =>
 //     import("../components/InfoBox/")

@@ -326,7 +326,7 @@ export default {
       "-webkit-text-size-adjust": "100%",
       "-moz-text-size-adjust": "none",
       "-ms-text-size-adjust": "100%",
-      fontFamily: theme.base.fonts.unstyledFamily,
+      fontFamily: theme.base.fonts.styledFamily,
       lineHeight: "1.15",
       textSizeAdjust: "100%"
     },
