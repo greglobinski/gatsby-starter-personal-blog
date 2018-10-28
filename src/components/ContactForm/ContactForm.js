@@ -129,7 +129,7 @@ class ContactForm extends React.Component {
         />
         <input name="bot-field" style={{ display: "none" }} />
         <Button
-          variant="raised"
+          variant="contained"
           color="primary"
           size="large"
           type="submit"

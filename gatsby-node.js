@@ -10,17 +10,27 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
     const slug = createFilePath({ node, getNode, basePath: `pages` });
+    const fileNode = getNode(node.parent);
+    const source = fileNode.sourceInstanceName;
     const separtorIndex = ~slug.indexOf("--") ? slug.indexOf("--") : 0;
     const shortSlugStart = separtorIndex ? separtorIndex + 2 : 0;
+
     createNodeField({
       node,
       name: `slug`,
       value: `${separtorIndex ? "/" : ""}${slug.substring(shortSlugStart)}`
     });
+
     createNodeField({
       node,
       name: `prefix`,
       value: separtorIndex ? slug.substring(1, separtorIndex) : ""
+    });
+
+    createNodeField({
+      node,
+      name: `source`,
+      value: source
     });
   }
 };
@@ -40,10 +50,10 @@ exports.createPages = ({ graphql, actions }) => {
           ) {
             edges {
               node {
-                id
                 fields {
                   slug
                   prefix
+                  source
                 }
               }
             }
@@ -58,15 +68,10 @@ exports.createPages = ({ graphql, actions }) => {
         // Create posts and pages.
         _.each(result.data.allMarkdownRemark.edges, edge => {
           const slug = edge.node.fields.slug;
-          const isPost = /posts/.test(edge.node.id);
+          const source = edge.node.fields.source;
+          const template = source === "posts" ? postTemplate : pageTemplate;
 
-          createPage({
-            path: slug,
-            component: isPost ? postTemplate : pageTemplate,
-            context: {
-              slug: slug
-            }
-          });
+          createPage({ path: slug, component: template, context: { slug: slug } });
         });
       })
     );

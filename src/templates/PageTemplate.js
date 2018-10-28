@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { moveNavigatorAside } from "../utils/shared";
+
 import Main from "../components/Main/";
 import Page from "../components/Page/";
 import Footer from "../components/Footer/";
@@ -67,7 +68,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    footnote: markdownRemark(id: { regex: "/footnote/" }) {
+    footnote: markdownRemark(fileAbsolutePath: { regex: "/footnote/" }) {
       id
       html
     }

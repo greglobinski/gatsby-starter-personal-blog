@@ -3,9 +3,6 @@ import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { connect } from "react-redux";
 
-require("core-js/fn/array/find");
-require("prismjs/themes/prism-okaidia.css");
-
 import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { moveNavigatorAside } from "../utils/shared";
 
@@ -13,6 +10,9 @@ import Main from "../components/Main/";
 import Post from "../components/Post/";
 import Footer from "../components/Footer/";
 import Seo from "../components/Seo";
+
+require("core-js/fn/array/find");
+require("prismjs/themes/prism-okaidia.css");
 
 class PostTemplate extends React.Component {
   moveNavigatorAside = moveNavigatorAside.bind(this);
@@ -85,11 +85,11 @@ export const postQuery = graphql`
         }
       }
     }
-    author: markdownRemark(id: { regex: "/author/" }) {
+    author: markdownRemark(fileAbsolutePath: { regex: "/author/" }) {
       id
       html
     }
-    footnote: markdownRemark(id: { regex: "/footnote/" }) {
+    footnote: markdownRemark(fileAbsolutePath: { regex: "/footnote/" }) {
       id
       html
     }
