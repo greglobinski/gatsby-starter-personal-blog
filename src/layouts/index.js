@@ -20,20 +20,7 @@ import withRoot from "../withRoot";
 import theme from "../styles/theme";
 import globals from "../styles/globals";
 
-require("typeface-open-sans");
-
-// const InfoBox = asyncComponent(
-//   () =>
-//     import("../components/InfoBox/")
-//       .then(module => {
-//         return module;
-//       })
-//       .catch(error => {}),
-//   <Loading
-//     overrides={{ width: `${theme.info.sizes.width}px`, height: "100vh", right: "auto" }}
-//     afterRight={true}
-//   />
-// );
+import "typeface-open-sans";
 
 class Layout extends React.Component {
   timeouts = {};
