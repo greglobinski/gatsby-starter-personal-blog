@@ -1,15 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
+import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 import IconButton from "@material-ui/core/IconButton";
-import { Manager, Target, Popper } from "react-popper";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import classNames from "classnames";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import classNames from "classnames";
 
 const styles = theme => ({
   fontSizeSetter: {
@@ -17,17 +13,12 @@ const styles = theme => ({
   },
   open: {
     color: theme.bars.colors.icon
-  },
-  popperClose: {
-    pointerEvents: "none"
-  },
-  popper: {
-    zIndex: 1
   }
 });
 
 class CategoryFilter extends React.Component {
   state = {
+    anchorEl: null,
     open: false
   };
 
@@ -35,8 +26,8 @@ class CategoryFilter extends React.Component {
     clearTimeout(this.timeout);
   }
 
-  handleClick = () => {
-    this.setState({ open: !this.state.open });
+  handleClick = event => {
+    this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
   };
 
   handleClose = () => {
@@ -45,7 +36,7 @@ class CategoryFilter extends React.Component {
     }
 
     this.timeout = setTimeout(() => {
-      this.setState({ open: false });
+      this.setState({ open: false, anchorEl: null });
     });
   };
 
@@ -57,45 +48,36 @@ class CategoryFilter extends React.Component {
 
   render() {
     const { classes, categories } = this.props;
-    const { open } = this.state;
+    const { anchorEl, open } = this.state;
 
     return (
       <nav className={classes.fontSizeSetter}>
-        <Manager>
-          <Target>
-            <IconButton
-              aria-label="Filter by category"
-              aria-haspopup="true"
-              onClick={this.handleClick}
-              title="Filter the list by category"
-              className={classes.open}
-            >
-              <FilterListIcon />
-            </IconButton>
-          </Target>
-          <Popper
-            placement="bottom-end"
-            eventsEnabled={open}
-            className={`${classNames({ [classes.popperClose]: !open })} ${classes.popper}`}
+        <div>
+          <IconButton
+            aria-label="Filter by category"
+            aria-owns={anchorEl ? 'cat-menu-list' : undefined}
+            aria-haspopup="true"
+            onClick={this.handleClick}
+            title="Filter the list by category"
+            className={classes.open}
+            role="menu"
           >
-            <ClickAwayListener onClickAway={this.handleClose}>
-              <Grow in={open} id="cat-menu-list" style={{ transformOrigin: "0 0 0" }}>
-                <Paper>
-                  <MenuList role="menu">
-                    <MenuItem key="all" onClick={this.handleFiltering}>
-                      all posts
-                    </MenuItem>
-                    {categories.map(category => (
-                      <MenuItem key={category} onClick={this.handleFiltering}>
-                        {category}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </Paper>
-              </Grow>
-            </ClickAwayListener>
-          </Popper>
-        </Manager>
+            <FilterListIcon />
+          </IconButton>
+          <Menu
+            id="cat-menu-list"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={this.handleClose}
+          >
+            <MenuItem key="all" onClick={this.handleFiltering}>all posts</MenuItem>
+            {categories.map(category => (
+              <MenuItem key={category} onClick={this.handleFiltering}>
+                {category}
+              </MenuItem>
+            ))}
+          </Menu>
+        </div>
       </nav>
     );
   }
