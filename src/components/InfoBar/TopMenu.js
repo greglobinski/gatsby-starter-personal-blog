@@ -6,7 +6,7 @@ import MenuList from '@material-ui/core/MenuList';
 import Paper from '@material-ui/core/Paper';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import classNames from 'classnames';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby-link';
 import PropTypes from 'prop-types';
 import React from 'react';
 import injectSheet from 'react-jss';
