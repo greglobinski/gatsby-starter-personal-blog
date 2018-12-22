@@ -1,16 +1,12 @@
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import IconButton from '@material-ui/core/IconButton';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from "gatsby";
+import injectSheet from 'react-jss';
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import classNames from 'classnames';
-import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
-import React from 'react';
-import injectSheet from 'react-jss';
-import {Manager, Popper, Target} from 'react-popper';
 
 const styles = theme => ({
   topMenu: {
@@ -20,9 +16,6 @@ const styles = theme => ({
   },
   open: {
     color: theme.bars.colors.icon
-  },
-  popperClose: {
-    pointerEvents: "none"
   }
 });
 
@@ -36,8 +29,8 @@ class TopMenu extends React.Component {
     clearTimeout(this.timeout);
   }
 
-  handleClick = () => {
-    this.setState({ open: !this.state.open });
+  handleClick = event => {
+    this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
   };
 
   handleClose = () => {
@@ -46,7 +39,7 @@ class TopMenu extends React.Component {
     }
 
     this.timeout = setTimeout(() => {
-      this.setState({ open: false });
+      this.setState({ open: false, anchorEl: null });
     });
   };
 
@@ -56,67 +49,59 @@ class TopMenu extends React.Component {
 
     return (
       <nav className={classes.topMenu}>
-        <Manager>
-          <Target>
-            <IconButton
-              aria-label="More"
-              aria-owns={anchorEl ? "long-menu" : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}
-              className={classes.open}
-            >
-              <MoreVertIcon />
-            </IconButton>
-          </Target>
-          <Popper
-            placement="bottom-end"
-            eventsEnabled={open}
-            className={classNames({ [classes.popperClose]: !open })}
+        <div>
+          <IconButton
+            aria-label="More"
+            aria-owns={anchorEl ? "top-menu" : null}
+            aria-haspopup="true"
+            onClick={this.handleClick}
+            className={classes.open}
           >
-            <ClickAwayListener onClickAway={this.handleClose}>
-              <Grow in={open} id="menu-list" style={{ transformOrigin: "0 0 0" }}>
-                <Paper>
-                  <MenuList role="menu">
-                    <MenuItem
-                      onClick={e => {
-                        this.props.homeLinkOnClick(e);
-                        this.handleClose();
-                      }}
-                    >
-                      Home
-                    </MenuItem>
-                    {pages.map((page, i) => {
-                      const { fields, frontmatter } = page.node;
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            id="top-menu"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={this.handleClose}
+            role="menu"
+          >
+            <MenuItem
+              onClick={e => {
+                this.props.homeLinkOnClick(e);
+                this.handleClose();
+              }}
+            >
+              Home
+            </MenuItem>
+            {pages.map((page, i) => {
+              const { fields, frontmatter } = page.node;
 
-                      return (
-                        <Link key={fields.slug} to={fields.slug} style={{ display: "block" }}>
-                          <MenuItem
-                            onClick={e => {
-                              this.props.pageLinkOnClick(e);
-                              this.handleClose();
-                            }}
-                          >
-                            {frontmatter.menuTitle ? frontmatter.menuTitle : frontmatter.title}
-                          </MenuItem>
-                        </Link>
-                      );
-                    })}
-                    <Link to="/contact/" style={{ display: "block" }}>
-                      <MenuItem
-                        onClick={e => {
-                          this.props.pageLinkOnClick(e);
-                          this.handleClose();
-                        }}
-                      >
-                        Contact
-                      </MenuItem>
-                    </Link>
-                  </MenuList>
-                </Paper>
-              </Grow>
-            </ClickAwayListener>
-          </Popper>
-        </Manager>
+              return (
+                <Link key={fields.slug} to={fields.slug} style={{ display: "block" }}>
+                  <MenuItem
+                    onClick={e => {
+                      this.props.pageLinkOnClick(e);
+                      this.handleClose();
+                    }}
+                  >
+                    {frontmatter.menuTitle ? frontmatter.menuTitle : frontmatter.title}
+                  </MenuItem>
+                </Link>
+              );
+            })}
+            <Link to="/contact/" style={{ display: "block" }}>
+              <MenuItem
+                onClick={e => {
+                  this.props.pageLinkOnClick(e);
+                  this.handleClose();
+                }}
+              >
+                Contact
+              </MenuItem>
+            </Link>
+          </Menu>
+        </div>
       </nav>
     );
   }
