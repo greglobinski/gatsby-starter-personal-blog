@@ -45,13 +45,6 @@ module.exports = {
     }
   },
   plugins: [
-    //`gatsby-plugin-jss`,
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve(`./src/layouts/`)
-      }
-    },
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
