@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { moveNavigatorAside } from "../utils/shared";
 
+import withRoot from "../withRoot";
+import Layout from "../components/Layout";
 import Main from "../components/Main/";
 import Post from "../components/Post/";
 import Footer from "../components/Footer/";
@@ -28,11 +30,13 @@ class PostTemplate extends React.Component {
     const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
 
     return (
-      <Main>
-        <Post post={data.post} slug={pageContext.slug} author={data.author} facebook={facebook} />
-        <Footer footnote={data.footnote} />
-        <Seo data={data.post} facebook={facebook} />
-      </Main>
+      <Layout>
+        <Main>
+          <Post post={data.post} slug={pageContext.slug} author={data.author} facebook={facebook} />
+          <Footer footnote={data.footnote} />
+          <Seo data={data.post} facebook={facebook} />
+        </Main>
+      </Layout>
     );
   }
 }
@@ -60,7 +64,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostTemplate);
+)(withRoot(PostTemplate));
 
 //eslint-disable-next-line no-undef
 export const postQuery = graphql`
