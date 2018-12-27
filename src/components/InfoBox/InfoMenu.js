@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
-import Link from "gatsby-link";
+import { Link } from "gatsby";
 
 const styles = theme => ({
   infoMenu: {

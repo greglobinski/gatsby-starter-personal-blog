@@ -1,17 +1,11 @@
 import injectSheet from "react-jss";
 import PropTypes from "prop-types";
 import React from "react";
-
-//import { MenuItem, MenuList } from "@material-ui/core/Menu";
-import { Manager, Target, Popper } from "react-popper";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import classNames from "classnames";
+import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 import IconButton from "@material-ui/core/IconButton";
 import FormatSizeIcon from "@material-ui/icons/FormatSize";
+import classNames from "classnames";
 
 const styles = theme => ({
   fontSizeSetter: {
@@ -19,9 +13,6 @@ const styles = theme => ({
   },
   open: {
     color: theme.bars.colors.icon
-  },
-  popperClose: {
-    pointerEvents: "none"
   }
 });
 
@@ -35,8 +26,8 @@ class FontSetter extends React.Component {
     clearTimeout(this.timeout);
   }
 
-  handleClick = () => {
-    this.setState({ open: !this.state.open });
+  handleClick = event => {
+    this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
   };
 
   handleClose = () => {
@@ -45,7 +36,7 @@ class FontSetter extends React.Component {
     }
 
     this.timeout = setTimeout(() => {
-      this.setState({ open: false });
+      this.setState({ open: false, anchorEl: null });
     });
   };
 
@@ -62,37 +53,29 @@ class FontSetter extends React.Component {
 
     return (
       <nav className={classes.fontSizeSetter}>
-        <Manager>
-          <Target>
-            <IconButton
-              aria-label="Increase font size"
-              aria-owns={anchorEl ? "long-menu" : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}
-              title="Change font size"
-              className={classes.open}
-            >
-              <FormatSizeIcon />
-            </IconButton>
-          </Target>
-          <Popper
-            placement="bottom-end"
-            eventsEnabled={open}
-            className={classNames({ [classes.popperClose]: !open })}
+        <div>
+          <IconButton
+            aria-label="Increase font size"
+            aria-owns={anchorEl ? "font-setter" : undefined}
+            aria-haspopup="true"
+            onClick={this.handleClick}
+            title="Change font size"
+            className={classes.open}
           >
-            <ClickAwayListener onClickAway={this.handleClose}>
-              <Grow in={open} id="font-menu-list" style={{ transformOrigin: "0 0 0" }}>
-                <Paper>
-                  <MenuList role="menu">
-                    <MenuItem onClick={this.handleSetting}>150%</MenuItem>
-                    <MenuItem onClick={this.handleSetting}>125%</MenuItem>
-                    <MenuItem onClick={this.handleSetting}>100%</MenuItem>
-                  </MenuList>
-                </Paper>
-              </Grow>
-            </ClickAwayListener>
-          </Popper>
-        </Manager>
+            <FormatSizeIcon />
+          </IconButton>
+          <Menu
+            id="font-setter"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={this.handleClose}
+            role="menu"
+          >
+            <MenuItem onClick={this.handleSetting}>150%</MenuItem>
+            <MenuItem onClick={this.handleSetting}>125%</MenuItem>
+            <MenuItem onClick={this.handleSetting}>100%</MenuItem>
+          </Menu>
+        </div>
       </nav>
     );
   }
