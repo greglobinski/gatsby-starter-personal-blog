@@ -1,5 +1,4 @@
 const webpack = require("webpack");
-//const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const _ = require("lodash");
 const Promise = require("bluebird");
 const path = require("path");
