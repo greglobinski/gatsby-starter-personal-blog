@@ -1,12 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "gatsby";
-import injectSheet from 'react-jss';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import classNames from 'classnames';
+import injectSheet from "react-jss";
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
+import IconButton from "@material-ui/core/IconButton";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const styles = theme => ({
   topMenu: {
@@ -21,8 +20,7 @@ const styles = theme => ({
 
 class TopMenu extends React.Component {
   state = {
-    anchorEl: null,
-    open: false
+    anchorEl: null
   };
 
   componentWillUnmount() {
@@ -30,22 +28,18 @@ class TopMenu extends React.Component {
   }
 
   handleClick = event => {
-    this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
+    this.setState({ anchorEl: event.currentTarget });
   };
 
   handleClose = () => {
-    if (!this.state.open) {
-      return;
-    }
-
     this.timeout = setTimeout(() => {
-      this.setState({ open: false, anchorEl: null });
+      this.setState({ anchorEl: null });
     });
   };
 
   render() {
     const { classes, pages } = this.props;
-    const { anchorEl, open } = this.state;
+    const { anchorEl } = this.state;
 
     return (
       <nav className={classes.topMenu}>
