@@ -5,7 +5,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import FilterListIcon from "@material-ui/icons/FilterList";
-import classNames from "classnames";
 
 const styles = theme => ({
   fontSizeSetter: {
@@ -18,8 +17,7 @@ const styles = theme => ({
 
 class CategoryFilter extends React.Component {
   state = {
-    anchorEl: null,
-    open: false
+    anchorEl: null
   };
 
   componentWillUnmount() {
@@ -27,16 +25,12 @@ class CategoryFilter extends React.Component {
   }
 
   handleClick = event => {
-    this.setState({ open: !this.state.open, anchorEl: event.currentTarget });
+    this.setState({ anchorEl: event.currentTarget });
   };
 
   handleClose = () => {
-    if (!this.state.open) {
-      return;
-    }
-
     this.timeout = setTimeout(() => {
-      this.setState({ open: false, anchorEl: null });
+      this.setState({ anchorEl: null });
     });
   };
 
@@ -48,14 +42,14 @@ class CategoryFilter extends React.Component {
 
   render() {
     const { classes, categories } = this.props;
-    const { anchorEl, open } = this.state;
+    const { anchorEl } = this.state;
 
     return (
       <nav className={classes.fontSizeSetter}>
         <div>
           <IconButton
             aria-label="Filter by category"
-            aria-owns={anchorEl ? 'cat-menu-list' : undefined}
+            aria-owns={anchorEl ? "cat-menu-list" : undefined}
             aria-haspopup="true"
             onClick={this.handleClick}
             title="Filter the list by category"
@@ -70,7 +64,9 @@ class CategoryFilter extends React.Component {
             open={Boolean(anchorEl)}
             onClose={this.handleClose}
           >
-            <MenuItem key="all" onClick={this.handleFiltering}>all posts</MenuItem>
+            <MenuItem key="all" onClick={this.handleFiltering}>
+              all posts
+            </MenuItem>
             {categories.map(category => (
               <MenuItem key={category} onClick={this.handleFiltering}>
                 {category}
