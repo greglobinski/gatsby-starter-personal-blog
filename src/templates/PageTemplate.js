@@ -6,6 +6,8 @@ import { connect } from "react-redux";
 import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { moveNavigatorAside } from "../utils/shared";
 
+import withRoot from "../withRoot";
+import Layout from "../components/Layout";
 import Main from "../components/Main/";
 import Page from "../components/Page/";
 import Footer from "../components/Footer/";
@@ -25,11 +27,13 @@ class PageTemplate extends React.Component {
     const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
 
     return (
-      <Main>
-        <Page page={data.page} />
-        <Footer footnote={data.footnote} />
-        <Seo data={data.post} facebook={facebook} />
-      </Main>
+      <Layout>
+        <Main>
+          <Page page={data.page} />
+          <Footer footnote={data.footnote} />
+          <Seo data={data.post} facebook={facebook} />
+        </Main>
+      </Layout>
     );
   }
 }
@@ -56,7 +60,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageTemplate);
+)(withRoot(PageTemplate));
 
 //eslint-disable-next-line no-undef
 export const pageQuery = graphql`
