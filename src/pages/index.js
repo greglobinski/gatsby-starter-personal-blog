@@ -5,6 +5,9 @@ import { graphql } from "gatsby";
 
 import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { featureNavigator } from "../utils/shared";
+
+import withRoot from "../withRoot";
+import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 
 class Index extends React.Component {
@@ -21,9 +24,9 @@ class Index extends React.Component {
     const facebook = (((data || {}).site || {}).siteMetadata || {}).facebook;
 
     return (
-      <div>
+      <Layout>
         <Seo facebook={facebook} />
-      </div>
+      </Layout>
     );
   }
 }
@@ -50,7 +53,7 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Index);
+)(withRoot(Index));
 
 //eslint-disable-next-line no-undef
 export const pageQuery = graphql`
