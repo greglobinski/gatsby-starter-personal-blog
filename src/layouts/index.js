@@ -4,12 +4,9 @@ import { graphql, StaticQuery } from "gatsby";
 import { connect } from "react-redux";
 import injectSheet from "react-jss";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import { asyncComponent } from "react-async-component";
 
 import Loading from "../components/common/Loading/";
-import Navigator from "../components/Navigator/";
-import ActionsBar from "../components/ActionsBar/";
-import InfoBar from "../components/InfoBar/";
-import InfoBox from "../components/InfoBox/";
 import LayoutWrapper from "../components/LayoutWrapper/";
 
 import { setFontSizeIncrease, setIsWideScreen } from "../state/store";
@@ -20,6 +17,29 @@ import theme from "../styles/theme";
 import globals from "../styles/globals";
 
 import "typeface-open-sans";
+
+const Navigator = asyncComponent({
+  resolve: () => import("../components/Navigator")
+});
+
+const ActionsBar = asyncComponent({
+  resolve: () => import("../components/ActionsBar")
+});
+
+const InfoBar = asyncComponent({
+  resolve: () => import("../components/InfoBar")
+});
+
+const InfoBox = asyncComponent({
+  resolve: () => import("../components/InfoBox"),
+  // eslint-disable-next-line react/display-name
+  LoadingComponent: () => (
+    <Loading
+      overrides={{ width: `${theme.info.sizes.width}px`, height: "100vh", right: "auto" }}
+      afterRight={true}
+    />
+  )
+});
 
 class Layout extends React.Component {
   timeouts = {};
