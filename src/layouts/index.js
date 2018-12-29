@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import injectSheet from "react-jss";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
-import asyncComponent from "../components/common/AsyncComponent/";
 import Loading from "../components/common/Loading/";
 import Navigator from "../components/Navigator/";
 import ActionsBar from "../components/ActionsBar/";
