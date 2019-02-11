@@ -1,4 +1,5 @@
 require("dotenv").config();
+const removeMarkdown = require("remove-markdown");
 const config = require("./content/meta/config");
 
 const query = `{
@@ -24,7 +25,13 @@ const query = `{
 const queries = [
   {
     query,
-    transformer: ({ data }) => data.allMarkdownRemark.edges.map(({ node }) => node)
+    transformer: ({ data }) =>
+      data.allMarkdownRemark.edges.map(({ node }) => {
+        if (node.internal && node.internal.content) {
+          node.internal.content = removeMarkdown(node.internal.content).substring(1, 1000);
+        }
+        return node;
+      })
   }
 ];
 
