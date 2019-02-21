@@ -2,11 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { connect } from "react-redux";
+import { asyncComponent } from "react-async-component";
 
 import { setNavigatorPosition, setNavigatorShape } from "../state/store";
 import { moveNavigatorAside } from "../utils/shared";
 
-import Main from "../components/Main/";
+//import Main from "../components/Main/";
+const Main = asyncComponent({
+  resolve: () => import("../components/Main")
+});
 import Page from "../components/Page/";
 import Footer from "../components/Footer/";
 import Seo from "../components/Seo";
