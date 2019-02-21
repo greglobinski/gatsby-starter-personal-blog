@@ -2,8 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import injectSheet from "react-jss";
 import Obfuscate from "react-obfuscate";
+import { asyncComponent } from "react-async-component";
 
-import Main from "../components/Main";
+//import Main from "../components/Main";
+const Main = asyncComponent({
+  resolve: () => import("../components/Main")
+});
 import Article from "../components/Main/Article";
 import PageHeader from "../components/Page/PageHeader";
 import Content from "../components/Main/Content";
