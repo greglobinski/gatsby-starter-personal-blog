@@ -5,7 +5,7 @@ import { asyncComponent } from "react-async-component";
 
 require("core-js/fn/array/find");
 
-import Main from "../components/Main";
+//import Main from "../components/Main";
 const Main = asyncComponent({
   resolve: () => import("../components/Main")
 });
