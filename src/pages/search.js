@@ -1,10 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
+import { asyncComponent } from "react-async-component";
 
 require("core-js/fn/array/find");
 
 import Main from "../components/Main";
+const Main = asyncComponent({
+  resolve: () => import("../components/Main")
+});
 import Article from "../components/Main/Article";
 import PageHeader from "../components/Page/PageHeader";
 import Search from "../components/Search";
