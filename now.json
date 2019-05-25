@@ -1,0 +1,1 @@
+{"version":1,"name":"zangolotinos","builds":[{"src":"package.json","use":"@now/static-build"}]}
