@@ -2,9 +2,7 @@
 title: About
 ---
 
-This is a demo site of the [PersonalBlog](https://github.com/greglobinski/gatsby-starter-personal-blog) GatsbyJS starter.
-
-The starter is a ready to use, easy to customize 'like theme' starter. It has everything what blog should have and some more.
+Blog del club de lectura Zangolotinos, espero que os guste lo que hacemos.
 
 ### Standard features:
 
