@@ -2,8 +2,8 @@
 title: footnote
 ---
 
-* this is a demo site of the [gatsby-starter-personal-blog](https://github.com/greglobinski/gatsby-starter-personal-blog)
-* built by [greg lobinski](https://www.greglobinski.com)
-* GatsbyJS, ReactJs, CSS in JS - [Front-end web development with Greg](https://dev.greglobinski.com)
+* this site is built using [gatsby-starter-personal-blog](https://github.com/briankopp/gatsby-starter-personal-blog)
+* shamelessly copied from [greg lobinski's](https://www.greglobinski.com) [fantastic starter](https://github.com/greglobinski.com/gatsby-starter-personal-blog)
+* built by [brian kopp](https://www.codekopp.com)
+* GatsbyJS, ReactJs, CSS in JS
 * delivered by [Netlify](https://www.netlify.com/)
-* photos by [unsplash.com](https://unsplash.com)
