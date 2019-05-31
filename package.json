@@ -65,6 +65,7 @@
     "gatsby-transformer-sharp": "^1.6.27",
     "hoek": "^5.0.3",
     "instantsearch.css": "^7.1.0",
+    "libvips": "0.0.2",
     "prismjs": "^1.15.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-facebook": "^5.0.3",
@@ -81,6 +82,7 @@
     "rebound": "^0.1.0",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
-    "screenfull": "^3.3.2"
+    "screenfull": "^3.3.2",
+    "sharp": "^0.22.1"
   }
 }
