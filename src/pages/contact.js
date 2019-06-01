@@ -16,10 +16,10 @@ const Contact = () => {
   return (
     <Main>
       <Article>
-        <PageHeader title="Contact" />
+        <PageHeader title="Contacto" />
         <Content>
-          Feel free to contact me by email: <Obfuscate email={config.contactEmail} /> or use the
-          form below.
+          Si quieres saber más de nosotros, puedes escribirnos a : <Obfuscate email={config.contactEmail} /> o usa el siguiente
+          formulario.
         </Content>
         <Form />
       </Article>

@@ -1,9 +1,9 @@
 const colors = require("../../src/styles/colors");
 
 module.exports = {
-  siteTitle: "PersonalBlog - a blog starter for GatsbyJS", // <title>
-  shortSiteTitle: "PersonalBlog GatsbyJS Starter", // <title> ending for posts and pages
-  siteDescription: "PersonalBlog is a GatsbyJS starter.",
+  siteTitle: "Zangolotinos - Club de lectura", // <title>
+  shortSiteTitle: "Zantolotinos - Club de lectura", // <title> ending for posts and pages
+  siteDescription: "Aquí se reunen todos los zangolotinos.",
   siteUrl: "https://gatsby-starter-personal-blog.greglobinski.com",
   pathPrefix: "",
   siteImage: "preview.jpg",
@@ -12,17 +12,17 @@ module.exports = {
   authorName: "greg lobinski",
   authorTwitterAccount: "greglobinski",
   // info
-  infoTitle: "greg lobinski",
-  infoTitleNote: "personal blog",
+  infoTitle: "Zangolotinos",
+  infoTitleNote: "Club de lectura",
   // manifest.json
-  manifestName: "PersonalBlog - a blog starter for GatsbyJS",
+  manifestName: "Zangolotinos - Club de lectura",
   manifestShortName: "PersonalBlog", // max 12 characters
   manifestStartUrl: "/",
   manifestBackgroundColor: colors.background,
   manifestThemeColor: colors.background,
   manifestDisplay: "standalone",
   // contact
-  contactEmail: "john@doe.com",
+  contactEmail: "rasda1949@gmail.com",
   // social
   authorSocialLinks: [
     { name: "github", url: "https://github.com/greglobinski" },

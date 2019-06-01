@@ -2,4 +2,4 @@
 title: info
 ---
 
-I am a front-end web developer. I used to be a web designer too, but now I concentrate on the code.
+Espacio de reunión de un grupo de amantes de la lectura donde compartimos experiencias.
