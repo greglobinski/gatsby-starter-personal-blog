@@ -1,7 +1,7 @@
 ---
 title: Las hijas de otros hombres
 subTitle: Richard Stern
-category: "seleccionado","novela","contemporanea"
+category: "seleccionado"
 cover: photo-1463852247062-1bbca38f7805-cover.jpg
 ---
 
