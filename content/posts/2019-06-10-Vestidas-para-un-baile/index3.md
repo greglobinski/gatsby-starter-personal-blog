@@ -4,8 +4,6 @@ Vestidas para un baile en la nieve
 Zgustova, Monika
 ### Género
 Narrativa
-### Imagen
-2019-06-10-Vestidas-para-un-baile.jpeg
 ### Editor
 Galaxia Gutenberg S.L.
 ### Traductor
