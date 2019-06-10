@@ -1,7 +1,7 @@
 ---
-title: Vestidas para un baile en la nieve
-subTitle: Zgustova, Monika
-category: Narrativa
+título: Vestidas para un baile en la nieve
+Autor: Zgustova, Monika
+Género: Narrativa
 ---
 ### Editor
 Galaxia Gutenberg S.L.
