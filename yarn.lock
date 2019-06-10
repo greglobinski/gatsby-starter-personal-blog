@@ -10212,9 +10212,10 @@ schema-utils@^0.3.0:
   dependencies:
     ajv "^5.0.0"
 
-screenfull@^3.3.2:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/screenfull/-/screenfull-3.3.2.tgz#a6adf3b3f5556da812725385880600f5b39fbf25"
+screenfull@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/screenfull/-/screenfull-4.2.0.tgz#d5252a5a0f56504719abbed9ebbcd9208115da03"
+  integrity sha512-qpyI9XbwuMJElWRP5vTgxkFAl4k7HpyhIqBFOZEwX9QBXn0MAuRSpn7LOc6/4CeSwoz61oBu1VPV+2fbIWC+5Q==
 
 scroll-behavior@^0.9.9:
   version "0.9.9"
