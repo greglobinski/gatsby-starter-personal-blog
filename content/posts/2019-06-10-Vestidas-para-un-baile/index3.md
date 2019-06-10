@@ -1,9 +1,8 @@
 
+!["Imagen no encontrada Index3"](2019-06-10-Vestidas-para-un-baile.jpeg "Portada")
+
 ###Titulo: 
 Vestidas para un baile en la nieve
----
-!["Imagen no encontrada Index3"](2019-06-10-Vestidas-para-un-baile.jpeg "Portada")
----
 ###Autor/a: 
 Zgustova, Monika
 ###Género: 
