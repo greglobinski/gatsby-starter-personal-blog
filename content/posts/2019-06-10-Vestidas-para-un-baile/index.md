@@ -2,7 +2,7 @@
 title: Vestidas para un baile en la nieve
 subTitle: Zgustova, Monika
 category: "seleccionado"
-cover: Vestidas-para-un-baile1.jpg.jpg
+cover: Vestidas-para-un-baile1.jpg
 ---
 
 Título | Autor/a | Género | Editor | Traductor | Estado |
