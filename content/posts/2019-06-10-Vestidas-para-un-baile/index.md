@@ -1,3 +1,10 @@
+---
+title: Vestidas para un baile en la nieve
+subTitle: Zgustova, Monika
+category: "seleccionado"
+cover: Vestidas-para-un-baile1.jpg.jpg
+---
+
 Título | Autor/a | Género | Editor | Traductor | Estado |
 ------ | ------- | ------ | ------ | --------- | ------ |
 Vestidas para un baile en la nieve | Zgustova, Monika | Narrativa | Galaxia Gutemberg S.L. | Original en castellano | Seleccionado para el club del 19/6/2019|
