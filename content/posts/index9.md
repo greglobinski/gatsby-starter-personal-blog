@@ -1,4 +1,4 @@
-!["Imagen no encontrada"](Vestidas-para-un-baile1.jpg)
+!["Imagen no encontrada"](Vestidas-para-un-baile2.jpg)
 **__Seleccionado para el club del 19/6/2019__**
 
 Título | Autor/a | Género | Editor | Traductor |
