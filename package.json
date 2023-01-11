@@ -61,7 +61,7 @@
     "gatsby-remark-responsive-iframe": "^1.4.20",
     "gatsby-remark-smartypants": "^1.4.10",
     "gatsby-source-filesystem": "^1.5.39",
-    "gatsby-transformer-remark": "^1.7.44",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^1.6.27",
     "hoek": "^5.0.3",
     "instantsearch.css": "^7.1.0",
